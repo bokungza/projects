@@ -15,6 +15,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/products', function () {
-    return view('products.allproducts');
-});
+Route::get('/products', 'ProductsController@index');
+
+Route::get('/product/{id}', 'ProductsController@detail')
+    ->where('id' , '[0-9]+')
+;

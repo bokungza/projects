@@ -15,11 +15,12 @@
 .products-container {
     max-width: 1280px;
     width: 100%;
-    height: 100%;
     border: 1px solid #9e9e9e;
     float: left;
     padding-left: 55px;
     padding-top: 20px;
+    min-height: 720px;
+    height: 100%;
 }
 
 .product-img {
@@ -71,6 +72,7 @@ span {
     height: 250px;
     background-size: cover;
     float: left;
+    border: #d1d1d1 solid 1px;
 }
 
 .p {
@@ -83,6 +85,21 @@ span {
     color: orange;
 }
 
+
+.p-detail {
+    font-weight: bold;
+    display: block;
+    width: 100%;
+    height: 65px;
+    font-size: 30px;
+    color: orange;
+}
+
 .img:hover {
     transform: scale(1.1);
+}
+
+.detail-container{
+    padding: 20px;
+    float: left;
 }
