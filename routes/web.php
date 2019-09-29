@@ -20,3 +20,9 @@ Route::get('/products', 'ProductsController@index');
 Route::get('/product/{id}', 'ProductsController@detail')
     ->where('id' , '[0-9]+')
 ;
+Route::get('/hello', function () {
+    return "Hello Laravel";
+    });
+Route::get('/carts', function () {
+        return view('carts.items');
+    });
