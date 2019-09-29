@@ -23,3 +23,7 @@ Route::get('/product/{id}', 'ProductsController@detail')
 Route::get('/carts', function () {
         return view('carts.items');
     });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

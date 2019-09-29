@@ -60,7 +60,7 @@
           <div class="p-4">
             <ul class="list-unstyled mb-4">
               <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">ยอดรวม (จำนวน 2 ชิ้น) </strong><strong>฿500.00</strong></li>
-              <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">ค่าจัดส่ง</strong><strong>$50.00</strong></li>
+              <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">ค่าจัดส่ง</strong><strong>฿50.00</strong></li>
               <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">ยอดรวมทั้งสิ้น</strong>
                 <h5 class="font-weight-bold"><u>฿550.00</u></h5>
               </li>
