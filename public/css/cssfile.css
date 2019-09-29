@@ -1,0 +1,88 @@
+* {
+    font-family: 'Kanit', sans-serif;
+}
+.form-search{
+    max-width: 200px;
+    width: 100%;
+    min-height: 700px;
+    height: 100%;
+    border: 1px solid #9e9e9e;
+    float: left;
+    margin-top: 63px;
+    left: 0;
+}
+
+.products-container {
+    max-width: 1280px;
+    width: 100%;
+    height: 100%;
+    border: 1px solid #9e9e9e;
+    float: left;
+    padding-left: 55px;
+    padding-top: 20px;
+}
+
+.product-img {
+    width: 360px;
+    height: 400px;
+    float: left;
+    margin-top: 15px;
+    margin-left: 8px;
+    margin-right: 8px;
+    border: #d1d1d1 solid 1px;
+    overflow: hidden;
+}
+
+.nav-fixed {
+    position: fixed;
+    width: 100%;
+    max-width: 1280px;
+}
+
+.my-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    width: auto !important;
+    position: relative !important;
+    min-height: 763px;
+    height: 100%;
+}
+
+.my-content-container {
+    padding-top: 63px;
+    max-width: 1280px;
+    width: 100%;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+}
+
+span {
+    display: block;
+    width: 100%;
+    height: 85px;
+    float: left;
+    padding: 15px;
+    overflow: hidden;
+    color: black;
+}
+
+.img {
+    width: 360px;
+    height: 250px;
+    background-size: cover;
+    float: left;
+}
+
+.p {
+    font-weight: bold;
+    padding: 15px;
+    display: block;
+    width: 100%;
+    height: 65px;
+    font-size: 30px;
+    color: orange;
+}
+
+.img:hover {
+    transform: scale(1.1);
+}
