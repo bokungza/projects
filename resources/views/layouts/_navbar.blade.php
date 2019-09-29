@@ -13,25 +13,16 @@
       <li class="nav-item active">
         <a class="nav-link" href="products">สินค้า <span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item dropdown">
-        <a class="dropdown-toggle nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          สินค้าใหม่
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">วันที่....</a>
-          <a class="dropdown-item" href="#">วันที่....</a>
-          <a class="dropdown-item" href="#">วันที่....</a>
-      </li>
       <li class="nav-item active">
-        <a class="nav-link" href="#">สินค้าลดราคา <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="#">วิธีการซื้อสินค้า <span class="sr-only">(current)</span></a>
       </li>
     </ul>
 
 
-    <a class="nav-link text-white bg-dark" href="logins">Login <span class="sr-only">(current)</span></a>
+    <a class="btn text-white" href="logins">Login <i class="fas fa-sign-in-alt"></i> <span class="sr-only">(current)</span></a>
     <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="ค้นหาสินค้า" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
+      <button class="btn text-white my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
     </form>
   </div>
 </nav>
