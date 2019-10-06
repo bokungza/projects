@@ -14,7 +14,7 @@
         <a class="nav-link" href="products">สินค้า <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" href="#">วิธีการซื้อสินค้า <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="payments">วิธีการซื้อสินค้า <span class="sr-only">(current)</span></a>
       </li>
     </ul>
 
