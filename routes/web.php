@@ -20,9 +20,12 @@ Route::get('/products', 'ProductsController@index');
 Route::get('/product/{id}', 'ProductsController@detail')
     ->where('id' , '[0-9]+')
 ;
+
+Route::post('/testdb','ProductsController@index');
+
 Route::get('/carts', function () {
         return view('carts.items');
-    });
+});
 
 Auth::routes();
 
