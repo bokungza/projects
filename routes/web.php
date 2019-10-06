@@ -20,3 +20,5 @@ Route::get('/products', 'ProductsController@index');
 Route::get('/product/{id}', 'ProductsController@detail')
     ->where('id' , '[0-9]+')
 ;
+
+Route::post('/testdb','ProductsController@index');
