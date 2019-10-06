@@ -9,11 +9,12 @@
     <link href="https://fonts.googleapis.com/css?family=Kanit&display=swap" rel="stylesheet">
     <title>{{ env('APP_NAME' )}}</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
 </head>
 <body>
 
     <div class="my-container">
-        @include('layouts._navbar')
+        @include('layouts._manager')
         <div class="container my-content-container">
             @yield('content')
         </div>

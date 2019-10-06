@@ -22,3 +22,14 @@ Route::get('/product/{id}', 'ProductsController@detail')
 ;
 
 Route::post('/testdb','ProductsController@index');
+
+Route::get('/carts', function () {
+        return view('carts.items');
+});
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+
+Route::get('/payments', 'PaymentsController@index')->name('payments');

@@ -12,6 +12,7 @@
 
 </head>
 <body>
+
     <div class="my-container">
         @include('layouts._login')
         <div class="container my-content-container">
