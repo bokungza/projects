@@ -28,5 +28,6 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-
 Route::get('/payments', 'PaymentsController@index')->name('payments');
+
+Route::get('/pays', 'PaysController@index')->name('pays');

@@ -16,6 +16,9 @@
       <li class="nav-item active">
         <a class="nav-link" href="#">วิธีการซื้อสินค้า <span class="sr-only">(current)</span></a>
       </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="pays">แจ้งชำระเงิน <span class="sr-only">(current)</span></a>
+      </li>
     </ul>
 
       <div class="dropdown">
