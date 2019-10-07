@@ -32,10 +32,5 @@
         </div>
       </div>
       
-      <a class="text-white" href="#" style="margin-right: 10px"><i class="fas fa-shopping-basket"></i></a>
-       <form class="form-inline my-2 my-lg-0" >
-          <input class="form-control mr-sm-2" type="search" placeholder="ค้นหาสินค้า" aria-label="Search">
-          <button class="btn text-white my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
-      </form>
   </div>
 </nav>
