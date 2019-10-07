@@ -22,8 +22,14 @@ class ProductsController extends Controller
         return view('logins.addproduct');
     }
 
-    public function addaction(){
-        return view('logins.addproduct');
+    public function addAction(Request $request){
+        dd($request->all());
+        $product = new App\product;
+        $product->name = $request->name;
+        $product->detail = $request->detail;
+        $product->unitprice = $request->price;
+        $product->save();
+        return view('logins.addproductaction');
     }
 
 }

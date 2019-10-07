@@ -47,5 +47,7 @@ class ProductsTableSeeder extends Seeder
         $product->detail = 'เป็นเนื้อที่เหนียวที่สุด มักนิยมทำสตูว์หรือตุ๋น';
         $product->unit_price = 30.00;
         $product->save();
+
+        factory(\App\Product::class, 10)->create();
     }
 }

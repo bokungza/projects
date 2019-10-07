@@ -43,4 +43,4 @@ Route::get('/LoginPayments', 'LoginPaymentsController@index')->name('LoginPaymen
 
 Route::get('/addproduct','ProductsController@add');
 
-Route::post('/addproductaction' , 'ProductsController@addaction')
+Route::get('/addproductaction' , 'ProductsController@addAction');
