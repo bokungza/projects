@@ -103,3 +103,7 @@ span {
     padding: 20px;
     float: left;
 }
+li a:hover {
+    background-color: red;
+    color: white;
+  }
