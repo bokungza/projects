@@ -26,7 +26,8 @@ Route::post('/testdb','ProductsController@index');
 Route::get('/carts', function () {
         return view('carts.items');
 });
-
+Route::get('/accounts', 'AccountsController@index')->name('accounts');
+Route::get('/trackOrders', 'TrackOrderController@index')->name('trackOrders');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

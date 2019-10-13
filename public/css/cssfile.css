@@ -103,3 +103,13 @@ span {
     padding: 20px;
     float: left;
 }
+li a:hover {
+    background-color: red;
+    color: white;
+  }
+  .avatar {
+    vertical-align: middle;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+  }
