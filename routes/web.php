@@ -33,8 +33,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/payments', 'PaymentsController@index')->name('payments');
 
-Route::get('/pays', 'PaysController@index')->name('pays');
-
 Route::get('/LoginHomes', 'LoginHomesController@index')->name('LoginHomes');
 
 Route::get('/LoginProducts', 'LoginProductsController@index')->name('LoginProducts');
@@ -44,3 +42,6 @@ Route::get('/LoginPayments', 'LoginPaymentsController@index')->name('LoginPaymen
 Route::get('/addproduct','ProductsController@add');
 
 Route::get('/addproductaction' , 'ProductsController@addAction');
+
+Route::get('/pays', 'PaysController@index');
+Route::get('/pays/{id}', 'PaysController@show');
