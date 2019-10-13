@@ -19,6 +19,9 @@
       <li class="nav-item active">
         <a class="nav-link" href="pays">แจ้งชำระเงิน <span class="sr-only">(current)</span></a>
       </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="trackOrders">ติดตามสินค้า <span class="sr-only">(current)</span></a>
+      </li>
     </ul>
 
       <div class="dropdown">
@@ -27,7 +30,6 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
           <a class="dropdown-item" href="accounts">โปรไฟล์</a>
-          <a class="dropdown-item" href="#">แจ้งเตือน</a>
           <a class="dropdown-item" href="/">ออกจากระบบ</a>
         </div>
       </div>
