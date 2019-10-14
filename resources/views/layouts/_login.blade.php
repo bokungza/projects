@@ -8,19 +8,19 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="LoginHomes">หน้าหลัก <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="{{route('LoginHomes')}}">หน้าหลัก <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" href="LoginProducts">สินค้า <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="{{route('LoginProducts')}}">สินค้า <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" href="LoginPayments">วิธีการซื้อสินค้า <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="{{route('LoginPayments')}}">วิธีการซื้อสินค้า <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" href="pays">แจ้งชำระเงิน <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="/pays/create">แจ้งชำระเงิน <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" href="trackOrders">ติดตามสินค้า <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="{{route('trackOrders')}}">ติดตามสินค้า <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item active">
         <a class="nav-link" href="carts">ตะกร้าสินค้า <span class="sr-only">(current)</span></a>

@@ -9,27 +9,40 @@ class ProductsController extends Controller
 {
     public function index() {
         $products = Product::all();
-        return view('products.allproducts',['products' => $products]);
+        return view('products.index',['products' => $products]);
     }
 
-    public function detail($id)
+    public function show($id)
     {
         $product = Product::findOrFail($id);
-        return view('products.productdetail',['product' => $product]);
+        return view('products.show',['product' => $product]);
     }
 
-    public function add(){
-        return view('logins.addproduct');
+    public function create(){
+        return view('products.create');
     }
 
-    public function addAction(Request $request){
-        dd($request->all());
-        $product = new App\product;
-        $product->name = $request->name;
-        $product->detail = $request->detail;
-        $product->unitprice = $request->price;
+    public function store(Request $request){
+        $validatedData = $request->validate([
+            'name' => ['required' , 'min:5' , 'max:255'],
+            'detail' => ['required' , 'max:500'],
+            'price' => ['required' , 'min:1'],
+            'image' => 'required|image|mimes:jpeg,png,jpg',
+        ]);
+
+        $product = new Product;
+        if ($files = $request->file('image')) {
+            $destinationPath = '../public/img';
+            $profileImage = date('YmdHis') . "." . $files->getClientOriginalExtension();
+            $files->move($destinationPath, $profileImage);
+            $product->picture = $profileImage;
+        }
+        $product->name = $validatedData['name'];
+        $product->detail = $validatedData['detail'];
+        $product->unit_price = $validatedData['price'];
+
         $product->save();
-        return view('logins.addproductaction');
+        return redirect()->route('products.show',['product' => $product->id]);
     }
 
 }
