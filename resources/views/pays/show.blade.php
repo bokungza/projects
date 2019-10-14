@@ -21,5 +21,8 @@
     <p class="card-text">
         จำนวนเงิน : {{ $pay->amount}}
     </p>
+    <a class="nav-link" href="/pays">กลับ <span class="sr-only">(current)</span></a>
+
     </div>
+
 @endsection

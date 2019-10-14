@@ -20,7 +20,7 @@
         <a class="nav-link" href="#">แก้ไขสินค้า <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" href="pays">ดูการแจ้งชำระเงิน <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="/pays">ดูการแจ้งชำระเงิน <span class="sr-only">(current)</span></a>
       </li>
     </ul>
 
