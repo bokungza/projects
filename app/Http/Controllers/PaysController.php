@@ -16,6 +16,6 @@ class PaysController extends Controller
     public function detail($id)
     {
         $pay = Product::findOrFail($id);
-        return view('pays.productdetail',['pay' => $pay]);
+        return view('pays.detail',['pay' => $pay]);
     }
 }

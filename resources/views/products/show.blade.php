@@ -4,7 +4,7 @@
     <div class="products-container">
         <div>
             <a href="#">
-                <img class="img" src="{{ asset('img/round.jpg') }}">
+                <img class="img" src='../img/{{$product->picture}}'>
             </a>
         </div>
         <div class = "detail-container">

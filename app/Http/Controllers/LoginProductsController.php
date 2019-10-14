@@ -8,7 +8,8 @@ use Illuminate\Http\Request;
 class LoginProductsController extends Controller
 {
     public function index() {
-        return view('LoginProducts.LoginProducts');
+        $products = Product::all();
+        return view('LoginProducts.LoginProducts',['products' => $products]);
     }
 
 }
