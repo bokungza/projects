@@ -37,5 +37,4 @@ Route::get('/LoginPayments', 'LoginPaymentsController@index')->name('LoginPaymen
 
 Route::resource('/products','ProductsController');
 
-Route::get('/pays', 'PaysController@index');
-Route::get('/pays/{id}', 'PaysController@show');
+Route::resource('/pays', 'PaysController');
