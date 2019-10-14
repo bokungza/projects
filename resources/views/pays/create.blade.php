@@ -2,7 +2,7 @@
 
 @section('content')
 <h1>แจ้งชำระเงิน</h1>
-<form action="{{ route('pays.store') }}" method = 'pay' enctype="multipart/form-data">
+<form action="{{ route('pays.store') }}" method = 'post' enctype="multipart/form-data">
     @csrf
     <div>
         Order ID : <input type="number" name= 'orderid' class="form-control @error('orderid') is-invalid @enderror" value="{{ old('orderid')}}"><br>
