@@ -44,5 +44,4 @@ Route::get('/addproduct','ProductsController@add');
 
 Route::get('/addproductaction' , 'ProductsController@addAction');
 
-Route::get('/pays', 'PaysController@index');
-Route::get('/pays/{id}', 'PaysController@show');
+Route::resource('/pays', 'PaysController');
