@@ -11,48 +11,44 @@ class PaysTableSeeder extends Seeder
      */
     public function run()
     {
-
+        //
         $pay = new App\pay;
-        $pay->orderid = 1111111111;
-        $pay->bank = 'ไทยพานิช';
-        $pay->day = 13;
+        $pay->orderid = 1;
+        $pay->bank = 'ธนาคาร1';
+        $pay->day = 1;
         $pay->month = 10;
         $pay->year = 2019;
-        $pay->hour = 11;
-        $pay->minute = 23;
-        $pay->payerfirstname = 'อิศเรศน์';
-        $pay->payerlastname = 'สิงห์ทวีศักดิ์';
-        $pay->amount = 2000;
+        $pay->hour = 10;
+        $pay->minute = 10;
+        $pay->firstname = 'อิศเรศน์';
+        $pay->lastname = 'สิงห์ทวีศักดิ์';
+        $pay->cost = 2000;
         $pay->save();
 
+        $pay = new App\pay;
+        $pay->orderid = 2;
+        $pay->bank = 'ธนาคาร2';
+        $pay->day = 2;
+        $pay->month = 10;
+        $pay->year = 2019;
+        $pay->hour = 12;
+        $pay->minute = 12;
+        $pay->firstname = 'ภัทรพล';
+        $pay->lastname = 'พลตะคุ';
+        $pay->cost = 3000;
+        $pay->save();
         
         $pay = new App\pay;
-        $pay->orderid = 2222222222;
-        $pay->bank = 'กรุงไทย';
-        $pay->day = 10;
-        $pay->month = 9;
+        $pay->orderid = 3;
+        $pay->bank = 'ธนาคาร3';
+        $pay->day = 3;
+        $pay->month = 10;
         $pay->year = 2019;
-        $pay->hour = 13;
-        $pay->minute = 45;
-        $pay->payerfirstname = 'ภัทรพล';
-        $pay->payerlastname = 'พลตะคุ';
-        $pay->amount = 1000;
+        $pay->hour = 14;
+        $pay->minute = 14;
+        $pay->firstname = 'ศิขริน';
+        $pay->lastname = 'กาดีโรจน์';
+        $pay->cost = 5000;
         $pay->save();
-
-        
-        $pay = new App\pay;
-        $pay->orderid = 3333333333;
-        $pay->bank = 'กสิกรไทย';
-        $pay->day = 12;
-        $pay->month = 9;
-        $pay->year = 2019;
-        $pay->hour = 18;
-        $pay->minute = 03;
-        $pay->payerfirstname = 'ศิขริน';
-        $pay->payerlastname = 'กาดีโรจน์';
-        $pay->amount = 3000;
-        $pay->save();
-
-        factory(\App\Pay::class, 10)->create();
     }
 }

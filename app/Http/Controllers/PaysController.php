@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Pay;
 use Illuminate\Http\Request;
 
@@ -10,11 +9,11 @@ class PaysController extends Controller
 {
     //
     public function index(){
-        $pays = Pay::all();
-        return view('pays.index',['pays' => $pays]);
+        $pays = pay::all();
+        return view('pays.index', ['pays' => $pays]);
     }
-    public function show(Pay $pay){
-        
+    public function show($id){
+        $pay = pay::findOrFail($id);
         return view('pays.show', ['pay' => $pay]);
     }
     public function create(){
@@ -23,16 +22,16 @@ class PaysController extends Controller
 
     public function store(Request $request){
         $validatedData = $request->validate([
-            'orderid' => ['required' , 'min:10' , 'max:10'],
-            'bank' => ['required' , 'max:1000'],
+            'orderid' => ['required' , 'min:5' , 'max:255'],
+            'bank' => ['required' , 'max:500'],
             'day' => ['required' , 'min:1'],
             'month' => ['required' , 'min:1'],
             'year' => ['required' , 'min:1'],
             'hour' => ['required' , 'min:1'],
             'minute' => ['required' , 'min:1'],
-            'payerfirstname' => ['required' , 'min:1'],
-            'payerlastname' => ['required' , 'min:1'],
-            'amount' => ['required' , 'min:1']
+            'firstname' => ['required' , 'min:1' , 'max:255'],
+            'lastname' => ['required' , 'min:1' , 'max:255'],
+            'cost' => ['required' , 'min:1'],
         ]);
 
         $pay = new Pay;
@@ -43,11 +42,10 @@ class PaysController extends Controller
         $pay->year = $validatedData['year'];
         $pay->hour = $validatedData['hour'];
         $pay->minute = $validatedData['minute'];
-        $pay->payerfirstname = $validatedData['payerfirstname'];
-        $pay->payerlastname = $validatedData['payerlastname'];
-        $pay->amount = $validatedData['amount'];
-
+        $pay->firstname = $validatedData['firstname'];
+        $pay->lastname = $validatedData['lastname'];
+        $pay->cost = $validatedData['cost'];
         $pay->save();
-        return redirect()->route('pays.create',['pay' => $pay->id]);
+        return redirect()->route('pays.show',['pay' => $pay->id]);
     }
 }
