@@ -2,8 +2,8 @@
 
 @section('content')
 
-  <div class="pb-5">
-    <div class="container">
+
+<div class="products-container">
       <div class="row py-5 p-4 bg-white rounded shadow-sm">
         <div class="col-lg-8">
         <div class="table-responsive">
@@ -35,22 +35,10 @@
                     </div>
                   </th>
                   <td class="border-0 align-middle text-center"><strong>฿250.00</strong></td>
-                  <td class="border-0 align-middle text-center"><strong>1</strong></td>
+                  <td class="border-0 align-middle text-center"><form><input type="text" name="amount" maxlength="4" size="4"><br></form></td>
                   <td class="border-0 align-middle text-center"><a href="#" style="font-size:2em; color:red"><i class="fa fa-trash"></i></a></td>
                 </tr>
-                <tr>
-                  <th scope="row" class="border-0">
-                    <div class="p-2">
-                      <img src="{{ asset('img/chuck.jpeg') }}"  width="70" class="img-fluid rounded shadow-sm">
-                      <div class="ml-3 d-inline-block align-middle">
-                        <h5 class="mb-0"> <a href="#" class="text-dark d-inline-block align-middle">Chuck Beef (เนื้อสันคอ)</a></h5>
-                      </div>
-                    </div>
-                  </th>
-                  <td class="border-0 align-middle text-center "><strong>฿250.00</strong></td>
-                  <td class="border-0 align-middle text-center"><strong>1</strong></td>
-                  <td class="border-0 align-middle text-center"><a href="#" style="font-size:2em; color:red"><i class="fa fa-trash"></i></a></td>
-                </tr>
+              
               </tbody>
             </table>
           </div>
@@ -60,16 +48,12 @@
           <div class="p-4">
             <ul class="list-unstyled mb-4">
               <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">ยอดรวม (จำนวน 2 ชิ้น) </strong><strong>฿500.00</strong></li>
-              <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">ค่าจัดส่ง</strong><strong>฿50.00</strong></li>
-              <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">ยอดรวมทั้งสิ้น</strong>
-                <h5 class="font-weight-bold"><u>฿550.00</u></h5>
-              </li>
-            </ul><a href="#" class="btn btn-dark rounded-pill py-2 btn-block">ดำเนินการชำระเงิน</a>
+            </ul><a href="#" class="btn btn-dark rounded-pill py-2 btn-block">สั่งซื้อ</a>
           </div>
         </div>
       </div>
 
     </div>
   </div>
-</div>
+
 @endsection
