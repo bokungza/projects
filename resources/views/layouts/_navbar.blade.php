@@ -18,7 +18,7 @@
       </li>
     </ul>
 
-    <a class="btn text-white" href="{{ route('register') }}">Register 
+    <a class="btn text-white" href="{{ route('register') }}">Register </a>
     <a class="btn text-white" href="{{ route('login') }}">Login <i class="fas fa-sign-in-alt"></i> <span class="sr-only">(current)</span></a>
 
   </div>

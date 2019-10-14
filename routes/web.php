@@ -27,6 +27,7 @@ Route::get('/carts', function () {
         return view('carts.items');
 });
 Route::get('/accounts', 'AccountsController@index')->name('accounts');
+Route::get('/myOrders', 'MyOrdersController@index')->name('myOrders');
 Route::get('/trackOrders', 'TrackOrderController@index')->name('trackOrders');
 Auth::routes();
 

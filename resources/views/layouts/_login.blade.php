@@ -22,14 +22,18 @@
       <li class="nav-item active">
         <a class="nav-link" href="trackOrders">ติดตามสินค้า <span class="sr-only">(current)</span></a>
       </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="carts">ตะกร้าสินค้า <span class="sr-only">(current)</span></a>
+      </li>
     </ul>
 
       <div class="dropdown">
         <a class="text-white dropdown-toggle" style="margin-right: 10px" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <i class="far fa-user-circle"></i>
+        <i class="far fa-user-circle" style='font-size:30px'></i>
         </a>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
           <a class="dropdown-item" href="accounts">โปรไฟล์</a>
+          <a class="dropdown-item" href="myOrders">รายการสั่งซื้อ</a>
           <a class="dropdown-item" href="/">ออกจากระบบ</a>
         </div>
       </div>
