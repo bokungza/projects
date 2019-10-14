@@ -17,11 +17,7 @@
         <a class="nav-link" href="{{route('LoginPayments')}}">วิธีการซื้อสินค้า <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item active">
-<<<<<<< HEAD
-        <a class="nav-link" href="{{url('pays')}}">แจ้งชำระเงิน <span class="sr-only">(current)</span></a>
-=======
         <a class="nav-link" href="/pays/create">แจ้งชำระเงิน <span class="sr-only">(current)</span></a>
->>>>>>> c9ba72157a91a7e6a82dd66f35911f1283a7c315
       </li>
       <li class="nav-item active">
         <a class="nav-link" href="{{route('trackOrders')}}">ติดตามสินค้า <span class="sr-only">(current)</span></a>

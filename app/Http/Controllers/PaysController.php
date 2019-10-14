@@ -13,12 +13,6 @@ class PaysController extends Controller
         $pays = Pay::all();
         return view('pays.index',['pays' => $pays]);
     }
-<<<<<<< HEAD
-    public function detail($id)
-    {
-        $pay = Product::findOrFail($id);
-        return view('pays.detail',['pay' => $pay]);
-=======
     public function show($id){
         $pay = pay::findOrFail($id);
         return view('pays.show', ['pay' => $pay]);
@@ -40,6 +34,5 @@ class PaysController extends Controller
         $pay->amount = $request->input('amount');
         $pay->save();
         return redirect()->action('PaysController@show',['id' => $pay->id]);
->>>>>>> c9ba72157a91a7e6a82dd66f35911f1283a7c315
     }
 }
