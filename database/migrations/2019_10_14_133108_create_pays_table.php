@@ -16,15 +16,15 @@ class CreatePaysTable extends Migration
         Schema::create('pays', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('orderid');
-            $table->text('bank');
+            $table->string('bank');
             $table->bigInteger('day');
             $table->bigInteger('month');
             $table->bigInteger('year');
             $table->bigInteger('hour');
             $table->bigInteger('minute');
-            $table->text('payerfirstname');
-            $table->text('payerlastname');
-            $table->bigInteger('amount');
+            $table->string('firstname');
+            $table->string('lastname');
+            $table->float('cost');
             $table->timestamps();
         });
     }

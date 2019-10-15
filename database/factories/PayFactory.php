@@ -14,8 +14,8 @@ $factory->define(Pay::class, function (Faker $faker) {
         'year' => $faker->numberBetween(2018, 2019),
         'hour' => $faker->numberBetween(0, 23),
         'minute' => $faker->numberBetween(0, 59),
-        'payerfirstname' => $faker->text(50),
-        'payerlastname' => $faker->text(50),
-        'amount' => $faker->numberBetween(500, 10000)
+        'firstname' => $faker->text(50),
+        'lastname' => $faker->text(50),
+        'cost' => $faker->numberBetween(100, 10000)
     ];
 });
