@@ -57,6 +57,7 @@
                                 <div class="col-md-12"><strong>Email Address:</strong></div>
                                 <div class="col-md-12"><input type="text" name="email_address" class="form-control" value="" /></div>
                             </div>
+                            <button type="button" class="btn">ยืนยัน</button>
           
           </div>
         </form>
