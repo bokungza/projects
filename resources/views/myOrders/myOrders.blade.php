@@ -13,18 +13,14 @@
         <th>สถานะ</th>
       </tr>
     </thead>
+    @foreach ($orders as $order)
     <tbody>
       <tr>
-        <td>014521</td>
-        <td>500</td>
-        <td class="text-danger">ยังไม่ชำระเงิน</td>
+        <td>{{ $order->id}}</td>
+        <td>{{ $order->price}}</td>
+        <td class="text-danger">{{ $order->status}}</td>
       </tr>
-      <tr>
-        <td>045221</td>
-        <td>200</td>
-        <td class="text-success" >อยู่ในสถานะกำลังดำเนินการส่ง</td>
-      </tr>
-
+      @endforeach
     </tbody>
   </table>
 </div>

@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Customer;
 use Illuminate\Http\Request;
-use App\Orders;
-class MyOrdersController extends Controller
+
+class ProductsController extends Controller
 {
     public function index() {
         $orders = Orders::all();
         return view('myOrders.myOrders',['orders'=>$orders]);
     }
+
 }

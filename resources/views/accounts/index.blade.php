@@ -27,39 +27,32 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-md-6 col-xs-12">
-                                    <strong>First Name:</strong>
-                                    <input type="text" name="first_name" class="form-control" value="" />
+                                    <strong>First Name:Zelos</strong>
                                 </div>
                                 <div class="span1"></div>
                                 <div class="col-md-6 col-xs-12">
-                                    <strong>Last Name:</strong>
-                                    <input type="text" name="last_name" class="form-control" value="" />
+                                    <strong>Last Name:Kadeeroj</strong>
+                                    
                                 </div>
                             </div>
                             <div class="form-group">
-                                <div class="col-md-12"><strong>Address:</strong></div>
-                                <div class="col-md-12">
-                                    <input type="text" name="address" class="form-control" value="" />
-                                </div>
+                                <div class="col-md-12"><strong>Address:702/12 phahonyotin</strong></div>
                             </div>
                             
                             <div class="form-group">
-                                <div class="col-md-12"><strong>Zip / Postal Code:</strong></div>
-                                <div class="col-md-12">
-                                    <input type="text" name="zip_code" class="form-control" value="" />
-                                </div>
+                                <div class="col-md-12"><strong>Zip / Postal Code:10900</strong></div>
+                        
                             </div>
                             <div class="form-group">
-                                <div class="col-md-12"><strong>Phone Number:</strong></div>
-                                <div class="col-md-12"><input type="text" name="phone_number" class="form-control" value="" /></div>
+                                <div class="col-md-12"><strong>Phone Number:09-xxxxxxxx</strong></div>
                             </div>
                             <div class="form-group">
-                                <div class="col-md-12"><strong>Email Address:</strong></div>
-                                <div class="col-md-12"><input type="text" name="email_address" class="form-control" value="" /></div>
-                            </div>
+                                <div class="col-md-12"><strong>Email Address:xxx_xxx@hotmail.com</strong></div>
+                            </div><a href="manage">แก้ไข</a>
           
           </div>
         </form>
+        
       </div>
   </div>
 </div>

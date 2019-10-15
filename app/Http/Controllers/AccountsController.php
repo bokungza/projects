@@ -7,6 +7,6 @@ use Illuminate\Http\Request;
 class AccountsController extends Controller
 {
     public function index() {
-        return view('accounts.manage');
+        return view('accounts.index');
     }
 }
