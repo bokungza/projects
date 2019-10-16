@@ -28,7 +28,6 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/payments', 'PaymentsController@index')->name('payments');
 
 Route::get('/LoginHomes', 'LoginHomesController@index')->name('LoginHomes');
 
@@ -39,3 +38,7 @@ Route::get('/LoginPayments', 'LoginPaymentsController@index')->name('LoginPaymen
 Route::resource('/products','ProductsController');
 
 Route::resource('/pays', 'PaysController');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
