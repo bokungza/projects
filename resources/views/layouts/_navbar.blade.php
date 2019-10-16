@@ -1,6 +1,6 @@
 
 <!--Navbar -->
-<nav class="mb-1 navbar navbar-expand-lg navbar-dark default-color bg-dark nav-fixed">
+<nav class="mb-1 navbar navbar-expand-lg navbar-dark default-color bg-dark ">
   <a class="navbar-brand" href="/">shop</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"
     aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
@@ -39,8 +39,8 @@
         
         <div class="dropdown-menu dropdown-menu-right dropdown-default"
           aria-labelledby="navbarDropdownMenuLink-333">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
+          <a class="dropdown-item" href="#">โปรไฟล์</a>
+          <a class="dropdown-item"  href="#">รายการสั่งซื้อ</a>
           <a class="dropdown-item" href="{{ route('logout') }}"onclick="event.preventDefault();document.getElementById('logout-form').submit();">
               {{ __('Logout') }}
           </a>

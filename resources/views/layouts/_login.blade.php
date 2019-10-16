@@ -1,5 +1,5 @@
 <!--Navbar -->
-<nav class="mb-1 navbar navbar-expand-lg navbar-dark default-color bg-dark">
+<nav class="mb-1 navbar navbar-expand-lg navbar-dark default-color bg-dark ">
   <a class="navbar-brand" href="/">shop</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"
     aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
@@ -8,12 +8,12 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="/">หน้าหลัก
+        <a class="nav-link" href="LoginHomes">หน้าหลัก
           <span class="sr-only">(current)</span>
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="products">สินค้า</a>
+        <a class="nav-link" href="{{route('LoginProducts')}}">สินค้า</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="{{route('LoginPayments')}}">วิธีการซื้อสินค้า</a>
@@ -25,7 +25,7 @@
         <a class="nav-link"  href="{{route('trackOrders')}}">ติดตามสินค้า</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="carts">ตะกร้าสินค้า</a>
+        <a class="nav-link" href="#">ตะกร้าสินค้า</a>
       </li>
     </ul>
     <ul class="navbar-nav ml-auto ">
@@ -47,7 +47,7 @@
         
         <div class="dropdown-menu dropdown-menu-right dropdown-default"
           aria-labelledby="navbarDropdownMenuLink-333">
-          <a class="dropdown-item" href="accounts">โปรไฟล์</a>
+          <a class="dropdown-item" href="#">โปรไฟล์</a>
           <a class="dropdown-item"  href="#">รายการสั่งซื้อ</a>
           <a class="dropdown-item" href="{{ route('logout') }}"onclick="event.preventDefault();document.getElementById('logout-form').submit();">
               {{ __('Logout') }}

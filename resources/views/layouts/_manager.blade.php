@@ -1,6 +1,6 @@
 <!--Navbar -->
 <nav class="mb-1 navbar navbar-expand-lg navbar-dark default-color bg-dark">
-  <a class="navbar-brand" href="/">shop</a>
+  <a class="navbar-brand" href="{{route('LoginHomes')}}">shop</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"
     aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -8,21 +8,21 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="/">หน้าหลัก
+        <a class="nav-link" href="{{route('LoginHomes')}}">หน้าหลัก
           <span class="sr-only">(current)</span>
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="products">สินค้า</a>
+        <a class="nav-link" href="{{route('LoginProducts')}}">สินค้า</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="/products/create">เพิ่มสินค้า</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="payments">แก้ไขสินค้า</a>
+        <a class="nav-link" href="#">แก้ไขสินค้า</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/pays">ดูการแจ้งชำระเงิน </a>
+        <a class="nav-link" href="{{route('pays')}}">ดูการแจ้งชำระเงิน </a>
       </li>
     </ul>
     <ul class="navbar-nav ml-auto ">
