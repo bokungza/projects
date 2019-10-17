@@ -1,25 +1,15 @@
 @extends('layouts.manager')
 
-
 @section('content')
-<div class='card'>
-    <h1 class="card-text">
-        order id : {{ $pay->orderid}}
-    </h1>
-    <p class="card-text">
-        ธนาคาร : {{ $pay->bank}}
-    </p>
-    <p class="card-text">
-        วันที่ชำระ : {{ $pay->day}}/{{ $pay->month}}/{{ $pay->year}}
-    </p>
-    <p class="card-text">
-        เวลาชำระเงิน : {{ $pay->hour}}:{{ $pay->minute}}
-    </p>
-    <p class="card-text">
-        ชื่อผู้ชำระเงิน : {{ $pay->payerfirstname}} {{ $pay->payerlastname}}
-    </p>
-    <p class="card-text">
-        จำนวนเงิน : {{ $pay->amount}}
-    </p>
-    </div>
+</h1>
+<div class="card">
+<div class="card-text">Order ID : {{ $pay->orderid }}</p>
+<div class="card-text">ธนาคาร : {{ $pay->bank }}</p>
+<div class="card-text">วัน : {{ $pay->month }}/{{ $pay->year }}/{{ $pay->hour }}</p>
+<div class="card-text">เวลา : {{ $pay->hour }}:{{ $pay->minute }}</p>
+<div class="card-text">ชื่อผู้ชำระเงิน : {{ $pay->firstname }} {{ $pay->lastname }}</p>
+<div class="card-text">จำนวนเงิน : {{ $pay->cost }}</p>
+    
+    <a class="nav-link" href="/pays/">ย้อนกลับ <span class="sr-only">(current)</span></a>
+</div>
 @endsection
