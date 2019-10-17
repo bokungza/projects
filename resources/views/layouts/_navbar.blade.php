@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark nav-fixed">
 
-  <h1 class="navbar-brand" >Shop</h1>
+<h1 class="navbar-brand" ><img src="https://img.icons8.com/cotton/35/000000/steak-rare--v1.png">Shop</h1>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -18,7 +18,7 @@
       </li>
     </ul>
 
-    <a class="btn text-white" href="{{ route('register') }}">Register 
+    <a class="btn text-white" href="{{ route('register') }}">Register </a>
     <a class="btn text-white" href="{{ route('login') }}">Login <i class="fas fa-sign-in-alt"></i> <span class="sr-only">(current)</span></a>
 
   </div>

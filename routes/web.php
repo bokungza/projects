@@ -15,18 +15,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/products', 'ProductsController@index');
-
-Route::get('/product/{id}', 'ProductsController@detail')
-    ->where('id' , '[0-9]+')
-;
 
 Route::post('/testdb','ProductsController@index');
 
 Route::get('/carts', function () {
         return view('carts.items');
 });
-
+Route::get('/accounts', 'AccountsController@index')->name('accounts');
+Route::get('/myOrders', 'MyOrdersController@index')->name('myOrders');
+Route::get('/trackOrders', 'TrackOrderController@index')->name('trackOrders');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -39,6 +36,7 @@ Route::get('/LoginProducts', 'LoginProductsController@index')->name('LoginProduc
 
 Route::get('/LoginPayments', 'LoginPaymentsController@index')->name('LoginPayments');
 
-Route::get('/addproduct','ProductsController@add');
+Route::resource('/products','ProductsController');
 
-Route::get('/addproductaction' , 'ProductsController@addAction');
+
+Route::resource('/pays', 'PaysController');
