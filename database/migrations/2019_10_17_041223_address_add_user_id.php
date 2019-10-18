@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddressAddCustomerId extends Migration
+class AddressAddUserId extends Migration
 {
     /**
      * Run the migrations.
@@ -14,10 +14,10 @@ class AddressAddCustomerId extends Migration
     public function up()
     {
         Schema::table('address', function (Blueprint $table) {
-            $table->bigInteger('customer_id')->unsigned()->after('id');
-            $table->foreign('customer_id')
+            $table->bigInteger('user_id')->unsigned()->after('id');
+            $table->foreign('user_id')
                 ->references('id')
-                ->on('customers')
+                ->on('users')
                 ->onDelete('cascade');
         });
     }
@@ -31,8 +31,8 @@ class AddressAddCustomerId extends Migration
     {
         Schema::disableForeignKeyConstraints();
         Schema::table('address', function (Blueprint $table) {
-            $table->dropForeign(['customer_id']);
-            $table->dropColumn('customer_id');
+            $table->dropForeign(['user_id']);
+            $table->dropColumn('user_id');
         });
         Schema::enableForeignKeyConstraints();
     }

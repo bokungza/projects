@@ -9,14 +9,17 @@ use Illuminate\Notifications\Notifiable;
 class User extends Authenticatable
 {
     use Notifiable;
-
+    public function customer()
+       {
+           return $this->hasOne(Customer::class);
+       }
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'first_name','last_name','username', 'email', 'password',
     ];
 
     /**
