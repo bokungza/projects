@@ -26,7 +26,7 @@ Route::get('/myOrders', 'MyOrdersController@index')->name('myOrders')->middlewar
 Route::get('/trackOrders', 'TrackOrderController@index')->name('trackOrders')->middleware('auth');
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 
 
 Route::get('/LoginHomes', 'LoginHomesController@index')->name('LoginHomes')->middleware('auth');
