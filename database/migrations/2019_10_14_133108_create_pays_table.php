@@ -17,14 +17,15 @@ class CreatePaysTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('orderid');
             $table->string('bank');
-            $table->bigInteger('day');
-            $table->bigInteger('month');
-            $table->bigInteger('year');
-            $table->bigInteger('hour');
-            $table->bigInteger('minute');
+
+            $table->dateTime('paystime');
+            $table->string('shipping');
+
             $table->string('firstname');
             $table->string('lastname');
             $table->float('cost');
+            
+            $table->string('picture',1000);
             $table->timestamps();
         });
     }
