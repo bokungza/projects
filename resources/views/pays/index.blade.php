@@ -3,7 +3,7 @@
 @section('content')
     <h1>รายการชำระเงินทั้งหมด</h1>
     <div class='card'>
-    @foreach ($pays as $pay)
+    @foreach ($pays->sortByDesc('id') as $pay)
         <div class="card">
             <div class="card-body">
             <h5 class="card-title">

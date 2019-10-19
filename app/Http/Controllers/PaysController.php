@@ -19,33 +19,36 @@ class PaysController extends Controller
     public function create(){
         return view('pays.create');
     }
-
     public function store(Request $request){
         $validatedData = $request->validate([
-            'orderid' => ['required' , 'min:5' , 'max:255'],
+            'orderid' => ['required' , 'min:1'],
             'bank' => ['required' , 'max:500'],
-            'day' => ['required' , 'min:1'],
-            'month' => ['required' , 'min:1'],
-            'year' => ['required' , 'min:1'],
-            'hour' => ['required' , 'min:1'],
-            'minute' => ['required' , 'min:1'],
+            'paystime' => ['required' , 'min:1'],
             'firstname' => ['required' , 'min:1' , 'max:255'],
             'lastname' => ['required' , 'min:1' , 'max:255'],
             'cost' => ['required' , 'min:1'],
+            'image' => 'required|image|mimes:jpeg,png,jpg',
         ]);
 
         $pay = new Pay;
+        if ($files = $request->file('image')) {
+            $destinationPath = '../public/img/payimages';
+            $profileImage = date('YmdHis') . "." . $files->getClientOriginalExtension();
+            $files->move($destinationPath, $profileImage);
+            $pay->picture = $profileImage;
+        }
         $pay->orderid = $validatedData['orderid'];
         $pay->bank = $validatedData['bank'];
-        $pay->day = $validatedData['day'];
-        $pay->month = $validatedData['month'];
-        $pay->year = $validatedData['year'];
-        $pay->hour = $validatedData['hour'];
-        $pay->minute = $validatedData['minute'];
+        $pay->paystime = $validatedData['paystime'];
         $pay->firstname = $validatedData['firstname'];
         $pay->lastname = $validatedData['lastname'];
         $pay->cost = $validatedData['cost'];
+        $pay->shipping = "";
         $pay->save();
-        return redirect()->route('pays.show',['pay' => $pay->id]);
+        return view('pays.create');
+    }
+    public function edit($id){
+        $pay = pay::findOrFail($id);
+        return view('pays.edit', ['pay' => $pay]);
     }
 }
