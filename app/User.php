@@ -11,7 +11,7 @@ class User extends Authenticatable
     use Notifiable;
     public function customer()
        {
-           return $this->hasOne(Customer::class);
+           return $this->hasOne(Address::class);
        }
     /**
      * The attributes that are mass assignable.

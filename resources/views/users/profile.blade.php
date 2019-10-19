@@ -45,9 +45,13 @@
                     </div>
                     <div class="col-md-2">
                       <div>
-                        <a class = "btn btn-outline-primary" href="/profile/edit">Edit</a><br><br></div>
+                        <a class = "btn btn-dark" href="{{route('profile.edit')}}">Edit</a><br><br></div>
                         <div>
+                        @if ($user->address)
                         <input type="submit" class="profile-edit-btn" name="btnAddMore" value="แก้ไขที่อยู่"></div>
+                        @else
+                          <input type="submit" class="profile-edit-btn" name="btnAddMore" value="แก้ไขแซค"></div>
+                        @endif
                     </div>
                 </div>
 

@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Auth;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -11,9 +11,7 @@ class UsersController extends Controller
         $this->middleware('auth');
     }
 
-    public function profile(){
-        return view('users.profile');
-    }
+
     /**
      * Display a listing of the resource.
      *
@@ -21,7 +19,8 @@ class UsersController extends Controller
      */
     public function index()
     {
-        //
+        $user = Auth::user();
+        return view('users.profile')->with('user',Auth::user());
     }
 
     /**
@@ -77,16 +76,16 @@ class UsersController extends Controller
     public function update(Request $request)
     {
      $validatedData = $request->validate([
-       'username' => ['required', 'string', 'max:255'],
-       'first_name' => ['required', 'string', 'max:255'],
-       'last_name' => ['required', 'string', 'max:255'],
-       'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+
+       'first_name' => [ 'string', 'min:3'],
+       'last_name' => [ 'string', 'min:3'],
+
      ]);
      $user =Auth::user();
-     $user->first_name = $request->input('first_name');
-     $user->last_name = $request->input('last_name');
+     $user->first_name = $request->first_name;
+     $user->last_name = $request->last_name;
      $user->save();
-     return redirect()->route('users.profile');
+     return redirect()->route('profile');
     }
 
     /**
