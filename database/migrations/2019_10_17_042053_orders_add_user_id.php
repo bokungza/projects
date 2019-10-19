@@ -16,7 +16,7 @@ class OrdersAddUserId extends Migration
         Schema::table('orders', function (Blueprint $table) {
             $table->bigInteger('user_id')->unsigned()->after('id');
             $table->foreign('user_id')
-                ->references('user_id')
+                ->references('id')
                 ->on('users')
                 ->onDelete('cascade');
         });

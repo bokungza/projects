@@ -26,7 +26,7 @@ Route::get('/myOrders', 'MyOrdersController@index')->name('myOrders')->middlewar
 Route::get('/trackOrders', 'TrackOrderController@index')->name('trackOrders')->middleware('auth');
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 
 
 Route::get('/LoginHomes', 'LoginHomesController@index')->name('LoginHomes')->middleware('auth');
@@ -37,10 +37,11 @@ Route::get('/LoginPayments', 'LoginPaymentsController@index')->name('LoginPaymen
 
 Route::resource('/products','ProductsController');
 
-Route::resource('/pays', 'PaysController')->middleware('auth');;
+Route::resource('/pays', 'PaysController')->middleware('auth');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/profile','UsersController@profile')->name('profile');
-Route::resource('/users','UsersController');
+Route::get('/profile/edit','UsersController@edit')->name('edit');
+Route::resource('/profile','UsersController');
