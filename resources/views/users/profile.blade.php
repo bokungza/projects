@@ -50,7 +50,7 @@
                         @if ($user->address)
                         <input type="submit" class="profile-edit-btn" name="btnAddMore" value="แก้ไขที่อยู่"></div>
                         @else
-                          <input type="submit" class="profile-edit-btn" name="btnAddMore" value="แก้ไขแซค"></div>
+                          <input type="submit" class="profile-edit-btn" name="btnAddMore" value="เพิ่มที่อยู่"></div>
                         @endif
                     </div>
                 </div>
