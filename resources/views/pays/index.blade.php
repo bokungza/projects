@@ -1,4 +1,4 @@
-@extends('layouts.manager')
+@extends('layouts.master')
 
 @section('content')
     <h1>รายการชำระเงินทั้งหมด</h1>

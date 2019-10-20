@@ -1,4 +1,4 @@
-@extends('layouts.login')
+@extends('layouts.master')
 
 
 @section('content')
@@ -6,7 +6,7 @@
         <div class="center">
             <h1>วิธีการชำระเงิน</h1>
             <h3>1.ชำระผ่านการโอนเงินบัญชีธนาคาร</h3>
-            
+
             <div class="product-img">
                     <img class="img" src="{{ asset('img/bangkok.png') }}">
                 </a>
@@ -34,7 +34,7 @@
         </div>
 
 
-            
+
     </div>
 
 

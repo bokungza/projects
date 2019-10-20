@@ -1,4 +1,4 @@
-@extends('layouts.manager')
+@extends('layouts.master')
 @section('content')
     <h1>Edit Pay</h1>
     <form action="{{ action('PaysController@update', ['id' => $pay->id]) }}" method="POST">
@@ -10,6 +10,6 @@
         </div>
 
     </form>
-    
+
     <button class="btn btn-primary">Update</button>
 @endsection

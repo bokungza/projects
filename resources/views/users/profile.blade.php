@@ -1,4 +1,4 @@
-@extends('layouts.login')
+@extends('layouts.master')
 
 @section('content')
 <div class="container emp-profile  bg-secondary text-white">
