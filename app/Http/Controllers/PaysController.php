@@ -7,7 +7,9 @@ use Illuminate\Http\Request;
 
 class PaysController extends Controller
 {
-    //
+    public function __construct(){
+        $this->middleware('auth');
+    }
     public function index(){
         $pays = pay::all();
         return view('pays.index', ['pays' => $pays]);
