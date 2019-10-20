@@ -6,14 +6,15 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
+      @guest
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="LoginHomes">หน้าหลัก
+        <a class="nav-link" href="/">หน้าหลัก
           <span class="sr-only">(current)</span>
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{{route('LoginProducts')}}">สินค้า</a>
+        <a class="nav-link" href="products">สินค้า</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="{{route('LoginPayments')}}">วิธีการซื้อสินค้า</a>
@@ -25,8 +26,59 @@
       <li class="nav-item">
         <a class="nav-link" href="/cart">ตะกร้าสินค้า</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="payments">วิธีการซื้อสินค้า</a>
+      </li>
     </ul>
     <ul class="navbar-nav ml-auto ">
+      @endguest
+      @auth
+@if(Auth::user()->role == "CUSTOMER")
+       <ul class="navbar-nav mr-auto">
+<li class="nav-item active">
+<a class="nav-link" href="LoginHomes">หน้าหลัก
+ <span class="sr-only">(current)</span>
+</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="{{route('LoginProducts')}}">สินค้า</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="{{route('LoginPayments')}}">วิธีการซื้อสินค้า</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="/pays/create">แจ้งชำระเงิน</a>
+</li>
+
+<li class="nav-item">
+<a class="nav-link" href="#">ตะกร้าสินค้า</a>
+</li>
+</ul>
+<ul class="navbar-nav ml-auto ">
+     @endif
+     @if(Auth::user()->role == "ADMIN")
+     <ul class="navbar-nav mr-auto">
+<li class="nav-item active">
+<a class="nav-link" href="{{route('LoginHomes')}}">หน้าหลัก
+ <span class="sr-only">(current)</span>
+</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="{{route('LoginProducts')}}">สินค้า</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="/products/create">เพิ่มสินค้า</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="#">แก้ไขสินค้า</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="{{route('pays')}}">ดูการแจ้งชำระเงิน </a>
+</li>
+</ul>
+<ul class="navbar-nav ml-auto ">
+@endif
+@endauth
     @guest
       <li class="nav-item">
       <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>

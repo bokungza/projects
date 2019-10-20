@@ -1,4 +1,4 @@
-@extends('layouts.login')
+@extends('layouts.master')
 
 @section('content')
 <h1>แจ้งชำระเงิน</h1>
@@ -23,7 +23,7 @@
         <div class = 'alert alert-danger'>{{$message}}</div>
         @enderror
     </div>
-    
+
     <div>
         ชื่อ : <input type="text" name= 'firstname' class="form-control @error('firstname') is-invalid @enderror" value="{{ old('firstname')}}"><br>
         @error('firstname')
