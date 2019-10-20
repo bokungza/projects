@@ -18,9 +18,6 @@ Route::get('/', function () {
 
 Route::post('/testdb','ProductsController@index');
 
-Route::get('/carts', function () {
-        return view('carts.items');
-});
 Route::get('/accounts', 'AccountsController@index')->name('accounts')->middleware('auth');
 Route::get('/myOrders', 'MyOrdersController@index')->name('myOrders')->middleware('auth');
 Route::get('/trackOrders', 'TrackOrderController@index')->name('trackOrders')->middleware('auth');
@@ -29,13 +26,16 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 
+
 Route::get('/LoginHomes', 'LoginHomesController@index')->name('LoginHomes')->middleware('auth');
 
 Route::get('/LoginProducts', 'LoginProductsController@index')->name('LoginProducts')->middleware('auth');;
 
 Route::get('/LoginPayments', 'LoginPaymentsController@index')->name('LoginPayments')->middleware('auth');
 
-Route::resource('/products','ProductsController');
+Route::resource('/products','ProductsController')->middleware('auth');
+
+Route::resource('/cart','CartsController')->middleware('auth');
 
 Route::resource('/pays', 'PaysController')->middleware('auth');
 

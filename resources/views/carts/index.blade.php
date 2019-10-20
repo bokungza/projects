@@ -25,20 +25,28 @@
                 </tr>
               </thead>
               <tbody>
+              @foreach ($carts as $cart)
                 <tr>
                   <th scope="row" class="border-0">
+                      <p style="display: none">{{$product = \App\Product::findOrFail($cart->product_id)}}</p>
                     <div class="p-2">
-                      <img src="{{ asset('img/round.jpg') }}"  width="70" class="img-fluid rounded shadow-sm">
+                      <img src="{{ asset('img/'.$product->picture) }}"  width="70" class="img-fluid rounded shadow-sm">
                       <div class="ml-3 d-inline-block align-middle">
-                        <h5 class="mb-0"> <a href="#" class="text-dark d-inline-block align-middle">Round Beef (เนื้อส่วนสะโพก)</a></h5>
+                        <h5 class="mb-0"> <a href="#" class="text-dark d-inline-block align-middle">{{$product->name}}</a></h5>
                       </div>
                     </div>
                   </th>
-                  <td class="border-0 align-middle text-center"><strong>฿250.00</strong></td>
-                  <td class="border-0 align-middle text-center"><form><input type="text" name="amount" maxlength="4" size="4"><br></form></td>
-                  <td class="border-0 align-middle text-center"><a href="#" style="font-size:2em; color:red"><i class="fa fa-trash"></i></a></td>
+                  <td class="border-0 align-middle text-center"><strong>฿{{$cart->total_price}}</strong></td>
+                  <td class="border-0 align-middle text-center"><strong>{{$cart->count}}</strong></td>
+                  <td class="border-0 align-middle text-center">
+                      <form action="{{ route('cart.destroy',['cart' => $cart->id])}}" method="post">
+                          @csrf
+                          @method('DELETE')
+                          <button type='submit' class="btn btn-outline-danger">DELETE</button>
+                      </form>
+                  </td>
                 </tr>
-              
+                @endforeach
               </tbody>
             </table>
           </div>
@@ -47,8 +55,13 @@
           <div class="bg-light rounded-pill px-4 py-3 text-uppercase font-weight-bold">สรุปรายการสั่งซื้อ </div>
           <div class="p-4">
             <ul class="list-unstyled mb-4">
-              <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">ยอดรวม (จำนวน 2 ชิ้น) </strong><strong>฿500.00</strong></li>
-            </ul><a href="#" class="btn btn-dark rounded-pill py-2 btn-block">สั่งซื้อ</a>
+              <li class="d-flex justify-content-between py-3 border-bottom">
+                  <strong class="text-muted">ยอดรวม</strong>
+                  <strong>
+                      ฿{{DB::table('carts')
+                ->where('user_id', \Illuminate\Support\Facades\Auth::user()->id)
+                ->sum('total_price')}}</strong></li>
+            </ul><a href="#" class="btn btn-dark rounded-pill py-2 btn-block">ยืนยัน</a>
           </div>
         </div>
       </div>

@@ -23,7 +23,7 @@
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" href="#">ตะกร้าสินค้า</a>
+        <a class="nav-link" href="/cart">ตะกร้าสินค้า</a>
       </li>
     </ul>
     <ul class="navbar-nav ml-auto ">

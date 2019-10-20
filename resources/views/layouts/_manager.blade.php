@@ -22,7 +22,7 @@
         <a class="nav-link" href="#">แก้ไขสินค้า</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{{route('pays')}}">ดูการแจ้งชำระเงิน </a>
+        <a class="nav-link" href="{{route('pays.index')}}">ดูการแจ้งชำระเงิน </a>
       </li>
     </ul>
     <ul class="navbar-nav ml-auto ">

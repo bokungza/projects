@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Cart;
 use App\Product;
 use Illuminate\Http\Request;
 
@@ -43,6 +44,14 @@ class ProductsController extends Controller
 
         $product->save();
         return redirect()->route('products.show',['product' => $product->id]);
+    }
+
+    public function destroy(Product $product)
+    {
+        $product->delete();
+        $products = Product::all();
+        $this->authorize('delete', $product);
+        return redirect()->route('products.index',['products' => $products]);
     }
 
 }
