@@ -13,7 +13,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        // 'App\Model' => 'App\Policies\ModelPolicy',
+        \App\Post::class => \App\Policies\CartPolicy::class
     ];
 
     /**
@@ -25,6 +25,8 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        Gate::define('index-cart',function($user,$cart){
+               return $user->isCustomer();
+           });
     }
 }

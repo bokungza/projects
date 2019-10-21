@@ -7,6 +7,7 @@ use Auth;
 use App\Cart;
 use App\Product;
 use Illuminate\Http\Request;
+use Gate;
 
 class CartsController extends Controller
 {
@@ -15,8 +16,14 @@ class CartsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct(){
+         $this->middleware('auth');
+     }
     public function index()
     {
+      if(Gate::denies('index-cart',Cart::class)){
+           return redirect()->route('home');
+       }
         $user = Auth::user();
         $carts = $user->carts()->get();
         return view('carts.index',['carts' => $carts]);
