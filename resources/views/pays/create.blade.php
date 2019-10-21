@@ -11,10 +11,15 @@
         @enderror
     </div>
     <div>
-        ธนาคาร : <input type="text" name ='bank' class="form-control @error('bank') is-invalid @enderror" value="{{ old('bank')}}"><br>
+      <select class="form-control form-control-lg" name ='bank' class="form-control @error('bank') is-invalid @enderror" value="{{ old('bank')}}">
+        <option>ธนาคารกรุงเทพ</option>
+        <option>ธนาคารกรุงไทย</option>
+        <option>ธนาคารไทยพาณิชย์</option>
+      </select><br>
         @error('bank')
         <div class = 'alert alert-danger'>{{$message}}</div>
         @enderror
+
     </div>
 
     <div>
