@@ -20,6 +20,7 @@ class CreateProductsTable extends Migration
             $table->string('detail',1000);
             $table->string('picture',1000);
             $table->bigInteger('count')->default(0);
+            $table->bigInteger('sales')->default(0);
             $table->timestamps();
         });
     }

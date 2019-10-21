@@ -25,7 +25,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/LoginHomes';
+    protected $redirectTo = '/home';
     protected function validator(array $data)
     {
         return Validator::make($data, [

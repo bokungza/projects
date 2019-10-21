@@ -15,6 +15,7 @@ class ProductsTableSeeder extends Seeder
         $product->name = 'Round Beef (เนื้อส่วนสะโพก)';
         $product->detail = 'เนื้อส่วนนี้เป็นเนื้อไขมันน้อย เหมาะกับการประกอบอาหารที่ใช้ความชื้นและเวลายาวนาน';
         $product->unit_price = 30.00;
+        $product->sales = 20;
         $product->picture = 'round.jpg';
         $product->save();
 
@@ -22,6 +23,7 @@ class ProductsTableSeeder extends Seeder
         $product->name = 'Chuck Beef (เนื้อสันคอ)';
         $product->detail = 'เนื้อส่วนนี้มักจะมาทำเป็นแฮมเบอร์เกอร์';
         $product->unit_price = 30.00;
+        $product->sales = 40;
         $product->picture = 'chuck.jpg';
         $product->save();
 
@@ -29,6 +31,7 @@ class ProductsTableSeeder extends Seeder
         $product->name = 'Rib Beef (เนื้อซี่โครง)';
         $product->detail = 'ส่วนมากนำไปย่างหรือทอดโดยไม่ต้องเลาะกระดูกออก';
         $product->unit_price = 30.00;
+        $product->sales = 50;
         $product->picture = 'rib.jpg';
         $product->save();
 
@@ -37,6 +40,7 @@ class ProductsTableSeeder extends Seeder
         $product->name = 'Sirloin Beef (เนื้อเซอร์ลอยด์)';
         $product->detail = 'เป็นเนื้อสันที่นุ่มมากที่สุดใน บรรดาเนื้อส่วนต่างๆ ส่วนที่ติดกับกระดูกรูปตัว T เรามักจะเรียกว่า "ทีโบน';
         $product->unit_price = 30.00;
+        $product->sales = 60;
         $product->picture = 'sirloin.jpg';
         $product->save();
 
@@ -44,6 +48,7 @@ class ProductsTableSeeder extends Seeder
         $product->name = 'Tenderloin Beef (เนื้อสันใน)';
         $product->detail = 'เป็นเนื้อที่นุ่มและแพงที่สุด นิยมทำสเต็ก เช่น ฟิเลต์มิยอง';
         $product->unit_price = 30.00;
+        $product->sales = 50;
         $product->picture = 'tenderloin.jpg';
         $product->save();
 
@@ -52,6 +57,7 @@ class ProductsTableSeeder extends Seeder
         $product->detail = 'เป็นเนื้อที่เหนียวที่สุด มักนิยมทำสตูว์หรือตุ๋น';
         $product->unit_price = 30.00;
         $product->picture = 'shank.jpg';
+        $product->sales = 90;
         $product->save();
 
         //factory(\App\Product::class, 10)->create();
