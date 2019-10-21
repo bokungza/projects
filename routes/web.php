@@ -25,15 +25,11 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-
-
-Route::get('/LoginHomes', 'LoginHomesController@index')->name('LoginHomes')->middleware('auth');
-
 Route::get('/LoginProducts', 'LoginProductsController@index')->name('LoginProducts')->middleware('auth');;
 
 Route::get('/LoginPayments', 'LoginPaymentsController@index')->name('LoginPayments')->middleware('auth');
 
-Route::resource('/products','ProductsController')->middleware('auth');
+Route::resource('/products','ProductsController');
 
 Route::resource('/cart','CartsController')->middleware('auth');
 
