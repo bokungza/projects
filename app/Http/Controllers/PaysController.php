@@ -47,10 +47,11 @@ class PaysController extends Controller
         $pay->cost = $validatedData['cost'];
         $pay->shipping = "";
         $pay->save();
-        return view('pays.create');
+        return view('pays.index');
     }
     public function edit($id){
         $pay = pay::findOrFail($id);
         return view('pays.edit', ['pay' => $pay]);
     }
+
 }

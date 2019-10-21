@@ -13,8 +13,9 @@
             <p>ชื่อผู้ชำระเงิน : {{ $pay->firstname }} {{ $pay->lastname }}</p>
             <p>จำนวนเงิน : {{ $pay->cost }}</p>
             <p>รหัสส่งสินค้า : {{ $pay->shipping }}</p>
-            <a class="nav-link" href="/pays/{{ $pay->id }}/edit">เพิ่ม/แก้ไข รหัสส่งสินค้า <span class="sr-only">(current)</span></a>
-            <a class="nav-link" href="/pays/">ย้อนกลับ <span class="sr-only">(current)</span></a>
+
+              <a class="nav-link" href="/pays/{{ $pay->id }}/edit">เพิ่ม/แก้ไข รหัสส่งสินค้า <span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="/pays/">ย้อนกลับ <span class="sr-only">(current)</span></a>
 
 </div>
 @endsection
