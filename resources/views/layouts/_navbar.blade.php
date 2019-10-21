@@ -39,10 +39,13 @@
 <li class="nav-item">
 <a class="nav-link" href="/pays/create">แจ้งชำระเงิน</a>
 </li>
-
+<li class="nav-item">
+<a class="nav-link" href="/pays">ดูการรายระเอียดการชำระเงิน </a>
+</li>
 <li class="nav-item">
 <a class="nav-link" href="{{route('cart.index')}}">ตะกร้าสินค้า</a>
 </li>
+
 </ul>
 <ul class="navbar-nav ml-auto ">
      @endif
