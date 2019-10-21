@@ -5,9 +5,14 @@ namespace App\Http\Controllers;
 use App\Cart;
 use App\Product;
 use Illuminate\Http\Request;
+use Gate;
 
 class ProductsController extends Controller
 {
+  public function __construct()
+    {
+        $this->middleware('auth')->except(['index','show']);
+    }
     public function index() {
         $products = Product::all();
         return view('products.index',['products' => $products]);
@@ -21,6 +26,9 @@ class ProductsController extends Controller
     }
 
     public function create(){
+      if(Gate::denies('create-product',Product::class)){
+           return redirect()->route('products.index');
+       }
         return view('products.create');
     }
 
@@ -31,7 +39,6 @@ class ProductsController extends Controller
             'price' => ['required' , 'min:1'],
             'image' => 'required|image|mimes:jpeg,png,jpg',
         ]);
-
         $product = new Product;
         if ($files = $request->file('image')) {
             $destinationPath = '../public/img';

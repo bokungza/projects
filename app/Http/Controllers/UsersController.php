@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Auth;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class UsersController extends Controller
 {
@@ -11,7 +12,10 @@ class UsersController extends Controller
         $this->middleware('auth');
     }
 
-
+    public function profile(){
+          $user = Auth::user();
+           return view('users.profile')->with('user',Auth::user());
+       }
     /**
      * Display a listing of the resource.
      *
@@ -19,8 +23,8 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $user = Auth::user();
-        return view('users.profile')->with('user',Auth::user());
+      $users = DB::select('select * from users where role = ?', ['CUSTOMER']);
+      return view('users.index',['users' => $users]);
     }
 
     /**
@@ -94,8 +98,10 @@ class UsersController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy($id)
     {
-        //
+        $user = User::find($id);
+        $user->delete();
+        return redirect()->route('users.index')->with('success','ลบเรียบร้อย');
     }
 }

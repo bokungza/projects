@@ -40,7 +40,7 @@
 <a class="nav-link" href="/pays/create">แจ้งชำระเงิน</a>
 </li>
 <li class="nav-item">
-<a class="nav-link" href="/pays">ดูการรายระเอียดการชำระเงิน </a>
+<a class="nav-link" href="/pays">ดูการรายละเอียดการชำระเงิน </a>
 </li>
 <li class="nav-item">
 <a class="nav-link" href="{{route('cart.index')}}">ตะกร้าสินค้า</a>
