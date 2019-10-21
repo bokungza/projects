@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="products-container">
-        <h2>สินค้า</h2>
+        <h2>รายชื่อลูกค้า</h2>
         <table class="table table-dark">
 
   <thead>

@@ -68,6 +68,9 @@
 <li class="nav-item">
 <a class="nav-link" href="{{route('pays.index')}}">ดูการแจ้งชำระเงิน </a>
 </li>
+<li class="nav-item">
+<a class="nav-link" href="{{route('users.index')}}">รายชื่อลูกค้า</a>
+</li>
 </ul>
 <ul class="navbar-nav ml-auto ">
 @endif
