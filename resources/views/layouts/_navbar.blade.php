@@ -9,7 +9,7 @@
       @guest
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="/">หน้าหลัก
+        <a class="nav-link" href="{{route('home')}}">หน้าหลัก
           <span class="sr-only">(current)</span>
         </a>
       </li>
@@ -26,7 +26,7 @@
 @if(Auth::user()->role == "CUSTOMER")
        <ul class="navbar-nav mr-auto">
 <li class="nav-item active">
-<a class="nav-link" href="LoginHomes">หน้าหลัก
+<a class="nav-link" href="{{route('home')}}">หน้าหลัก
  <span class="sr-only">(current)</span>
 </a>
 </li>
@@ -49,12 +49,12 @@
      @if(Auth::user()->role == "ADMIN")
      <ul class="navbar-nav mr-auto">
 <li class="nav-item active">
-<a class="nav-link" href="{{route('LoginHomes')}}">หน้าหลัก
+<a class="nav-link" href="{{route('home')}}">หน้าหลัก
  <span class="sr-only">(current)</span>
 </a>
 </li>
 <li class="nav-item">
-<a class="nav-link" href="{{route('LoginProducts')}}">สินค้า</a>
+<a class="nav-link" href="{{route('products.index')}}">สินค้า</a>
 </li>
 <li class="nav-item">
 <a class="nav-link" href="/products/create">เพิ่มสินค้า</a>

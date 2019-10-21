@@ -15,7 +15,6 @@
 .products-container {
     max-width: 1280px;
     width: 100%;
-    border: 1px solid #9e9e9e;
     float: left;
     padding-left: 55px;
     padding-top: 20px;
@@ -101,6 +100,8 @@ span {
 .detail-container{
     padding: 20px;
     float: left;
+    width: 575px;
+    height: 240px;
 }
 li a:hover {
     background-color: red;

@@ -41,7 +41,7 @@ class ProductPolicy
      */
     public function create(User $user)
     {
-        return $user->role === 'ADMINISTRATOR';
+        return $user->role === 'ADMIN';
     }
 
     /**

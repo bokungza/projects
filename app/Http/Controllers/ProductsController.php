@@ -13,10 +13,6 @@ class ProductsController extends Controller
         return view('products.index',['products' => $products]);
     }
 
-    public function  home(){
-        $products = DB::table('products')->orderBy('sales', 'desc')-get();
-        return view('products.index',['products' => $products]);
-    }
 
     public function show($id)
     {
