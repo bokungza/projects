@@ -11,7 +11,7 @@
         @enderror
     </div>
     <div>
-      <select class="form-control form-control-lg" name ='bank' class="form-control @error('bank') is-invalid @enderror" value="{{ old('bank')}}">
+      <select class="form-control" name ='bank' class="form-control @error('bank') is-invalid @enderror" value="{{ old('bank')}}">
         <option>ธนาคารกรุงเทพ</option>
         <option>ธนาคารกรุงไทย</option>
         <option>ธนาคารไทยพาณิชย์</option>
@@ -28,19 +28,22 @@
         <div class = 'alert alert-danger'>{{$message}}</div>
         @enderror
     </div>
-
-    <div>
-        ชื่อ : <input type="text" name= 'firstname' class="form-control @error('firstname') is-invalid @enderror" value="{{ old('firstname')}}"><br>
-        @error('firstname')
-        <div class = 'alert alert-danger'>{{$message}}</div>
-        @enderror
-    </div>
-    <div>
-        นามสกุล : <input type="text" name= 'lastname' class="form-control @error('lastname') is-invalid @enderror" value="{{ old('lastname')}}"><br>
-        @error('lastname')
-        <div class = 'alert alert-danger'>{{$message}}</div>
-        @enderror
-    </div>
+    <form>
+      <div class="row">
+        <div class="col">
+          ชื่อ : <input type="text" name= 'firstname' class="form-control @error('firstname') is-invalid @enderror" value="{{ old('firstname')}}"><br>
+          @error('firstname')
+          <div class = 'alert alert-danger'>{{$message}}</div>
+          @enderror
+        </div>
+        <div class="col">
+          นามสกุล : <input type="text" name= 'lastname' class="form-control @error('lastname') is-invalid @enderror" value="{{ old('lastname')}}"><br>
+          @error('lastname')
+          <div class = 'alert alert-danger'>{{$message}}</div>
+          @enderror
+        </div>
+      </div>
+    </form>
     <div>
         จำนวนเงิน : <input type="number" name='cost' class="form-control @error('cost') is-invalid @enderror" value="{{ old('cost')}}"><br>
         @error('cost')
