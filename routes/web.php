@@ -18,9 +18,9 @@ Route::get('/', function () {
 
 Route::post('/testdb','ProductsController@index');
 
-Route::get('/accounts', 'AccountsController@index')->name('accounts')->middleware('auth');
+
 Route::get('/myOrders', 'MyOrdersController@index')->name('myOrders')->middleware('auth');
-Route::get('/trackOrders', 'TrackOrderController@index')->name('trackOrders')->middleware('auth');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
