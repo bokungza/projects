@@ -31,5 +31,8 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('create-product',function($user,$product){
                   return $user->isAdmin();
           });
+          Gate::define('index-user',function($user){
+                    return $user->isAdmin();
+            });
     }
 }

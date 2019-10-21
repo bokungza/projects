@@ -39,6 +39,7 @@ class ProductsController extends Controller
             'price' => ['required' , 'min:1'],
             'image' => 'required|image|mimes:jpeg,png,jpg',
         ]);
+
         $product = new Product;
         if ($files = $request->file('image')) {
             $destinationPath = '../public/img';

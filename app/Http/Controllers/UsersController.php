@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Auth;
 use App\User;
+use Gate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -23,6 +24,9 @@ class UsersController extends Controller
      */
     public function index()
     {
+      if(Gate::denies('index-user',User::class)){
+           return redirect()->route('home');
+       }
       $users = DB::select('select * from users where role = ?', ['CUSTOMER']);
       return view('users.index',['users' => $users]);
     }
