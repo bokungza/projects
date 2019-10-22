@@ -20,6 +20,25 @@ class UsersTableSeeder extends Seeder
         $user->password = Hash::make('123456');
         $user->email_verified_at = now();
         $user->save();
+        $user = new User;
+          $user->username = "folkky";
+          $user->role = 'CUSTOMER';
+          $user->first_name = "kyky";
+          $user->last_name = "tyty";
+          $user->email = "k@t.com";
+          $user->password = Hash::make('123456');
+          $user->email_verified_at = now();
+          $user->save();
+          $user = new User;
+            $user->username = "kwangky";
+            $user->role = 'CUSTOMER';
+            $user->first_name = "kyky";
+            $user->last_name = "tyty";
+            $user->email = "kw@t.com";
+            $user->password = Hash::make('123456');
+            $user->email_verified_at = now();
+            $user->save();
+            factory(App\User::class, 50)->create();
 
     }
 }

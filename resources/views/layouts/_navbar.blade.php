@@ -1,6 +1,6 @@
 <!--Navbar -->
 <nav class="mb-1 navbar navbar-expand-lg navbar-dark default-color bg-dark ">
-  <a class="navbar-brand" href="/">shop</a>
+  <a class="navbar-brand" href="/home">shop</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"
     aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -40,7 +40,7 @@
 <a class="nav-link" href="/pays/create">แจ้งชำระเงิน</a>
 </li>
 <li class="nav-item">
-<a class="nav-link" href="/pays">ดูการรายระเอียดการชำระเงิน </a>
+<a class="nav-link" href="/pays">ดูการรายละเอียดการชำระเงิน </a>
 </li>
 <li class="nav-item">
 <a class="nav-link" href="{{route('cart.index')}}">ตะกร้าสินค้า</a>
@@ -67,6 +67,9 @@
 </li>
 <li class="nav-item">
 <a class="nav-link" href="{{route('pays.index')}}">ดูการแจ้งชำระเงิน </a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="{{route('users.index')}}">รายชื่อลูกค้า</a>
 </li>
 </ul>
 <ul class="navbar-nav ml-auto ">
