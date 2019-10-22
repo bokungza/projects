@@ -11,10 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
-
+Route::get('/', 'HomeController@index')->name('home');
 
 Route::post('/testdb','ProductsController@index');
 
@@ -25,15 +22,11 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-
-
-Route::get('/LoginHomes', 'LoginHomesController@index')->name('LoginHomes')->middleware('auth');
-
 Route::get('/LoginProducts', 'LoginProductsController@index')->name('LoginProducts')->middleware('auth');;
 
 Route::get('/LoginPayments', 'LoginPaymentsController@index')->name('LoginPayments')->middleware('auth');
 
-Route::resource('/products','ProductsController')->middleware('auth');
+Route::resource('/products','ProductsController');
 
 Route::resource('/cart','CartsController')->middleware('auth');
 
@@ -41,7 +34,6 @@ Route::resource('/pays', 'PaysController')->middleware('auth');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/profile','UsersController@index')->name('profile');
 Route::get('/profile/edit','UsersController@edit')->name('profile.edit');
 Route::post('/profile/update', 'UsersController@update')->name('profile.update');
