@@ -10,4 +10,8 @@ class MyOrdersController extends Controller
         $orders = Orders::all();
         return view('myOrders.myOrders',['orders'=>$orders]);
     }
+
+    public function store(Request $request){
+
+    }
 }

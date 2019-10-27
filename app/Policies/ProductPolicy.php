@@ -41,7 +41,7 @@ class ProductPolicy
      */
     public function create(User $user)
     {
-        return $user->role === 'ADMIN';
+        return $user->isAdmin();
     }
 
     /**
@@ -53,7 +53,7 @@ class ProductPolicy
      */
     public function update(User $user, product $product)
     {
-        return $user->role === 'ADMIN';
+        return $user->isAdmin();
     }
 
     /**
@@ -65,7 +65,7 @@ class ProductPolicy
      */
     public function delete(User $user, product $product)
     {
-        return $user->role === 'ADMIN';
+        return $user->isAdmin();
     }
 
     /**
@@ -77,7 +77,7 @@ class ProductPolicy
      */
     public function restore(User $user, product $product)
     {
-        return $user->role === 'ADMIN';
+        return $user->isAdmin();
     }
 
     /**
@@ -89,6 +89,6 @@ class ProductPolicy
      */
     public function forceDelete(User $user, product $product)
     {
-        //
+        return $user->isAdmin();
     }
 }
