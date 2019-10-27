@@ -30,6 +30,7 @@ class PaysController extends Controller
           'shipping' => ['required' , 'min:1'],
         ]);
         $pay->shipping = $validatedData['shipping'];
+        $this->authorize('update', $pay);
         $pay->save();
 
         return redirect()->route('pays.show',['pays' => $pay->id]);
@@ -67,11 +68,11 @@ class PaysController extends Controller
         $pay = pay::findOrFail($id);
         return view('pays.edit', ['pay' => $pay]);
     }
-    public function destroy($id){
-        //$pay = pay::findOrFail($id);
-        //$this->authorize('destroy',Pay::class);
+    public function destroy(Pay $pay){
         $pay->delete();
-        return redirect()->action('PaysController@index');
+        $pay = Pay::all();
+        $this->authorize('delete', $pay);
+        return redirect()->route('pays.index',['pays' => $pays]);
     }
 
 }

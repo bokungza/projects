@@ -16,8 +16,12 @@
             <p>จำนวนเงิน : {{ $pay->cost }}</p>
             <p>รหัสส่งสินค้า : {{ $pay->shipping }}</p>
 
+            @can('update',$pay)
             <a class="btn btn-primary" href="/pays/{{ $pay->id }}/edit" role="button">เพิ่ม/แก้ไข รหัสส่งสินค้า</a>
+            @endcan
+            @can('delete',$pay)
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">ลบข้อมูล</button>
+            @endcan
             <a class="btn btn-primary" href="/pays/" role="button">ย้อนกลับ</a>
               <!-- Modal -->
               <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -43,5 +47,6 @@
                   </div>
                 </div>
               </div>
+
 </div>
 @endsection
