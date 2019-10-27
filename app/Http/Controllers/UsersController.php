@@ -58,9 +58,12 @@ class UsersController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show($id)
     {
-        //
+      $user = User::findOrFail($id);
+      $orders = DB::select('select * from orders where user_id = ?', [$id]);
+    
+      return view('users.show',['user' => $user,'orders' => $orders]);
     }
 
     /**

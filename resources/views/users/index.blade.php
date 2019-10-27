@@ -12,16 +12,23 @@
       <th scope="col">นามสกุล</th>
       <th scope="col">อีเมลล์</th>
       <th scope="col">เวลาลงทะเบียน</th>
+      <th scope="col">ประวัติ</th>
       <th scope="col">ลบ</th>
     </tr>
   </thead>
         @foreach ($users as $user)
         <tr>
+
+
         <th scope="row">{{$user->id}}</th>
            <td>{{$user->first_name}}</td>
            <td>{{$user->last_name}}</td>
            <td>{{$user->email}}</td>
            <td>{{$user->created_at}}</td>
+
+           <td>
+              <a href="{{route('users.show' ,  ['user' => $user->id])}}">ดู</a>
+           </td>
            <td>
              <form method = "post" action ="{{route('users.destroy' , ['user'=>$user->id])}}" >
                @csrf
