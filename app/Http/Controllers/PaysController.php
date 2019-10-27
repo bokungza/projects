@@ -21,6 +21,19 @@ class PaysController extends Controller
     public function create(){
         return view('pays.create');
     }
+    public function update(Request $request, $id)
+    {
+
+        $pay = pay::findOrFail($id);
+        //$this->authorize('update',Pay::class);
+        $validatedData = $request->validate([
+          'shipping' => ['required' , 'min:1'],
+        ]);
+        $pay->shipping = $validatedData['shipping'];
+        $pay->save();
+
+        return redirect()->route('pays.show',['pays' => $pay->id]);
+    }
     public function store(Request $request){
         $validatedData = $request->validate([
             'orderid' => ['required' , 'min:1'],
@@ -29,6 +42,7 @@ class PaysController extends Controller
             'firstname' => ['required' , 'min:1' , 'max:255'],
             'lastname' => ['required' , 'min:1' , 'max:255'],
             'cost' => ['required' , 'min:1'],
+            'shipping' => ['required' , 'min:1'],
             'image' => 'required|image|mimes:jpeg,png,jpg',
         ]);
 
@@ -45,13 +59,19 @@ class PaysController extends Controller
         $pay->firstname = $validatedData['firstname'];
         $pay->lastname = $validatedData['lastname'];
         $pay->cost = $validatedData['cost'];
-        $pay->shipping = "";
+        $pay->shipping = $validatedData['shipping'];
         $pay->save();
         return view('pays.index');
     }
     public function edit($id){
         $pay = pay::findOrFail($id);
         return view('pays.edit', ['pay' => $pay]);
+    }
+    public function destroy($id){
+        //$pay = pay::findOrFail($id);
+        //$this->authorize('destroy',Pay::class);
+        $pay->delete();
+        return redirect()->action('PaysController@index');
     }
 
 }
