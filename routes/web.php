@@ -13,10 +13,9 @@
 
 Route::get('/', 'HomeController@index')->name('home');
 
-
 Route::post('/testdb','ProductsController@index');
 
-
+Route::post('/myOrders','MyOrdersController@store')->name('myOrders')->middleware('auth');
 Route::get('/myOrders', 'MyOrdersController@index')->name('myOrders')->middleware('auth');
 
 Auth::routes();
@@ -24,24 +23,22 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 
-
-Route::get('/LoginHomes', 'LoginHomesController@index')->name('LoginHomes')->middleware('auth');
-
-Route::get('/LoginProducts', 'LoginProductsController@index')->name('LoginProducts')->middleware('auth');;
-
 Route::get('/LoginPayments', 'LoginPaymentsController@index')->name('LoginPayments')->middleware('auth');
 
-Route::resource('/products','ProductsController')->middleware('auth');
+Route::resource('/products','ProductsController');
 
 Route::resource('/cart','CartsController')->middleware('auth');
 
-Route::resource('/pays', 'PaysController')->middleware('auth');
+Route::resource('/pays', 'PaysController');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/profile','UsersController@index')->name('profile');
+Route::get('/profile','UsersController@profile')->name('profile');
 Route::get('/profile/edit','UsersController@edit')->name('profile.edit');
 Route::post('/profile/update', 'UsersController@update')->name('profile.update');
+Route::get('/users','UsersController@index')->name('users.index');
+Route::get('/users','UsersController@destroy')->name('users.destroy');
+
 
 Route::resource('/users','UsersController');

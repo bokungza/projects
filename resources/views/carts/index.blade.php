@@ -60,8 +60,13 @@
                   <strong>
                       ฿{{DB::table('carts')
                 ->where('user_id', \Illuminate\Support\Facades\Auth::user()->id)
-                ->sum('total_price')}}</strong></li>
-            </ul><a href="#" class="btn btn-dark rounded-pill py-2 btn-block">ยืนยัน</a>
+                ->sum('total_price')}}</strong>
+              </li>
+            </ul>
+              <form action="{{ asset('/myOrders') }}" method = 'post' enctype="multipart/form-data">
+                  @csrf
+                  <input type="submit" class="btn btn-dark rounded-pill py-2 btn-block" value="ยืนยัน">
+              </form>
           </div>
         </div>
       </div>

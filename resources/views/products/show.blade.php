@@ -8,10 +8,11 @@
             </a>
         </div>
         <div class = "detail-container">
-            <h3>{{ $product->name }}</h3>
+            <h3>{{ $product->name }}</h3><hr>
             <p>{{ $product->detail }}</p>
-            <p class = "p-detail">฿{{ $product->unit_price }}</p>
-            <form action="{{ route('cart.store') }}" method = 'post'>
+            <p style="float: left;width: 50%;" class = "p-detail">฿{{ $product->unit_price }}</p>
+            <p style="float: right ; width: 50% ;text-align: right" class = "p-detail">In Stock : {{$product->count}}</p>
+            <form action="{{ route('cart.store') }}" method = 'post' style="float: left;width: 100%">
                 @csrf
                 จำนวน : <input type="number" name="count">
                 <input type="hidden" value="{{$product->id}}" name="pid">

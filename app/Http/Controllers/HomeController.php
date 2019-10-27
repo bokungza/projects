@@ -13,11 +13,8 @@ class HomeController extends Controller
      *
      * @return void
      */
-    protected $redirectTo = '/LoginHomes';
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+    protected $redirectTo = '/home';
+
 
     /**
      * Show the application dashboard.
