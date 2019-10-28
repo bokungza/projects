@@ -23,8 +23,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-
-Route::get('/LoginPayments', 'LoginPaymentsController@index')->name('LoginPayments')->middleware('auth');
+Route::get('/payments', 'PaymentsController@index')->name('payments');
 
 Route::resource('/products','ProductsController');
 

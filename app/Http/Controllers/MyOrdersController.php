@@ -17,7 +17,8 @@ class MyOrdersController extends Controller
     }
     public function show($id){
         $orders = Orders::findOrFail($id);
-        return view('myOrders.show',['orders'=>$orders]);
+        $order_details = OrderDetail::where('order_id', $id)->get();
+        return view('myOrders.show',['orders'=>$orders,'order_details'=>$order_details,'products'=>$order_details]);
     }
     public function store(Request $request){
         $carts = DB::table('carts')->where('user_id',Auth::user()->id)->get();

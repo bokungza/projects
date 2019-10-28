@@ -17,7 +17,7 @@
         <a class="nav-link" href="products">สินค้า</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="payments">วิธีการซื้อสินค้า</a>
+        <a class="nav-link" href="payments">วิธีการสั่งซื้อสินค้า</a>
       </li>
     </ul>
     <ul class="navbar-nav ml-auto ">
@@ -34,7 +34,7 @@
 <a class="nav-link" href="{{route('products.index')}}">สินค้า</a>
 </li>
 <li class="nav-item">
-<a class="nav-link" href="{{route('LoginPayments')}}">วิธีการซื้อสินค้า</a>
+<a class="nav-link" href="{{route('payments')}}">วิธีการสั่งซื้อสินค้า</a>
 </li>
 <li class="nav-item">
 <a class="nav-link" href="/pays/create">แจ้งชำระเงิน</a>

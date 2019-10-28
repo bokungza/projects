@@ -11,15 +11,17 @@
         <th>รหัสorder</th>
         <th>ราคา</th>
         <th>สถานะ</th>
+        <th>ดูรายละเอียด</th>
       </tr>
     </thead>
     @foreach ($orders as $order)
     <tbody>
       <tr>
       
-        <td><a href="{{ action('MyOrdersController@show', [$order->id]) }}">{{ $order->id}}</a></td>
-        <td>{{ $order->price}}</td>
+        <td>{{ $order->id}}</td>
+        <td>{{ $order->total_price}}</td>
         <td class="text-danger">{{ $order->status}}</td>
+        <td><a href="{{ action('MyOrdersController@show', [$order->id]) }}">ดูรายละเอียดการสั่งซื้อ</a></td>
       </tr>
       @endforeach
     </tbody>
