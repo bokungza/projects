@@ -17,6 +17,7 @@ Route::post('/testdb','ProductsController@index');
 
 Route::post('/myOrders','MyOrdersController@store')->name('myOrders')->middleware('auth');
 Route::get('/myOrders', 'MyOrdersController@index')->name('myOrders')->middleware('auth');
+Route::resource('/myOrders', 'MyOrdersController');
 
 Auth::routes();
 

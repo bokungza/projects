@@ -15,7 +15,10 @@ class MyOrdersController extends Controller
         $orders = Orders::all();
         return view('myOrders.myOrders',['orders'=>$orders]);
     }
-
+    public function show($id){
+        $orders = Orders::findOrFail($id);
+        return view('myOrders.show',['orders'=>$orders]);
+    }
     public function store(Request $request){
         $carts = DB::table('carts')->where('user_id',Auth::user()->id)->get();
         foreach ($carts as $cart){
