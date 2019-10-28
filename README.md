@@ -13,5 +13,5 @@
 * พร้อมใช้งาน
 
 ## User สำหรับการเข้าใช้
-* zelos@hotmail.com 123456 (ADMIN)
-* folk@gmail.com    123456  (CUSTOMER)
+* EMAIL : zelos@hotmail.com  PASSWORD : 123456  ROLE : (ADMIN)
+* EMAIL : folk@gmail.com     PASSWORD : 123456  ROLE : (CUSTOMER)
