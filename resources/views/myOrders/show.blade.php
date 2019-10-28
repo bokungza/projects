@@ -23,9 +23,11 @@
         @foreach ($order_details as $order_detail)
         <tbody>
         <tr>
-            <td>{{ $order_detail->id}}</td>
-            <td>{</td>
-            <td class="text-danger"></td>
+          @if ($order_detail->order_id === $orders->id)
+            <td>{{ $order_detail->product_id}}</td>
+            <td>{{ $order_detail->price}}</td>
+            <td>{{ $order_detail->weight}}</td>
+          @endif
         </tr>
         @endforeach
         </table>
