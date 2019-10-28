@@ -14,10 +14,10 @@
             <p>วันและเวลาชำระเงิน : {{ $pay->paystime }}</p>
             <p>ชื่อผู้ชำระเงิน : {{ $pay->firstname }} {{ $pay->lastname }}</p>
             <p>จำนวนเงิน : {{ $pay->cost }}</p>
-            <p>รหัสส่งสินค้า : {{ $pay->shipping }}</p>
+            <p>สถานะ : {{ $pay->status }}</p>
 
             @can('update',$pay)
-            <a class="btn btn-primary" href="/pays/{{ $pay->id }}/edit" role="button">เพิ่ม/แก้ไข รหัสส่งสินค้า</a>
+            <a class="btn btn-primary" href="/pays/{{ $pay->id }}/edit" role="button">อัพเดทสถานะ</a>
             @endcan
             @can('delete',$pay)
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">ลบข้อมูล</button>

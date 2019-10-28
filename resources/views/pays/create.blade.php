@@ -56,8 +56,8 @@
         @enderror
     </div>
     <div>
-        <input type="hidden" name='shipping' class="form-control @error('shipping') is-invalid @enderror" value="รอการอัพเดท..."><br>
-        @error('shipping')
+        <input type="hidden" name='status' class="form-control @error('status') is-invalid @enderror" value="รอการเช็คการชำระเงิน"><br>
+        @error('status')
         <div class = 'alert alert-danger'>{{$message}}</div>
         @enderror
     </div>

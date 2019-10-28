@@ -19,7 +19,7 @@ class CreatePaysTable extends Migration
             $table->string('bank');
 
             $table->dateTime('paystime');
-            $table->string('shipping');
+            $table->string('status');
 
             $table->string('firstname');
             $table->string('lastname');

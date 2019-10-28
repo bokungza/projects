@@ -27,9 +27,9 @@ class PaysController extends Controller
         $pay = pay::findOrFail($id);
         //$this->authorize('update',Pay::class);
         $validatedData = $request->validate([
-          'shipping' => ['required' , 'min:1'],
+          'status' => ['required' , 'min:1'],
         ]);
-        $pay->shipping = $validatedData['shipping'];
+        $pay->status = $validatedData['status'];
         $this->authorize('update', $pay);
         $pay->save();
 
@@ -43,7 +43,7 @@ class PaysController extends Controller
             'firstname' => ['required' , 'min:1' , 'max:255'],
             'lastname' => ['required' , 'min:1' , 'max:255'],
             'cost' => ['required' , 'min:1'],
-            'shipping' => ['required' , 'min:1'],
+            'status' => ['required' , 'min:1'],
             'image' => 'required|image|mimes:jpeg,png,jpg',
         ]);
 
@@ -60,7 +60,7 @@ class PaysController extends Controller
         $pay->firstname = $validatedData['firstname'];
         $pay->lastname = $validatedData['lastname'];
         $pay->cost = $validatedData['cost'];
-        $pay->shipping = $validatedData['shipping'];
+        $pay->status = $validatedData['status'];
         $pay->save();
         return redirect()->route('pays.index',['pays' => $pays]);
     }

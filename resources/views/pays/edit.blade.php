@@ -7,10 +7,16 @@
     @csrf
     @method("PUT")
     <div>
-      <label for="shipping">Post Title</label>
-      <input type="text" class='form-control' name='shipping' value="{{old('shipping', $pay->shipping)}}">
+      <label for="status">Post Title</label>
+      <select class="form-control form-control-lg" name='status'>
+      <option>รอการเช็คการชำระเงิน</option>
+      <option>ชำระเงินผิดพลาด</option>
+      <option>ชำระเงินเสร็จสิ้น</option>
+    </select>
     </div>
     <br>
     <button type="submit" class="btn btn-primary">อัพเดทรหัสส่งสินค้า</button>
+
+    
   </form>
 @endsection
