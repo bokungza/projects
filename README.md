@@ -11,3 +11,7 @@
 * ใช้คำสั่ง php artisan migrate:install
 * ใช้คำสั่ง php artisan db:seed
 * พร้อมใช้งาน
+
+## User สำหรับการเข้าใช้
+* zelos@hotmail.com 123456 (ADMIN)
+* folk@gmail.com    123456  (CUSTOMER)
