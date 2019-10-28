@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class OrderDetailAddOrderId extends Migration
+class TableOrderDetilsAddForeignOrderId extends Migration
 {
     /**
      * Run the migrations.
@@ -14,10 +14,10 @@ class OrderDetailAddOrderId extends Migration
     public function up()
     {
         Schema::table('order_details', function (Blueprint $table) {
-            $table->foreign('id')
-                ->references('id')
-                ->on('orders')
-                ->onDelete('cascade');
+            $table->foreign('order_id')
+            ->references('id')
+            ->on('orders')
+            ->onDelete('cascade');
         });
     }
 
@@ -30,8 +30,8 @@ class OrderDetailAddOrderId extends Migration
     {
         Schema::disableForeignKeyConstraints();
         Schema::table('order_details', function (Blueprint $table) {
-            $table->dropForeign(['id']);
-            $table->dropColumn('id');
+            $table->dropForeign(['order_id']);
+            $table->dropColumn('order_id');
         });
         Schema::enableForeignKeyConstraints();
     }

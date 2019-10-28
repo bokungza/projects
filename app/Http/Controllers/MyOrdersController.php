@@ -21,21 +21,23 @@ class MyOrdersController extends Controller
     }
     public function store(Request $request){
         $carts = DB::table('carts')->where('user_id',Auth::user()->id)->get();
+        $order = new Orders();
+        $order->user_id = Auth::user()->id;
+        $order->total_price = 0;
+        $order->save();
         foreach ($carts as $cart){
-            $order = new Orders();
-            $order->user_id = Auth::user()->id;
-            $order->total_price = $cart->total_price;
-            $order->save();
             $order_detail = new OrderDetail();
-            $order_detail->id = $order->id;
+            $order_detail->order_id = $order->id;
             $order_detail->weight = $cart->count;
             $order_detail->product_id = $cart->product_id;
             $product = DB::table('products')->where('id',$cart->product_id)->first();
-            $order_detail->price = $product->unit_price;
+            $order_detail->price = $product->unit_price * $cart->count;
             $order_detail->save();
             $temp_cart = Cart::findOrFail($cart->id);
             $temp_cart->delete();
         }
+        $order->total_price = DB::table('order_details')->where('order_id',$order->id)->sum('price');
+        $order->save();
         return redirect()->route('products.index');
     }
 }
