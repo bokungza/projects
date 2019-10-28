@@ -65,11 +65,10 @@
             @foreach ($orders as $order)
             <tr>
 
-
-            <th scope="row">{{$order->id}}</th>
+            <th scope="row"><a href="{{ action('MyOrdersController@show', [$order->id]) }}">{{$order->id}}</a></th>
                <td>{{$order->total_price}}</td>
-               
-               <td>#</td>
+
+               <td>{{$order->status}}</td>
                <td>{{$user->created_at}}</td>
 
 

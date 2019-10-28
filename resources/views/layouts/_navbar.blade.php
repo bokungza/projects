@@ -71,6 +71,9 @@
 <li class="nav-item">
 <a class="nav-link" href="{{route('users.index')}}">รายชื่อลูกค้า</a>
 </li>
+<li class="nav-item">
+<a class="nav-link" href="/myOrders">รายการสั่งของลูกค้า</a>
+</li>
 </ul>
 <ul class="navbar-nav ml-auto ">
 @endif
