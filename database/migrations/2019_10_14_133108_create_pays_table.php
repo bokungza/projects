@@ -15,16 +15,13 @@ class CreatePaysTable extends Migration
     {
         Schema::create('pays', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('orderid');
+            $table->bigInteger('order_id');
             $table->string('bank');
-
-            $table->dateTime('paystime');
+            $table->dateTime('pay_time');
             $table->string('status');
-
-            $table->string('firstname');
-            $table->string('lastname');
-            $table->float('cost');
-            
+            $table->string('first_name');
+            $table->string('last_name');
+            $table->float('price');
             $table->string('picture',1000);
             $table->timestamps();
         });
