@@ -41,4 +41,17 @@ class MyOrdersController extends Controller
         $order->save();
         return redirect()->route('products.index');
     }
+    public function edit($id){
+        $order = Orders::findOrFail($id);
+        return view('myOrders.edit', ['order' => $order]);
+    }
+    public function update(Request $request, $id)
+    {
+
+        $orders = Orders::findOrFail($id);
+        $orders->status = $validatedData['status'];
+        $orders->save();
+
+          return redirect()->route('products.index');
+    }
 }
