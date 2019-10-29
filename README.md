@@ -7,9 +7,8 @@
 * ใช้คำสั่ง php artisan key:generate
 * เปิด Mysql จาก laragon ขึ้นมา
 * สร้าง Database ชื่อ project ขึ้นมาโดยใช้ user เป็น root ชั่วคราว (ไม่มีรหัส)
+* ใช้คำสั่ง php artisan migrate:refresh --seed
 * ใช้คำสั่ง php artisan serve
-* ใช้คำสั่ง php artisan migrate:install
-* ใช้คำสั่ง php artisan db:seed
 * พร้อมใช้งาน
 
 ## User สำหรับการเข้าใช้
