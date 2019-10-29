@@ -49,9 +49,8 @@ class MyOrdersController extends Controller
     {
 
         $orders = Orders::findOrFail($id);
-        $orders->status = $validatedData['status'];
+        $orders->status = $request->input('status');
         $orders->save();
-
           return redirect()->route('products.index');
     }
 }

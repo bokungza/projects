@@ -32,7 +32,7 @@ Route::resource('/cart','CartsController')->middleware('auth');
 Route::resource('/pays', 'PaysController');
 
 Auth::routes();
-Route::post('/myOrders/update/{id}', 'MyOrdersController@update')->name('myOrders.update');
+Route::put('/myOrders/update/{id}', 'MyOrdersController@update')->name('myOrders.update');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/profile','UsersController@profile')->name('profile');
 Route::get('/profile/edit','UsersController@edit')->name('profile.edit');
