@@ -5,7 +5,6 @@
 * ใช้คำสั่ง composer dump-autoload 
 * ใช้คำสั่ง cp .env.example .env
 * ใช้คำสั่ง php artisan key:generate
-** แก้ไขไฟล์ .env
 * เปิด Mysql จาก laragon ขึ้นมา
 * สร้าง Database ชื่อ project ขึ้นมาโดยใช้ user เป็น root ชั่วคราว (ไม่มีรหัส)
 * ใช้คำสั่ง php artisan migrate:refresh --seed
