@@ -28,6 +28,10 @@ Route::get('/payments', 'PaymentsController@index')->name('payments');
 
 Route::resource('/products','ProductsController');
 
+Route::resource('/addresses','AddressesController');
+Route::put('/addresses/update/{id}', 'AddressesController@update')->name('addresses.update');
+
+
 Route::resource('/cart','CartsController')->middleware('auth');
 
 Route::resource('/pays', 'PaysController');

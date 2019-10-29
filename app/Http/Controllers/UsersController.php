@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Auth;
 use App\User;
+use App\Address;
 use Gate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -15,7 +16,8 @@ class UsersController extends Controller
 
     public function profile(){
           $user = Auth::user();
-           return view('users.profile')->with('user',Auth::user());
+          $addresses = $user->addresses()->get();
+           return view('users.profile',['user'=>$user,'addresses'=>$addresses]);
        }
     /**
      * Display a listing of the resource.
@@ -62,7 +64,7 @@ class UsersController extends Controller
     {
       $user = User::findOrFail($id);
       $orders = DB::select('select * from orders where user_id = ?', [$id]);
-    
+
       return view('users.show',['user' => $user,'orders' => $orders]);
     }
 
