@@ -63,7 +63,7 @@
                 ->sum('total_price')}}</strong>
               </li>
             </ul>
-              <form action="{{ asset('/myOrders') }}" method = 'post' enctype="multipart/form-data">
+              <form action="{{ asset('/orders') }}" method = 'post' enctype="multipart/form-data">
                   @csrf
                   <input type="submit" class="btn btn-dark rounded-pill py-2 btn-block" value="ยืนยัน">
               </form>

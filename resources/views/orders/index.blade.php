@@ -24,9 +24,9 @@
         <td>{{ $order->id}}</td>
         <td>{{ $order->total_price}}</td>
         <td class="text-danger">{{ $order->status}}</td>
-        <td><a href="{{ action('MyOrdersController@show', [$order->id]) }}">ดูรายละเอียดการสั่งซื้อ</a></td>
-        <td><a href="{{route('users.show' ,  ['user' => $user->id])}}"> {{$user->username}}ู</a></td>
-          <td><a class="btn btn-primary" href="{{ action('MyOrdersController@edit', [$order->id]) }}" role="button">อัพเดทสถานะ</a></td>
+        <td><a href="{{ action('OrdersController@show', [$order->id]) }}">ดูรายละเอียดการสั่งซื้อ</a></td>
+        <td><a href="{{route('users.show' ,  ['user' => $user->id])}}"> {{$user->username}}</a></td>
+          <td><a class="btn btn-primary" href="{{ action('OrdersController@edit', [$order->id]) }}" role="button">อัพเดทสถานะ</a></td>
       </tr>
       @endforeach
     </tbody>

@@ -65,7 +65,7 @@
             @foreach ($orders as $order)
             <tr>
 
-            <th scope="row"><a href="{{ action('MyOrdersController@show', [$order->id]) }}">{{$order->id}}</a></th>
+            <th scope="row"><a href="{{ action('OrdersController@show', [$order->id]) }}">{{$order->id}}</a></th>
                <td>{{$order->total_price}}</td>
 
                <td>{{$order->status}}</td>

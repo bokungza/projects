@@ -5,24 +5,24 @@ namespace App\Http\Controllers;
 use App\Cart;
 use App\OrderDetail;
 use Illuminate\Http\Request;
-use App\Orders;
+use App\Order;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
-class MyOrdersController extends Controller
+class OrdersController extends Controller
 {
     public function index() {
-        $orders = Orders::all();
-        return view('myOrders.myOrders',['orders'=>$orders]);
+        $orders = Order::all();
+        return view('orders.index',['orders'=>$orders]);
     }
     public function show($id){
-        $orders = Orders::findOrFail($id);
+        $orders = Order::findOrFail($id);
         $order_details = OrderDetail::where('order_id', $id)->get();
-        return view('myOrders.show',['orders'=>$orders,'order_details'=>$order_details]);
+        return view('orders.show',['orders'=>$orders,'order_details'=>$order_details]);
     }
     public function store(Request $request){
         $carts = DB::table('carts')->where('user_id',Auth::user()->id)->get();
-        $order = new Orders();
+        $order = new Order();
         $order->user_id = Auth::user()->id;
         $order->total_price = 0;
         $order->save();
@@ -42,13 +42,13 @@ class MyOrdersController extends Controller
         return redirect()->route('products.index');
     }
     public function edit($id){
-        $order = Orders::findOrFail($id);
-        return view('myOrders.edit', ['order' => $order]);
+        $order = Order::findOrFail($id);
+        return view('orders.edit', ['order' => $order]);
     }
     public function update(Request $request, $id)
     {
 
-        $orders = Orders::findOrFail($id);
+        $orders = Order::findOrFail($id);
         $orders->status = $request->input('status');
         $orders->save();
           return redirect()->route('products.index');
