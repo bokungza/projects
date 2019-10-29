@@ -12,7 +12,6 @@
                   <th >
                     <div class="p-2 px-3 text-uppercase">สินค้า</div>
                   </th>
-
                   <th>
                     <div class="py-2 text-uppercase">ราคา</div>
                   </th>
@@ -22,7 +21,7 @@
                 </tr>
               </thead>
               <tbody>
-
+        
         @foreach ($order_details as $order_detail)
           <p style="display: none">{{$product = \App\Product::findOrFail($order_detail->product_id)}}</p>
         <tbody>
@@ -35,5 +34,6 @@
         </tr>
         @endforeach
         </table>
+        <a class="btn btn-primary" href="{{ action('PaysController@create') }}" role="button">แจ้งชำระเงิน</a>
 </div>
 @endsection

@@ -5,8 +5,8 @@
 <form action="{{ route('pays.store') }}" method = 'post' enctype="multipart/form-data">
     @csrf
     <div>
-        Order ID : <input type="number" name= 'orderid' class="form-control @error('orderid') is-invalid @enderror" value="{{ old('orderid')}}"><br>
-        @error('orderid')
+        Order ID : <input type="number" name= 'order_id' class="form-control @error('order_id') is-invalid @enderror" value="{{ old('order_id')}}"><br>
+        @error('order_id')
         <div class = 'alert alert-danger'>{{$message}}</div>
         @enderror
     </div>
@@ -19,36 +19,33 @@
         @error('bank')
         <div class = 'alert alert-danger'>{{$message}}</div>
         @enderror
-
     </div>
-
     <div>
-        วันและเวลาชำระเงิน : <input type="datetime-local" name= 'paystime' class="form-control @error('paystime') is-invalid @enderror" value="{{ old('paystime')}}"><br>
-        @error('paystime')
+        วันและเวลาชำระเงิน : <input type="datetime-local" name= 'pay_time' class="form-control @error('pay_time') is-invalid @enderror" value="{{ old('pay_time')}}"><br>
+        @error('pay_time')
         <div class = 'alert alert-danger'>{{$message}}</div>
         @enderror
     </div>
     <div class="row">
     <div class="col">
-      ชื่อ : <input type="text" name= 'firstname' class="form-control @error('firstname') is-invalid @enderror" value="{{ Auth::user()->first_name }}"><br>
-      @error('firstname')
+      ชื่อ : <input type="text" name= 'first_name' class="form-control @error('first_name') is-invalid @enderror" value="{{ Auth::user()->first_name }}"><br>
+      @error('first_name')
       <div class = 'alert alert-danger'>{{$message}}</div>
       @enderror
     </div>
     <div class="col">
-      นามสกุล : <input type="text" name= 'lastname' class="form-control @error('lastname') is-invalid @enderror" value="{{ Auth::user()->last_name }}"><br>
-      @error('lastname')
+      นามสกุล : <input type="text" name= 'last_name' class="form-control @error('last_name') is-invalid @enderror" value="{{ Auth::user()->last_name }}"><br>
+      @error('last_name')
       <div class = 'alert alert-danger'>{{$message}}</div>
       @enderror
     </div>
     </div>
     <div>
-        จำนวนเงิน : <input type="number" name='cost' class="form-control @error('cost') is-invalid @enderror" value="{{ old('cost')}}"><br>
-        @error('cost')
+        จำนวนเงิน : <input type="number" name='price' class="form-control @error('price') is-invalid @enderror" value="{{ old('price')}}"><br>
+        @error('price')
         <div class = 'alert alert-danger'>{{$message}}</div>
         @enderror
     </div>
-
     <div>
         <input id="file-upload" type="file" name="image" style="margin-bottom: 10px" class = "@error('image') is-invalid @enderror"><br>
         @error('image')
