@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 use Auth;
-
+use App\Address;
 use Illuminate\Http\Request;
 
 class AddressesController extends Controller
@@ -14,7 +14,8 @@ class AddressesController extends Controller
      */
     public function index()
     {
-        //
+
+
     }
 
     /**
@@ -24,7 +25,7 @@ class AddressesController extends Controller
      */
     public function create()
     {
-        //
+        return view('addresses.create');
     }
 
     /**
@@ -35,24 +36,14 @@ class AddressesController extends Controller
      */
     public function store(Request $request)
     {
-      $validatedData = $request->validate([
-        'house_address' => [ 'string', 'min:1'],
-        'street' => [ 'string', 'min:1'],
-        'direct' => [ 'string', 'min:1'],
-        'province' => [ 'string', 'min:3'],
-        'sub_district' => [ 'string', 'min:3'],
-        'zip_code' => [ 'integer', 'min:5'],
-
-
-      ]);
       $address = new Address;
-      $address->user_id = Auth::user()->id;
-      $address->house_address = $validatedData['house_address'];
-      $address->street = $validatedData['street'];
-      $address->direct = $validatedData['direct'];
-      $address->province = $validatedData['province'];
-      $address->sub_district = $validatedData['sub_district'];
-      $address->zip_code = $validatedData['zip_code'];
+      $address->user_id =  Auth::user()->id;
+      $address->house_address = $request->input('house_address');
+      $address->street = $request->input('street');
+      $address->province = $request->input('province');
+      $address->sub_district = $request->input('sub_district');
+      $address->district = $request->input('district');
+      $address->zip_code = $request->input('zip_code');
       $address->save();
       return redirect()->route('profile');
     }
@@ -76,7 +67,8 @@ class AddressesController extends Controller
      */
     public function edit($id)
     {
-        //
+      $address = Address::findOrFail($id);
+      return view('addresses.edit', ['address' => $address]);
     }
 
     /**
@@ -88,24 +80,14 @@ class AddressesController extends Controller
      */
     public function update(Request $request, $id)
     {
-      $validatedData = $request->validate([
-        'house_address' => [ 'string', 'min:1'],
-        'street' => [ 'string', 'min:1'],
-        'direct' => [ 'string', 'min:1'],
-        'province' => [ 'string', 'min:3'],
-        'sub_district' => [ 'string', 'min:3'],
-        'zip_code' => [ 'integer', 'min:5'],
-
-
-      ]);
-      $address = new Address;
-      $address->user_id = Auth::user()->id;
-      $address->house_address = $validatedData['house_address'];
-      $address->street = $validatedData['street'];
-      $address->direct = $validatedData['direct'];
-      $address->province = $validatedData['province'];
-      $address->sub_district = $validatedData['sub_district'];
-      $address->zip_code = $validatedData['zip_code'];
+      $address = Address::findOrFail($id);
+      $address->user_id =  Auth::user()->id;
+      $address->house_address = $request->input('house_address');
+      $address->street = $request->input('street');
+      $address->province = $request->input('province');
+      $address->sub_district = $request->input('sub_district');
+      $address->district = $request->input('district');
+      $address->zip_code = $request->input('zip_code');
       $address->save();
       return redirect()->route('profile');
     }
@@ -116,8 +98,9 @@ class AddressesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Address $address)
     {
-        //
+        $address->delete();
+        return redirect()->route('profile');
     }
 }
