@@ -16,8 +16,8 @@ class UsersController extends Controller
 
     public function profile(){
           $user = Auth::user();
-          $addresses = $user->addresses()->get();
-           return view('users.profile',['user'=>$user,'addresses'=>$addresses]);
+          $address = $user->addresses()->latest()->first();
+           return view('users.profile',['user'=>$user,'address'=>$address]);
        }
     /**
      * Display a listing of the resource.

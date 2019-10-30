@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Order;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\Address;
 
 class OrdersController extends Controller
 {
@@ -21,10 +22,20 @@ class OrdersController extends Controller
         return view('orders.show',['orders'=>$orders,'order_details'=>$order_details]);
     }
     public function store(Request $request){
+        $address = new Address;
+        $address->user_id =  Auth::user()->id;
+        $address->house_address = $request->input('house_address');
+        $address->street = $request->input('street');
+        $address->province = $request->input('province');
+        $address->sub_district = $request->input('sub_district');
+        $address->district = $request->input('district');
+        $address->zip_code = $request->input('zip_code');
+        $address->save();
         $carts = DB::table('carts')->where('user_id',Auth::user()->id)->get();
         $order = new Order();
         $order->user_id = Auth::user()->id;
         $order->total_price = 0;
+        $order->address_id=$address->id;
         $order->save();
         foreach ($carts as $cart){
             $order_detail = new OrderDetail();

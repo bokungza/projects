@@ -5,7 +5,7 @@
   <h1>แก้ไขที่อยู่</h1>
 <form action="{{route('addresses.update', ['id' => $address->id])}}" method="post">
   @csrf
-@method("PUT")
+
   <div class="form-row">
     <div class="col-md-2 mb-3">
       <label>บ้านเลขที่</label>

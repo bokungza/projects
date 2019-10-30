@@ -100,7 +100,6 @@ class AddressesController extends Controller
      */
     public function destroy(Address $address)
     {
-        $address->delete();
-        return redirect()->route('profile');
+      
     }
 }

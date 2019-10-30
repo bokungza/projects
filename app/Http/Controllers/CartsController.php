@@ -8,25 +8,28 @@ use App\Cart;
 use App\Product;
 use Illuminate\Http\Request;
 use Gate;
+use App\Address;
 
 class CartsController extends Controller
-{
+{public function __construct(){
+     $this->middleware('auth');
+ }
+ 
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct(){
-         $this->middleware('auth');
-     }
+
     public function index()
     {
       if(Gate::denies('index-cart',Cart::class)){
            return redirect()->route('home');
        }
-        $user = Auth::user();
-        $carts = $user->carts()->get();
-        return view('carts.index',['carts' => $carts]);
+       $user = Auth::user();
+      $address = $user->addresses()->latest()->first();
+       $carts = $user->carts()->get();
+        return view('carts.index',['carts' => $carts,'address' => $address]);
     }
 
     /**
