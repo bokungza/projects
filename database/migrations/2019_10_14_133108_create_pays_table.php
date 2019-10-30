@@ -16,6 +16,7 @@ class CreatePaysTable extends Migration
         Schema::create('pays', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('order_id');
+            $table->bigInteger('user_id');
             $table->string('bank');
             $table->dateTime('pay_time');
             $table->string('status');

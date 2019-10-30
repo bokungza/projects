@@ -52,11 +52,19 @@
         <div class = 'alert alert-danger'>{{$message}}</div>
         @enderror
     </div>
-    <div>
-        <input type="hidden" name='status' class="form-control @error('status') is-invalid @enderror" value="รอการเช็คการชำระเงิน"><br>
-        @error('status')
-        <div class = 'alert alert-danger'>{{$message}}</div>
-        @enderror
+    <div class="row">
+      <div class="col">
+          <input type="hidden" name='status' class="form-control @error('status') is-invalid @enderror" value="รอการเช็คการชำระเงิน"><br>
+          @error('status')
+          <div class = 'alert alert-danger'>{{$message}}</div>
+          @enderror
+      </div>
+      <div class="col">
+          <input type="hidden" name='user_id' class="form-control @error('user_id') is-invalid @enderror" value="{{ Auth::user()->id }}"><br>
+          @error('user_id')
+          <div class = 'alert alert-danger'>{{$message}}</div>
+          @enderror
+      </div>
     </div>
     <input type="submit" value='ยืนยัน' class="btn btn-primary">
 </form>
