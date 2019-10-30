@@ -6,6 +6,7 @@
 
 @csrf
 @method("PUT")
+@can ('update', $order)
 <p style="display: none">{{$user = \App\User::findOrFail($order->user_id)}}</p>
 {{$user->username}}
 <div class="input-group mb-3">
@@ -21,4 +22,5 @@
    </div>
 </div>
 </form>
+@endcan
 @endsection
