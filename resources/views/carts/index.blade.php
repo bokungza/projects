@@ -4,29 +4,40 @@
 
 
 <div class="products-container">
+
       <div class="row py-5 p-4 bg-white rounded shadow-sm">
         <div class="col-lg-8">
+          <div class="card">
+  <div class="card-header">
+    ตะกร้าสินค้า
+  </div>
+  <div class="card-body">
         <div class="table-responsive">
             <table class="table">
               <thead>
                 <tr>
-                  <th scope="col" class="border-0 bg-light">
+                  <th scope="col" class="border-0 bg-secondary">
                     <div class="p-2 px-3 text-uppercase">สินค้า</div>
                   </th>
-                  <th scope="col" class="border-0 bg-light">
+                  <th scope="col" class="border-0 bg-secondary">
                     <div class="py-2 text-uppercase">กก.ละ</div>
                   </th>
-                  <th scope="col" class="border-0 bg-light">
+                  <th scope="col" class="border-0 bg-secondary">
                     <div class="py-2 text-uppercase">จำนวน(กก.)</div>
                   </th>
-                  <th scope="col" class="border-0 bg-light">
+                  <th scope="col" class="border-0 bg-secondary">
                     <div class="py-2 text-uppercase">ราคา</div>
                   </th>
+                    <th scope="col" class="border-0 bg-secondary">
+                  <div class="py-2 text-uppercase">ยกเลิก</div>
+                    </th>
                 </tr>
               </thead>
               <tbody>
+
               @foreach ($carts as $cart)
-                <tr>
+            
+                <tr class = "bg-light">
                   <th scope="row" class="border-0">
                       <p style="display: none">{{$product = \App\Product::findOrFail($cart->product_id)}}</p>
                     <div class="p-2">
@@ -39,6 +50,13 @@
                   <td class="border-0 align-middle text-center"><strong>฿{{$product->unit_price}}</strong></td>
                   <td class="border-0 align-middle text-center"><strong>{{$cart->count}}</strong></td>
                   <td class="border-0 align-middle text-center"><strong>฿{{$cart->total_price}}</strong></td>
+                  <td class="border-0 align-middle text-center">
+              <form action="{{ route('cart.destroy',['cart' => $cart->id])}}" method="post">
+                  @csrf
+                  @method('DELETE')
+                  <button type='submit' class="btn btn-outline-danger">DELETE</button>
+              </form>
+          </td>
 
 
                 </tr>
@@ -46,6 +64,8 @@
               </tbody>
             </table>
           </div>
+        </div>
+</div>
           <div class="card">
   <div class="card-header">
     ที่อยู่จัดส่ง
@@ -209,7 +229,10 @@
 </div>
 
         </div>
-        <div class="col-lg-4">
+
+        <div class="col-lg-4"><div class="card">
+
+<div class="card-body">
           <div class="bg-light rounded-pill px-4 py-3 text-uppercase font-weight-bold">สรุปข้อมูลคำสั่งซื้อ</div>
           <div class="p-4">
             <ul class="list-unstyled mb-4">
@@ -233,6 +256,10 @@
               </form>
           </div>
         </div>
+
+
+
+
       </div>
 
     </div>
