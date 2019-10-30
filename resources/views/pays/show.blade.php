@@ -3,9 +3,9 @@
 @section('content')
 
 <div>
-    <h1>Order ID : {{ $pay->orderid }}</h1>
+    <h1>Order ID : {{ $pay->order_id }}</h1>
     <a href='../img/payimages/{{$pay->picture}}'>
-                <img src='../img/payimages/{{$pay->picture}}' class="img" style="float: left; 
+                <img src='../img/payimages/{{$pay->picture}}' class="img" style="float: left;
                             margin-right: 15px;">
     </a>
 
