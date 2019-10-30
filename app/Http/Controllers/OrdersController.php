@@ -12,6 +12,9 @@ use App\Address;
 
 class OrdersController extends Controller
 {
+  public function __construct(){
+     $this->middleware('auth');
+ }
     public function index() {
         $orders = Order::all();
         return view('orders.index',['orders'=>$orders]);

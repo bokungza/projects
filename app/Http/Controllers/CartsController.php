@@ -11,10 +11,11 @@ use Gate;
 use App\Address;
 
 class CartsController extends Controller
-{public function __construct(){
+{
+  public function __construct(){
      $this->middleware('auth');
  }
- 
+
     /**
      * Display a listing of the resource.
      *

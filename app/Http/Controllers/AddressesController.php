@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 
 class AddressesController extends Controller
 {
+  public function __construct(){
+      $this->middleware('auth');
+  }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +17,9 @@ class AddressesController extends Controller
      */
     public function index()
     {
-
+      $user = Auth::user();
+      $address = $user->addresses()->latest()->first();
+       return view('users.profile',['user'=>$user,'address'=>$address]);
 
     }
 
@@ -100,6 +105,6 @@ class AddressesController extends Controller
      */
     public function destroy(Address $address)
     {
-      
+
     }
 }
