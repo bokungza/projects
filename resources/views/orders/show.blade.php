@@ -3,6 +3,7 @@
 @section('content')
 
 <div>
+  @can ('view', $orders)
     <h1>Order ID : {{ $orders->id}}</h1>
       <p style="display: none">{{$user = \App\User::findOrFail($orders->user_id)}}</p>  ผู้สั่ง:<a href="{{route('users.show' ,  ['user' => $user->id])}}"> {{$user->username}}</a> สถานะ:{{ $orders->status}}
 
@@ -35,5 +36,6 @@
         @endforeach
         </table>
         <a class="btn btn-primary" href="{{ action('PaysController@create') }}" role="button">แจ้งชำระเงิน</a>
+        @endcan
 </div>
 @endsection
