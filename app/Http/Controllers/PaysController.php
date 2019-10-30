@@ -14,7 +14,7 @@ class PaysController extends Controller
     public function index() {
         $pays = pay::all();
         return view('pays.index', ['pays' => $pays]);
-    } 
+    }
     public function show($id){
         $pays = pay::findOrFail($id);
         return view('pays.show', ['pay' => $pays]);
@@ -25,6 +25,7 @@ class PaysController extends Controller
     public function store(Request $request){
         $validatedData = $request->validate([
             'order_id' => ['required' , 'min:1'],
+            'user_id' => ['required' , 'max:500'],
             'bank' => ['required' , 'max:500'],
             'status' => ['required' , 'max:500'],
             'pay_time' => ['required' , 'min:1'],
@@ -42,6 +43,7 @@ class PaysController extends Controller
             $pay->picture = $profileImage;
         }
         $pay->order_id = $validatedData['order_id'];
+        $pay->user_id = $validatedData['user_id'];
         $pay->bank = $validatedData['bank'];
         $pay->status = $validatedData['status'];
         $pay->pay_time = $validatedData['pay_time'];
