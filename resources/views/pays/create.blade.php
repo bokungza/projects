@@ -21,7 +21,7 @@
         @enderror
     </div>
     <div>
-        วันและเวลาชำระเงิน : <input type="datetime-local" name= 'pay_time' class="form-control @error('pay_time') is-invalid @enderror" value="{{ old('pay_time')}}"><br>
+        วันและเวลาชำระเงิน : <input type="datetime-local" name= 'pay_time' class="form-control @error('pay_time') is-invalid @enderror" value="2019-10-31T12:30"><br>
         @error('pay_time')
         <div class = 'alert alert-danger'>{{$message}}</div>
         @enderror

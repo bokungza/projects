@@ -9,6 +9,8 @@ use App\Order;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Address;
+use Gate;
+
 
 class OrdersController extends Controller
 {
@@ -20,8 +22,12 @@ class OrdersController extends Controller
         return view('orders.index',['orders'=>$orders]);
     }
     public function show($id){
+        
         $orders = Order::findOrFail($id);
-      $address = DB::table('addresses')->where('id',$orders->address_id)->first();
+if(Gate::denies('show-order',$orders)){
+    return redirect()->route('orders.index');
+}
+        $address = DB::table('addresses')->where('id',$orders->address_id)->first();
         $order_details = OrderDetail::where('order_id', $id)->get();
         return view('orders.show',['orders'=>$orders,'order_details'=>$order_details,'address'=>$address]);
     }
@@ -57,8 +63,11 @@ class OrdersController extends Controller
         return redirect()->route('products.index');
     }
     public function edit($id){
-        $order = Order::findOrFail($id);
-        return view('orders.edit', ['order' => $order]);
+        $orders = order::findOrFail($id);
+        if(Gate::denies('edit-order',$orders)){
+            return redirect()->route('orders.index');
+        }
+        return view('orders.edit', ['order' => $orders]);
     }
     public function update(Request $request, $id)
     {
