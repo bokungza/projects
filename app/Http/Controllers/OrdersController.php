@@ -63,8 +63,11 @@ class OrdersController extends Controller
         return redirect()->route('products.index');
     }
     public function edit($id){
-        $order = Order::findOrFail($id);
-        return view('orders.edit', ['order' => $order]);
+        $orders = order::findOrFail($id);
+        if(Gate::denies('edit-order',$orders)){
+            return redirect()->route('orders.index');
+        }
+        return view('orders.edit', ['order' => $orders]);
     }
     public function update(Request $request, $id)
     {
