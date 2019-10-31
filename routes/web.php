@@ -17,7 +17,7 @@ Route::post('/testdb','ProductsController@index');
 
 
 Route::get('/orders', 'OrdersController@index')->name('orders')->middleware('auth');
-Route::put('/orders/update/{id}', 'OrdersController@update')->name('orders.update');
+
 Route::resource('/orders', 'OrdersController');
 
 Auth::routes();

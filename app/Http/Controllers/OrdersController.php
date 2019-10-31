@@ -22,7 +22,7 @@ class OrdersController extends Controller
         return view('orders.index',['orders'=>$orders]);
     }
     public function show($id){
-        
+
         $orders = Order::findOrFail($id);
 if(Gate::denies('show-order',$orders)){
     return redirect()->route('orders.index');
@@ -71,15 +71,16 @@ if(Gate::denies('show-order',$orders)){
     }
     public function edit($id){
         $orders = order::findOrFail($id);
+        $user = DB::table('users')->where('id',$orders->user_id)->first();
         if(Gate::denies('edit-order',$orders)){
             return redirect()->route('orders.index');
         }
-        return view('orders.edit', ['order' => $orders]);
+        return view('orders.edit', ['order' => $orders,'user' => $user]);
     }
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
 
-        $orders = Order::findOrFail($id);
+        $orders = Order::findOrFail($request->input('id'));
         $orders->status = $request->input('status');
         $orders->save();
           return redirect()->route('products.index');
