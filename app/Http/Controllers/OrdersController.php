@@ -51,7 +51,7 @@ class OrdersController extends Controller
             $temp_cart = Cart::findOrFail($cart->id);
             $temp_cart->delete();
         }
-        $order->total_price = DB::table('order_details')->where('order_id',$order->id)->sum('price');
+        $order->total_price = DB::table('order_details')->where('order_id',$order->id)->sum('price')+50;
         $order->save();
         return redirect()->route('products.index');
     }
