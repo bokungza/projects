@@ -14,6 +14,8 @@
         <th>สถานะ</th>
         <th>ดูรายละเอียด</th>
         <th>ผู้สั่ง</th>
+        <th >ยกเลิก</div>
+        </th>
         @if(Auth::user()->role == "ADMIN")
         <th>อัพเดตสถานะ</th>
            @endif
@@ -30,7 +32,13 @@
         <td class="text-danger">{{ $order->status}}</td>
         <td><a href="{{ action('OrdersController@show', [$order->id]) }}">ดูรายละเอียดการสั่งซื้อ</a></td>
         <td><a href="{{route('users.show' ,  ['user' => $user->id])}}"> {{$user->username}}</a></td>
-
+        <td class="border-0 align-middle text-center">
+          <form method = "post" action ="{{route('orders.destroy' , ['order'=>$order->id])}}" >
+            @csrf
+            <input type="hidden" name="_method" value="DELETE">
+           <button type="submit" class="btn btn-danger ">Delete</button>
+        </form>
+</td>
         @can ('update', $order)
           <td><a class="btn btn-primary" href="{{ action('OrdersController@edit', [$order->id]) }}" role="button">อัพเดทสถานะ</a></td>
           @endcan

@@ -21,8 +21,9 @@ class OrdersController extends Controller
     }
     public function show($id){
         $orders = Order::findOrFail($id);
+      $address = DB::table('addresses')->where('id',$orders->address_id)->first();
         $order_details = OrderDetail::where('order_id', $id)->get();
-        return view('orders.show',['orders'=>$orders,'order_details'=>$order_details]);
+        return view('orders.show',['orders'=>$orders,'order_details'=>$order_details,'address'=>$address]);
     }
     public function store(Request $request){
         $address = new Address;
@@ -66,5 +67,12 @@ class OrdersController extends Controller
         $orders->status = $request->input('status');
         $orders->save();
           return redirect()->route('products.index');
+    }
+    public function destroy($id)
+    {
+      $order= Order::find($id);
+      $order->delete();
+      $orders = Order::all();
+      return view('orders.index',['orders'=>$orders]);
     }
 }
