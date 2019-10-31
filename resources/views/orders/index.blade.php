@@ -2,10 +2,8 @@
 
 @section('content')
 
-
 <div class="container">
   <h2>รายการสั่งซื้อ</h2>
-
   <table class="table  table-bordered table-hover ">
     <thead class="thead-dark">
       <tr>
@@ -14,7 +12,9 @@
         <th>สถานะ</th>
         <th>ดูรายละเอียด</th>
         <th>ผู้สั่ง</th>
+        @if(Auth::user()->role == "ADMIN")
           <th>อัพเดตสถานะ</th>
+        @endif
       </tr>
     </thead>
     @foreach ($orders as $order)
@@ -31,7 +31,7 @@
 
         @can ('update', $order)
           <td><a class="btn btn-primary" href="{{ action('OrdersController@edit', [$order->id]) }}" role="button">อัพเดทสถานะ</a></td>
-          @endcan
+        @endcan
       </tr>
       @endcan
       @endforeach
