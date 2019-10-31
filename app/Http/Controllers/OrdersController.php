@@ -9,6 +9,8 @@ use App\Order;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Address;
+use Gate;
+
 
 class OrdersController extends Controller
 {
@@ -20,9 +22,14 @@ class OrdersController extends Controller
         return view('orders.index',['orders'=>$orders]);
     }
     public function show($id){
+        
         $orders = Order::findOrFail($id);
+        if(Gate::denies('show-order',$orders)){
+            return redirect()->route('orders.index');
+        }
         $order_details = OrderDetail::where('order_id', $id)->get();
         return view('orders.show',['orders'=>$orders,'order_details'=>$order_details]);
+        
     }
     public function store(Request $request){
         $address = new Address;

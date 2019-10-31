@@ -14,7 +14,7 @@
         <th>สถานะ</th>
         <th>ดูรายละเอียด</th>
         <th>ผู้สั่ง</th>
-        <th>อัพเดตสถานะ</th>
+          <th>อัพเดตสถานะ</th>
       </tr>
     </thead>
     @foreach ($orders as $order)
