@@ -15,9 +15,10 @@ Route::get('/', 'HomeController@index')->name('home');
 
 Route::post('/testdb','ProductsController@index');
 
-Route::post('/myOrders','MyOrdersController@store')->name('myOrders')->middleware('auth');
-Route::get('/myOrders', 'MyOrdersController@index')->name('myOrders')->middleware('auth');
-Route::resource('/myOrders', 'MyOrdersController');
+
+Route::get('/orders', 'OrdersController@index')->name('orders')->middleware('auth');
+Route::put('/orders/update/{id}', 'OrdersController@update')->name('orders.update');
+Route::resource('/orders', 'OrdersController');
 
 Auth::routes();
 
@@ -27,7 +28,11 @@ Route::get('/payments', 'PaymentsController@index')->name('payments');
 
 Route::resource('/products','ProductsController');
 
+Route::resource('/addresses','AddressesController')->middleware('auth');
+
+Route::get('/cart/checkout','CartsController@checkout')->name('cart.checkout');
 Route::resource('/cart','CartsController')->middleware('auth');
+
 
 Route::resource('/pays', 'PaysController');
 

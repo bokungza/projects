@@ -2,48 +2,36 @@
 
 namespace App\Http\Controllers;
 
-use App\Pay;
 use Illuminate\Http\Request;
+
+use App\Pay;
 
 class PaysController extends Controller
 {
     public function __construct(){
         $this->middleware('auth');
     }
-    public function index(){
+    public function index() {
         $pays = pay::all();
         return view('pays.index', ['pays' => $pays]);
     }
     public function show($id){
-        $pay = pay::findOrFail($id);
-        return view('pays.show', ['pay' => $pay]);
+        $pays = pay::findOrFail($id);
+        return view('pays.show', ['pay' => $pays]);
     }
     public function create(){
         return view('pays.create');
     }
-    public function update(Request $request, $id)
-    {
-
-        $pay = pay::findOrFail($id);
-        //$this->authorize('update',Pay::class);
-        $validatedData = $request->validate([
-          'status' => ['required' , 'min:1'],
-        ]);
-        $pay->status = $validatedData['status'];
-        $this->authorize('update', $pay);
-        $pay->save();
-
-        return redirect()->route('pays.show',['pays' => $pay->id]);
-    }
     public function store(Request $request){
         $validatedData = $request->validate([
-            'orderid' => ['required' , 'min:1'],
+            'order_id' => ['required' , 'min:1'],
+            'user_id' => ['required' , 'max:500'],
             'bank' => ['required' , 'max:500'],
-            'paystime' => ['required' , 'min:1'],
-            'firstname' => ['required' , 'min:1' , 'max:255'],
-            'lastname' => ['required' , 'min:1' , 'max:255'],
-            'cost' => ['required' , 'min:1'],
-            'status' => ['required' , 'min:1'],
+            'status' => ['required' , 'max:500'],
+            'pay_time' => ['required' , 'min:1'],
+            'first_name' => ['required' , 'max:500'],
+            'last_name' => ['required' , 'max:500'],
+            'price' => ['required' , 'min:1'],
             'image' => 'required|image|mimes:jpeg,png,jpg',
         ]);
 
@@ -54,15 +42,28 @@ class PaysController extends Controller
             $files->move($destinationPath, $profileImage);
             $pay->picture = $profileImage;
         }
-        $pay->orderid = $validatedData['orderid'];
+        $pay->order_id = $validatedData['order_id'];
+        $pay->user_id = $validatedData['user_id'];
         $pay->bank = $validatedData['bank'];
-        $pay->paystime = $validatedData['paystime'];
-        $pay->firstname = $validatedData['firstname'];
-        $pay->lastname = $validatedData['lastname'];
-        $pay->cost = $validatedData['cost'];
         $pay->status = $validatedData['status'];
+        $pay->pay_time = $validatedData['pay_time'];
+        $pay->first_name = $validatedData['first_name'];
+        $pay->last_name = $validatedData['last_name'];
+        $pay->price = $validatedData['price'];
         $pay->save();
-        return redirect()->route('pays.index',['pays' => $pays]);
+        return redirect()->route('pays.index',['pay' => $pay]);
+    }
+    public function update(Request $request, $id) {
+
+        $pay = pay::findOrFail($id);
+        //$this->authorize('update',Pay::class);
+        $validatedData = $request->validate([
+            'status' => ['required' , 'max:500'],
+        ]);
+        $pay->status = $validatedData['status'];
+        $this->authorize('update', $pay);
+        $pay->save();
+        return redirect()->route('pays.show',['pays' => $pay->id]);
     }
     public function edit($id){
         $pay = pay::findOrFail($id);
@@ -74,5 +75,4 @@ class PaysController extends Controller
         $this->authorize('delete', $pay);
         return redirect()->route('pays.index',['pays' => $pays]);
     }
-
 }

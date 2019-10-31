@@ -37,9 +37,6 @@
 <a class="nav-link" href="{{route('payments')}}">วิธีการสั่งซื้อสินค้า</a>
 </li>
 <li class="nav-item">
-<a class="nav-link" href="/pays/create">แจ้งชำระเงิน</a>
-</li>
-<li class="nav-item">
 <a class="nav-link" href="/pays">ดูการรายละเอียดการชำระเงิน </a>
 </li>
 <li class="nav-item">
@@ -72,7 +69,7 @@
 <a class="nav-link" href="{{route('users.index')}}">รายชื่อลูกค้า</a>
 </li>
 <li class="nav-item">
-<a class="nav-link" href="/myOrders">รายการสั่งของลูกค้า</a>
+<a class="nav-link" href="/orders">รายการสั่งของลูกค้า</a>
 </li>
 </ul>
 <ul class="navbar-nav ml-auto ">
@@ -97,7 +94,7 @@
         <div class="dropdown-menu dropdown-menu-right dropdown-default"
           aria-labelledby="navbarDropdownMenuLink-333">
           <a class="dropdown-item" href="{{route('profile')}}">โปรไฟล์</a>
-          <a class="dropdown-item"  href="/myOrders">รายการสั่งซื้อ</a>
+          <a class="dropdown-item"  href="/orders">รายการสั่งซื้อ</a>
           <a class="dropdown-item" href="{{ route('logout') }}"onclick="event.preventDefault();document.getElementById('logout-form').submit();">
               {{ __('Logout') }}
           </a>

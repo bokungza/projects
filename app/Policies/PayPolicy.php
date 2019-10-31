@@ -30,7 +30,8 @@ class PayPolicy
      */
     public function view(User $user, pay $pay)
     {
-        //
+        return $user->isAdmin()
+               or $user->id === $pay->user_id;
     }
 
     /**

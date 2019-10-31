@@ -3,17 +3,16 @@
 @section('content')
 
 <div>
-    <h1>Order ID : {{ $pay->orderid }}</h1>
-        <a href='../img/payimages/{{$pay->picture}}'>
+    <h1>Order ID : {{ $pay->order_id }}</h1>
+    <a href='../img/payimages/{{$pay->picture}}'>
                 <img src='../img/payimages/{{$pay->picture}}' class="img" style="float: left;
                             margin-right: 15px;">
+    </a>
 
-
-        </a>
             <p>ธนาคาร : {{ $pay->bank }}</p>
-            <p>วันและเวลาชำระเงิน : {{ $pay->paystime }}</p>
-            <p>ชื่อผู้ชำระเงิน : {{ $pay->firstname }} {{ $pay->lastname }}</p>
-            <p>จำนวนเงิน : {{ $pay->cost }}</p>
+            <p>ชื่อผู้ชำระเงิน : {{ $pay->first_name }} {{ $pay->last_name }}</p>
+            <p>วันและเวลาชำระเงิน :  : {{ $pay->pay_time }}</p>
+            <p>จำนวนเงิน : {{ $pay->price }}</p>
             <p>สถานะ : {{ $pay->status }}</p>
 
             @can('update',$pay)
@@ -40,7 +39,7 @@
                       <form  action="{{route('pays.destroy', ['pay' => $pay->id ])}}" method='post'>
                       @csrf
                       @method('DELETE')
-                      <button type="submit" class="btn btn-secondary">ใช่</button>
+                      <button href="/pay" type="submit" class="btn btn-secondary">ใช่</button>
                       </form>
                       <button type="button" class="btn btn-secondary" data-dismiss="modal">ไม่</button>
                     </div>

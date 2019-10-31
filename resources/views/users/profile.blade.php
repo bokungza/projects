@@ -13,7 +13,7 @@
                                                 <label>Username</label>
                                             </div>
                                             <div class="col-md-3">
-                                                <p>{{ Auth::user()->username }}</p>
+                                                <p>{{ $user->username }}</p>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -21,7 +21,7 @@
                                                 <label>Firstname</label>
                                             </div>
                                             <div class="col-md-3">
-                                                <p>{{ Auth::user()->first_name }}</p>
+                                                <p>{{ $user->first_name }}</p>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -29,7 +29,7 @@
                                                 <label>Lastname</label>
                                             </div>
                                             <div class="col-md-3">
-                                                <p>{{ Auth::user()->last_name }}</p>
+                                                <p>{{ $user->last_name }}</p>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -37,7 +37,7 @@
                                                 <label>Email</label>
                                             </div>
                                             <div class="col-md-3">
-                                                <p>{{ Auth::user()->email }}</p>
+                                                <p>{{ $user->email }}</p>
                                             </div>
                                         </div>
 
@@ -46,16 +46,29 @@
                     <div class="col-md-2">
                       <div>
                         <a class = "btn btn-dark" href="{{route('profile.edit')}}">Edit</a><br><br></div>
-                        <div>
-                        @if ($user->address)
-                        <input type="submit" class="profile-edit-btn" name="btnAddMore" value="แก้ไขที่อยู่"></div>
-                        @else
-                          <input type="submit" class="profile-edit-btn" name="btnAddMore" value="เพิ่มที่อยู่"></div>
-                        @endif
+
                     </div>
                 </div>
 
             </form>
         </div>
+        @isset($address)
+        <div class="card">
+          <h5 class="card-header">ที่อยู่(แก้ไขล่าสุด:{{$address->created_at}})</h5>
+          <div class="card-body">
+
+            <p class="card-text">{{$address->house_address}} ถนน{{$address->street}} แขวง/ตำบล{{$address->sub_district}} เขต/อำเภอ{{$address->district}} {{$address->province}} {{$address->zip_code}}</p>
+
+            <form action="{{ route('addresses.destroy',['address'=>$address->id]) }}" method = 'post'>
+
+                <p class ='text-right'><a href="{{ action('AddressesController@edit', [$address->id]) }}" class="btn btn-warning">แก้ไข </a></p>
+            </form>
+          </div>
+        </div>
+        @endisset
+        @empty($address)
+        <p class = "text-right"><a class="btn btn-outline-success " href="{{route('addresses.create')}}" role="button">เพิ่มที่อยู่</a></p>
+        @endempty
+
 
 @endsection

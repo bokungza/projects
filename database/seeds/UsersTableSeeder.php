@@ -21,23 +21,23 @@ class UsersTableSeeder extends Seeder
         $user->email_verified_at = now();
         $user->save();
         $user = new User;
-          $user->username = "folkky";
+        $user->username = "bokungza";
+        $user->role = 'CUSTOMER';
+        $user->first_name = "itsales";
+        $user->last_name = "singtaweesak";
+        $user->email = "itsales@hotmail.com";
+        $user->password = Hash::make('123456');
+        $user->email_verified_at = now();
+        $user->save();
+        $user = new User;
+          $user->username = "folk";
           $user->role = 'CUSTOMER';
-          $user->first_name = "kyky";
-          $user->last_name = "tyty";
-          $user->email = "k@t.com";
+          $user->first_name = "pattalapon";
+          $user->last_name = "pontaku";
+          $user->email = "folk@gmail.com";
           $user->password = Hash::make('123456');
           $user->email_verified_at = now();
           $user->save();
-          $user = new User;
-            $user->username = "kwangky";
-            $user->role = 'CUSTOMER';
-            $user->first_name = "kyky";
-            $user->last_name = "tyty";
-            $user->email = "itsales.s@ku.th";
-            $user->password = Hash::make('025898489');
-            $user->email_verified_at = now();
-            $user->save();
             factory(App\User::class, 50)->create();
 
     }
