@@ -60,9 +60,6 @@
 <a class="nav-link" href="/products/create">เพิ่มสินค้า</a>
 </li>
 <li class="nav-item">
-<a class="nav-link" href="#">แก้ไขสินค้า</a>
-</li>
-<li class="nav-item">
 <a class="nav-link" href="{{route('pays.index')}}">ดูการแจ้งชำระเงิน </a>
 </li>
 <li class="nav-item">
