@@ -30,7 +30,9 @@ class CartsController extends Controller
        $user = Auth::user();
       $address = $user->addresses()->latest()->first();
        $carts = $user->carts()->get();
-        return view('carts.index',['carts' => $carts,'address' => $address]);
+       $in_cart = $user->carts()->count();
+
+        return view('carts.index',['carts' => $carts,'address' => $address , 'in_cart' => $in_cart]);
     }
 
     /**
@@ -55,14 +57,29 @@ class CartsController extends Controller
             'count' => ['required' , 'min:1' , 'max:255'],
             'pid' => ['required']
         ]);
-
-        $cart = new Cart;
-        $cart->user_id = Auth::user()->id;
-        $cart->product_id = $validatedData['pid'];
-        $cart->count = $validatedData['count'];
         $product = Product::findOrFail($validatedData['pid']);
-        $cart->total_price = $product->unit_price * $validatedData['count'];
-        $cart->save();
+        if ($product->count < $validatedData['count']){
+            $product = Product::findOrFail($validatedData['pid']);
+            return view('products.show',['product' => $product , 'message' => 'สิ้นค้าไม่พอใน Stock']);
+        }
+        Product::where('id',$validatedData['pid'])->update(['count' => $product->count - $validatedData['count']]);
+        $cart = Cart::where('user_id',Auth::user()->id)->where('product_id',$validatedData['pid'])->first();
+        $in_cart = Cart::where('user_id',Auth::user()->id)->where('product_id',$validatedData['pid'])->count();
+        if ($in_cart == 1){
+            $old_count = $cart->count;
+            $cart->count = $validatedData['count'] + $old_count;
+            $cart->total_price = $product->unit_price * $cart->count;
+            Cart::where('user_id',Auth::user()->id)
+                ->where('product_id',$validatedData['pid'])
+                ->update(['count' => $cart->count,'total_price' => $cart->total_price]);
+        } else {
+            $cart = new Cart;
+            $cart->user_id = Auth::user()->id;
+            $cart->product_id = $validatedData['pid'];
+            $cart->count = $validatedData['count'];
+            $cart->total_price = $product->unit_price * $validatedData['count'];
+            $cart->save();
+        }
         return redirect()->route('products.show',['product' => $product->id]);
     }
 
@@ -108,9 +125,7 @@ class CartsController extends Controller
      */
     public function destroy(Cart $cart)
     {
-        $cart->delete();
-        $user = Auth::user();
-        $carts = $user->carts()->get();
-        return view('carts.index',['carts' => $carts]);
+        $cart->delete();;
+        return $this->index();
     }
 }

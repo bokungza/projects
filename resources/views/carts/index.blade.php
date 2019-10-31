@@ -36,7 +36,7 @@
               <tbody>
 
               @foreach ($carts as $cart)
-            
+
                 <tr class = "bg-light">
                   <th scope="row" class="border-0">
                       <p style="display: none">{{$product = \App\Product::findOrFail($cart->product_id)}}</p>
@@ -252,7 +252,9 @@
             </ul>
 
 
+                  @if ($in_cart !== 0)
                   <input type="submit" class="btn btn-dark rounded-pill py-2 btn-block" value="ยืนยัน">
+              @endif
               </form>
           </div>
         </div>

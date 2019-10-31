@@ -25,6 +25,13 @@ class OrdersController extends Controller
         return view('orders.show',['orders'=>$orders,'order_details'=>$order_details]);
     }
     public function store(Request $request){
+        $in_cart = Cart::where('user_id',Auth::user()->id)->count();
+        if ($in_cart == 0){
+            $user = Auth::user();
+            $address = $user->addresses()->latest()->first();
+            $carts = $user->carts()->get();
+            return view('carts.index',['carts' => $carts,'address' => $address]);
+        }
         $address = new Address;
         $address->user_id =  Auth::user()->id;
         $address->house_address = $request->input('house_address');

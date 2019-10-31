@@ -71,7 +71,7 @@ class PaysController extends Controller
     }
     public function destroy(Pay $pay){
         $pay->delete();
-        $pay = Pay::all();
+        $pays = Pay::all();
         $this->authorize('delete', $pay);
         return redirect()->route('pays.index',['pays' => $pays]);
     }

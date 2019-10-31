@@ -33,6 +33,9 @@ class AuthServiceProvider extends ServiceProvider
           });
           Gate::define('index-user',function($user){
                     return $user->isAdmin();
-            });
+          });
+            Gate::define('add-cart',function($user,$cart){
+            return $user->isCustomer();
+        });
     }
 }
