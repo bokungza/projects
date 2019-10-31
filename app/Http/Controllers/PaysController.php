@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Pay;
+use Gate;
 
 class PaysController extends Controller
 {
@@ -17,6 +18,9 @@ class PaysController extends Controller
     }
     public function show($id){
         $pays = pay::findOrFail($id);
+        if(Gate::denies('show-pay',$pays)){
+            return redirect()->route('pays.index');
+        }
         return view('pays.show', ['pay' => $pays]);
     }
     public function create(){

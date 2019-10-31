@@ -1,6 +1,6 @@
 <!--Navbar -->
 <nav class="mb-1 navbar navbar-expand-lg navbar-dark default-color bg-dark ">
-  <a class="navbar-brand" href="/home">shop</a>
+  <a class="navbar-brand" href="/home"><img src="../img/logo.gif" width="50" height="35" class="d-inline-block align-top" alt=""></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"
     aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -60,9 +60,6 @@
 <a class="nav-link" href="/products/create">เพิ่มสินค้า</a>
 </li>
 <li class="nav-item">
-<a class="nav-link" href="#">แก้ไขสินค้า</a>
-</li>
-<li class="nav-item">
 <a class="nav-link" href="{{route('pays.index')}}">ดูการแจ้งชำระเงิน </a>
 </li>
 <li class="nav-item">
@@ -94,7 +91,9 @@
         <div class="dropdown-menu dropdown-menu-right dropdown-default"
           aria-labelledby="navbarDropdownMenuLink-333">
           <a class="dropdown-item" href="{{route('profile')}}">โปรไฟล์</a>
-          <a class="dropdown-item"  href="/orders">รายการสั่งซื้อ</a>
+          @if(Auth::user()->role == "CUSTOMER")
+            <a class="dropdown-item"  href="/orders">รายการสั่งซื้อ</a>
+          @endif
           <a class="dropdown-item" href="{{ route('logout') }}"onclick="event.preventDefault();document.getElementById('logout-form').submit();">
               {{ __('Logout') }}
           </a>
