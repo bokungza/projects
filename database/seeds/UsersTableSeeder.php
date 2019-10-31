@@ -18,6 +18,7 @@ class UsersTableSeeder extends Seeder
         $user->last_name = "kadeeroj";
         $user->email = "zelos@hotmail.com";
         $user->password = Hash::make('123456');
+        $user->picture = 'avatar.png';
         $user->email_verified_at = now();
         $user->save();
         $user = new User;
@@ -27,6 +28,7 @@ class UsersTableSeeder extends Seeder
         $user->last_name = "singtaweesak";
         $user->email = "itsales@hotmail.com";
         $user->password = Hash::make('123456');
+        $user->picture = 'avatar.png';
         $user->email_verified_at = now();
         $user->save();
         $user = new User;
@@ -37,6 +39,7 @@ class UsersTableSeeder extends Seeder
           $user->email = "folk@gmail.com";
           $user->password = Hash::make('123456');
           $user->email_verified_at = now();
+          $user->picture = 'avatar.png';
           $user->save();
             factory(App\User::class, 50)->create();
 

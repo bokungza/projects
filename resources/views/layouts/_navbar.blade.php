@@ -84,8 +84,8 @@
       @endif
       @else
       <li class="nav-item dropdown">
-      <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>{{ Auth::user()->username }}
-          <i class="fas fa-user"></i>
+      <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+         <img src='../img/profile/{{ Auth::user()->picture }}' width="40" height="40" class="rounded-circle"> {{ Auth::user()->username }}</i>
         </a>
 
         <div class="dropdown-menu dropdown-menu-right dropdown-default"

@@ -18,12 +18,13 @@ use Illuminate\Support\Str;
 
 $factory->define(User::class, function (Faker $faker) {
     return [
-  
+
 
         'username' => $faker->name,
         'role' => 'CUSTOMER',
         'first_name' => $faker->name,
         'last_name' => $faker->name,
+        'picture' => 'avatar.png',
         'email' => $faker->unique()->safeEmail,
         'email_verified_at' => now(),
         'password' =>  Hash::make('123456'), // password

@@ -53,7 +53,15 @@
 
                             </div>
                         </div>
+                        <div class="form-group row">
+                            <label for="email" class="col-md-4 col-form-label text-md-right"  disabled="disabled">{{ __('E-Mail Address') }}</label>
 
+                            <div class="col-md-6">
+                              <img id="blah" alt="your image" width="200" height="200"  src ="../img/profile/{{ Auth::user()->picture }}">
+                              <input  id="file-upload"  type="file" onchange="document.getElementById('blah').src = window.URL.createObjectURL(this.files[0])" value="{{ Auth::user()->pricture }}"name = "image">
+                            </div>
+                        </div>
+                        
 
 
                         <div class="form-group row mb-0">

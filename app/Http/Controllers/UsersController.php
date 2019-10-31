@@ -92,9 +92,16 @@ class UsersController extends Controller
 
        'first_name' => [ 'string', 'min:3'],
        'last_name' => [ 'string', 'min:3'],
+        'image' => 'required|image|mimes:jpeg,png,jpg',
 
      ]);
      $user =Auth::user();
+     if ($files = $request->file('image')) {
+         $destinationPath = '../public/img/profile';
+         $profileImage = date('YmdHis') . "." . $files->getClientOriginalExtension();
+         $files->move($destinationPath, $profileImage);
+         $user->picture = $profileImage;
+     }
      $user->first_name = $request->first_name;
      $user->last_name = $request->last_name;
      $user->save();
