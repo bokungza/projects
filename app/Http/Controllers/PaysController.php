@@ -27,7 +27,8 @@ class PaysController extends Controller
     public function create(){
         $user = Auth::user();
         $orders = $user->orders()->get();
-        return view('pays.create',['orders' => $orders]);
+        //$order_details = $user->order_details()->get();
+        return view('pays.create',['orders' => $orders,]);
     }
     public function store(Request $request){
         $validatedData = $request->validate([

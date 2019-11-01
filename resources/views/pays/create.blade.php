@@ -9,8 +9,10 @@
             เลือกรายการชำระเงิน : <div class="form-check">
                 <input class="form-check-input @error('order_id') is-invalid @enderror" type="radio" name="order_id" value="{{$order->id}}" checked>
                 <label class="form-check-label">
+                    <p>Order หมายเลข : {{$order->id}}</p>
                     <p>จำนวนเงิน : {{$order->total_price}}</p>
                 </label>
+                <hr>
                 
             </div>
             @error('order_id')
