@@ -62,10 +62,16 @@ class UsersController extends Controller
      */
     public function show($id)
     {
+      if(Gate::denies('show-user',User::class)){
+          $user = Auth::user();
+          $address = $user->addresses()->latest()->first();
+          return redirect()->route('profile',['user'=>$user,'address'=>$address]);
+       }
       $user = User::findOrFail($id);
+      $address = $user->addresses()->latest()->first();
       $orders = DB::select('select * from orders where user_id = ?', [$id]);
 
-      return view('users.show',['user' => $user,'orders' => $orders]);
+      return view('users.show',['user' => $user,'orders' => $orders,'address' =>$address]);
     }
 
     /**

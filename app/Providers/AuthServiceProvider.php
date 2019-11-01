@@ -38,15 +38,19 @@ class AuthServiceProvider extends ServiceProvider
             return $user->isCustomer();
             });
         Gate::define('show-order', function ($user, $order) {
-            return $user->isAdmin() 
+            return $user->isAdmin()
                 or $user->id === $order->user_id;
         });
         Gate::define('show-pay', function ($user, $pay) {
-            return $user->isAdmin() 
+            return $user->isAdmin()
                 or $user->id === $pay->user_id;
         });
         Gate::define('edit-order',function($user,$order){
             return $user->isAdmin();
         });
+        Gate::define('show-user',function($user){
+            return $user->isAdmin();
+        });
+
     }
 }

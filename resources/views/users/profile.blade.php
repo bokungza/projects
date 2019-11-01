@@ -3,7 +3,7 @@
 @section('content')
 <div class="row no-gutters ">
   <div class="col-md-4 border-dark">
-    <img src='../img/profile/{{ Auth::user()->picture }}'width="345" height="350" class="card-img" >
+    <img src='../img/profile/{{ Auth::user()->picture }}'width="500" height="425" class="card-img" >
   </div>
   <div class="col-md-4 border border-dark">
     <h5 class="card-header">Profile</h5>
@@ -15,11 +15,11 @@
       <p class="card-text"><small class="text-muted">อัพเดตล่าสุด : {{ $user->updated_at }}</small></p>
         <p class ='text-right'><a  class="btn btn-warning"  href="{{route('profile.edit')}}">แก้ไขโปรไฟล์</a></p></div>
     </div>
+     @if(Auth::user()->role == "CUSTOMER")
     <div class="col-md-4 border border-dark">
   @isset($address)
 <h5 class="card-header">ที่อยู่</h5>
                 <div class="card-body">
-<p class="card-text">ถนน แขวง/ตำบล เขต/อำเภอ</p>
                   <p class="card-text">บ้านเลขที่  :   {{$address->house_address}}</p>
                   <p class="card-text">ถนน  : {{$address->street}}</p>
                   <p class="card-text">แขวง/ตำบล  : {{$address->sub_district}}</p>
@@ -42,6 +42,7 @@
                               </div>
               @endempty
     </div>
+    @endif
   </div>
 </div>
 </div>
