@@ -75,18 +75,5 @@ class RegisterController extends Controller
           ]);
 
     }
-//     protected function create(array $data)
-//     {
-//        $account = Account::create([
-//             'email' => $data['email'],
-//         ]);
-//
-//
-//         return User::create([
-// //            'name' => $data['name'],
-//             'email' => $data['email'],
-//             'password' => bcrypt($data['password']),
-//             'account_id' => $accounts['id'],
-//         ]);
-//     }
+
 }

@@ -52,4 +52,5 @@
         <a class="float-right btn btn-primary" href="{{ action('PaysController@create') }}" role="button">แจ้งชำระเงิน</a>
         @endcan
 </div>
+
 @endsection

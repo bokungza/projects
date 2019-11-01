@@ -1,84 +1,82 @@
 @extends('layouts.master')
 @section('content')
 
-    <h1> {{ $user->name }}</h1>
-    <div class="container emp-profile  bg-secondary text-white">
-                <form method="post">
-                    <div class="row">
+<div class="row no-gutters ">
+  <div class="col-md-4 border-dark">
+    <img src='../img/profile/{{$user->picture }}'width="350" height="360" class="card-img" >
+  </div>
+  <div class="col-md-4 border border-dark">
+    <h5 class="card-header">Profile</h5>
+    <div class="card-body ">
+      <p class="card-text">Username  : {{ $user->username }}</p>
+      <p class="card-text">Firstname : {{ $user->first_name }}</p>
+      <p class="card-text">Lastname  : {{ $user->last_name }}</p>
+      <p class="card-text">Email      : {{ $user->email }}</p>
+      <p class="card-text"><small class="text-muted">อัพเดตล่าสุด : {{ $user->updated_at }}</small></p>
+        </div>
+    </div>
+    <div class="col-md-4 border border-dark">
+  @isset($address)
+<h5 class="card-header">ที่อยู่</h5>
+                <div class="card-body">
+                  <p class="card-text">บ้านเลขที่  :   {{$address->house_address}}</p>
+                  <p class="card-text">ถนน  : {{$address->street}}</p>
+                  <p class="card-text">แขวง/ตำบล  : {{$address->sub_district}}</p>
+                  <p class="card-text">เขต/อำเภอ  :{{$address->district}}</p>
+                  <p class="card-text">จังหวัด  :  {{$address->province}}</p>
+                  <p class="card-text">รหัสไปรษณีย์  :  {{$address->zip_code}}</p>
+  <p class="card-text"><small class="text-muted">อัพเดตล่าสุด : {{$address->created_at}}</small></p>
 
-                        <div class="col-md-10">
-                            <div class="profile-head">
 
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <label>Username</label>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <p>{{ $user->username }}</p>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <label>Firstname</label>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <p>{{$user->first_name }}</p>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <label>Lastname</label>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <p>{{$user->last_name }}</p>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <label>Email</label>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <p>{{$user->email }}</p>
-                                                </div>
-                                            </div>
+                </div>
 
-                            </div>
-                        </div>
+              @endisset
+              @empty($address)
+              <h5 class="card-header">ที่อยู่</h5>
 
-                    </div>
+              @endempty
+    </div>
+  </div>
+<table class="table  table-bordered table-hover ">
+  <thead class="thead-dark">
+    <tr>
+      <th>รหัสorder</th>
+      <th>ราคา</th>
+      <th>สถานะ</th>
+      <th>ดูรายละเอียด</th>
+      <th>ผู้สั่ง</th>  @if(Auth::user()->role == "ADMIN")
+          <th>อัพเดตสถานะ</th>
 
-                </form>
-            </div
-          <div class="products-container">
-<h1>Order</h1>
+      <th >ยกเลิก</div>
+      </th>
+      @endif
+    </tr>
+  </thead>
+  @foreach ($orders as $order)
 
-    <table class="table table-dark">
-      <thead>
-        <tr>
-          <th scope="col">รหัส order</th>
-          <th scope="col">ราคา</th>
-          <th scope="col">สถานะ</th>
-          <th scope="col">เวลาสั่ง</th>
+  <tbody>
+      <p style="display: none">{{$user = \App\User::findOrFail($order->user_id)}}</p>
+    <tr>
 
-        </tr>
-      </thead>
-            @foreach ($orders as $order)
-            <tr>
-
-            <th scope="row"><a href="{{ action('OrdersController@show', [$order->id]) }}">{{$order->id}}</a></th>
-               <td>{{$order->total_price}}</td>
-
-               <td>{{$order->status}}</td>
-               <td>{{$user->created_at}}</td>
+      <td>{{ $order->id}}</td>
+      <td>{{ $order->total_price}}</td>
+      <td class="text-danger">{{ $order->status}}</td>
+      <td><a href="{{ action('OrdersController@show', [$order->id]) }}">ดูรายละเอียดการสั่งซื้อ</a></td>
+      <td><a href="{{route('users.show' ,  ['user' => $user->id])}}"> {{$user->username}}</a></td>
+      <td><a class="btn btn-primary" href="{{ action('OrdersController@edit', [$order->id]) }}" role="button">อัพเดทสถานะ</a></td>
+      <td class="border-0 align-middle text-center">
+        <form method = "post" action ="{{route('orders.destroy' , ['order'=>$order->id])}}" >
+          @csrf
+          <input type="hidden" name="_method" value="DELETE">
+         <button type="submit" class="btn btn-danger ">Delete</button>
+      </form>
+</td>
 
 
 
     </tr>
 
-@endforeach
-</tbody>
+    @endforeach
+  </tbody>
 </table>
-</div>
-
-
 @endsection

@@ -2,11 +2,11 @@
 
 @section('content')
 
-<form action="{{route('orders.update', ['id' => $order->id])}}" method="POST">
-
+<form action="{{'/orders/' . $order->id}}" method="POST">
+@method('PUT')
 @csrf
-@method("PUT")
 @can ('update', $order)
+<input type="hidden" value="{{$order->id}}" name = "id">
 <p style="display: none">{{$user = \App\User::findOrFail($order->user_id)}}</p>
 {{$user->username}}
 <div class="input-group mb-3">

@@ -15,9 +15,10 @@ Route::get('/', 'HomeController@index')->name('home');
 
 Route::post('/testdb','ProductsController@index');
 
-
+Route::get('/change-password', 'Auth\ChangePasswordController@index')->name('password.change');
+Route::post('/change-password', 'Auth\ChangePasswordController@changepassword')->name('password.updated');
 Route::get('/orders', 'OrdersController@index')->name('orders')->middleware('auth');
-Route::put('/orders/update/{id}', 'OrdersController@update')->name('orders.update');
+
 Route::resource('/orders', 'OrdersController');
 
 Auth::routes();
