@@ -13,7 +13,7 @@
       <p class="card-text">Lastname  : {{ $user->last_name }}</p>
       <p class="card-text">Email      : {{ $user->email }}</p>
       <p class="card-text"><small class="text-muted">อัพเดตล่าสุด : {{ $user->updated_at }}</small></p>
-        <p class ='text-right'><a  class="btn btn-warning"  href="{{route('profile.edit')}}">แก้ไขโปรไฟล์</a></p></div>
+        <p class ='text-right'><a  class="btn btn-warning"  href="{{route('password.change')}}">เปลี่ยนรหัสผ่าน</a><a  class="btn btn-warning"  href="{{route('profile.edit')}}">แก้ไขโปรไฟล์</a></p></div>
     </div>
      @if(Auth::user()->role == "CUSTOMER")
     <div class="col-md-4 border border-dark">

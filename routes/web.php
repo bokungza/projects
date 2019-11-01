@@ -15,7 +15,8 @@ Route::get('/', 'HomeController@index')->name('home');
 
 Route::post('/testdb','ProductsController@index');
 
-
+Route::get('/change-password', 'Auth\ChangePasswordController@index')->name('password.change');
+Route::post('/change-password', 'Auth\ChangePasswordController@changepassword')->name('password.updated');
 Route::get('/orders', 'OrdersController@index')->name('orders')->middleware('auth');
 
 Route::resource('/orders', 'OrdersController');
