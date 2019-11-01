@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Cart;
 use App\OrderDetail;
+use App\Product;
 use Illuminate\Http\Request;
 use App\Order;
 use Illuminate\Support\Facades\Auth;
@@ -22,7 +23,7 @@ class OrdersController extends Controller
         return view('orders.index',['orders'=>$orders]);
     }
     public function show($id){
-        
+
         $orders = Order::findOrFail($id);
 if(Gate::denies('show-order',$orders)){
     return redirect()->route('orders.index');
@@ -39,6 +40,33 @@ if(Gate::denies('show-order',$orders)){
             $carts = $user->carts()->get();
             return view('carts.index',['carts' => $carts,'address' => $address]);
         }
+        $carts = DB::table('carts')->where('user_id',Auth::user()->id)->get();
+        foreach ($carts as $cart){
+            $product = Product::findOrFail($cart->product_id);
+            if ($product->count < $cart->count){
+                if ( Gate::denies('index-cart',Cart::class)){
+                    return redirect()->route('home');
+                }
+                $user = Auth::user();
+                $address = $user->addresses()->latest()->first();
+                $carts = $user->carts()->get();
+                $in_cart = $user->carts()->count();
+                $count = DB::table('carts')
+                    ->where('user_id', Auth::user()->id)
+                    ->count();
+                $total_price = DB::table('carts')
+                    ->where('user_id', Auth::user()->id)
+                    ->sum('total_price');
+                return view('carts.index',[
+                    'carts' => $carts,
+                    'address' => $address ,
+                    'in_cart' => $in_cart ,
+                    'count' => $count,
+                    'total_price' => $total_price,
+                    'message' => 'สิ้นค้าไม่พอกรุณาเชคสิ้นค้าที่สั่งกับสิ้นค้าใน stock'
+                ]);
+            }
+        }
         $address = new Address;
         $address->user_id =  Auth::user()->id;
         $address->house_address = $request->input('house_address');
@@ -48,7 +76,6 @@ if(Gate::denies('show-order',$orders)){
         $address->district = $request->input('district');
         $address->zip_code = $request->input('zip_code');
         $address->save();
-        $carts = DB::table('carts')->where('user_id',Auth::user()->id)->get();
         $order = new Order();
         $order->user_id = Auth::user()->id;
         $order->total_price = 0;

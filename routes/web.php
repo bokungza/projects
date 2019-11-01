@@ -31,6 +31,7 @@ Route::resource('/products','ProductsController');
 Route::resource('/addresses','AddressesController')->middleware('auth');
 
 Route::get('/cart/checkout','CartsController@checkout')->name('cart.checkout');
+Route::post('/cart/edit','CartsController@edit')->name('carts.edit');
 Route::resource('/cart','CartsController')->middleware('auth');
 
 

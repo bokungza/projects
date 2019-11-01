@@ -30,7 +30,4 @@
         </form>
             @endcan
     </div>
-    @isset($message)
-        <script>alert('{{$message}}');</script>
-    @endisset
 @endsection

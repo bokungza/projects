@@ -8,7 +8,7 @@ use App\Cart;
 use App\Product;
 use Illuminate\Http\Request;
 use Gate;
-use App\Address;
+use Illuminate\Support\Facades\DB;
 
 class CartsController extends Controller
 {
@@ -24,15 +24,26 @@ class CartsController extends Controller
 
     public function index()
     {
-      if(Gate::denies('index-cart',Cart::class)){
+      if ( Gate::denies('index-cart',Cart::class)){
            return redirect()->route('home');
        }
        $user = Auth::user();
-      $address = $user->addresses()->latest()->first();
+       $address = $user->addresses()->latest()->first();
        $carts = $user->carts()->get();
        $in_cart = $user->carts()->count();
-
-        return view('carts.index',['carts' => $carts,'address' => $address , 'in_cart' => $in_cart]);
+       $count = DB::table('carts')
+                ->where('user_id', Auth::user()->id)
+                ->count();
+       $total_price = DB::table('carts')
+                      ->where('user_id', Auth::user()->id)
+                      ->sum('total_price');
+           return view('carts.index',[
+               'carts' => $carts,
+               'address' => $address ,
+               'in_cart' => $in_cart ,
+               'count' => $count,
+               'total_price' => $total_price
+           ]);
     }
 
     /**
@@ -58,11 +69,6 @@ class CartsController extends Controller
             'pid' => ['required']
         ]);
         $product = Product::findOrFail($validatedData['pid']);
-        if ($product->count < $validatedData['count']){
-            $product = Product::findOrFail($validatedData['pid']);
-            return view('products.show',['product' => $product , 'message' => 'สิ้นค้าไม่พอใน Stock']);
-        }
-        Product::where('id',$validatedData['pid'])->update(['count' => $product->count - $validatedData['count']]);
         $cart = Cart::where('user_id',Auth::user()->id)->where('product_id',$validatedData['pid'])->first();
         $in_cart = Cart::where('user_id',Auth::user()->id)->where('product_id',$validatedData['pid'])->count();
         if ($in_cart == 1){
@@ -102,7 +108,27 @@ class CartsController extends Controller
      */
     public function edit(Cart $cart)
     {
-        //
+        if(Gate::denies('index-cart',Cart::class)){
+            return redirect()->route('home');
+        }
+        $user = Auth::user();
+        $address = $user->addresses()->latest()->first();
+        $carts = $user->carts()->get();
+        $in_cart = $user->carts()->count();
+        $count = DB::table('carts')
+            ->where('user_id', Auth::user()->id)
+            ->count();
+        $total_price = DB::table('carts')
+            ->where('user_id', Auth::user()->id)
+            ->sum('total_price');
+
+        return view('carts.edit',[
+            'carts' => $carts,
+            'address' => $address ,
+            'in_cart' => $in_cart ,
+            'count' => $count,
+            'total_price' => $total_price
+        ]);
     }
 
     /**
@@ -114,7 +140,14 @@ class CartsController extends Controller
      */
     public function update(Request $request, Cart $cart)
     {
-        //
+        $validatedData = $request->validate([
+            'count' => ['required' , 'min:1' , 'max:255'],
+        ]);
+        $cart->count = $validatedData['count'];
+        $product = Product::findOrFail($cart->product_id);
+        $cart->total_price = $cart->count * $product->unit_price;
+        $cart->save();
+        return $this->index();
     }
 
     /**
