@@ -115,6 +115,13 @@ if(Gate::denies('show-order',$orders)){
     public function destroy($id)
     {
       $order= Order::find($id);
+      $order_details = DB::table('order_details')->where('order_id',$order->id)->get();
+      foreach($order_details as $order_detail){
+        $product = Product::findOrFail($order_detail->id);
+        $product->count = $product->count+$order_detail->weight;
+        $product->save();
+      }
+
       $order->delete();
       $orders = Order::all();
       return view('orders.index',['orders'=>$orders]);

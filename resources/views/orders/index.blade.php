@@ -8,6 +8,7 @@
     <thead class="thead-dark">
       <tr>
         <th>รหัสorder</th>
+        <th>วันที่สั่ง</th>
         <th>ราคา</th>
         <th>สถานะ</th>
         <th>ดูรายละเอียด</th>
@@ -26,6 +27,7 @@
       <tr>
 
         <td>{{ $order->id}}</td>
+        <td>{{ $order->created_at}}</td>
         <td>{{ $order->total_price}}</td>
         <td class="text-danger">{{ $order->status}}</td>
         <td><a href="{{ action('OrdersController@show', [$order->id]) }}">ดูรายละเอียดการสั่งซื้อ</a></td>
