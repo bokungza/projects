@@ -3,7 +3,7 @@
 @section('content')
 <div class="row no-gutters ">
   <div class="col-md-4 border-dark">
-    <img src='../img/profile/{{ Auth::user()->picture }}' class="card-img" >
+    <img src='../img/profile/{{ Auth::user()->picture }}'width="345" height="350" class="card-img" >
   </div>
   <div class="col-md-4 border border-dark">
     <h5 class="card-header">Profile</h5>
@@ -16,13 +16,10 @@
         <p class ='text-right'><a  class="btn btn-warning"  href="{{route('profile.edit')}}">แก้ไขโปรไฟล์</a></p></div>
     </div>
     <div class="col-md-4 border border-dark">
-
-                  @isset($address)
-
-                <h5 class="card-header">ที่อยู่</h5>
+  @isset($address)
+<h5 class="card-header">ที่อยู่</h5>
                 <div class="card-body">
-
-                  <p class="card-text">ถนน แขวง/ตำบล เขต/อำเภอ</p>
+<p class="card-text">ถนน แขวง/ตำบล เขต/อำเภอ</p>
                   <p class="card-text">บ้านเลขที่  :   {{$address->house_address}}</p>
                   <p class="card-text">ถนน  : {{$address->street}}</p>
                   <p class="card-text">แขวง/ตำบล  : {{$address->sub_district}}</p>
@@ -39,15 +36,10 @@
 
               @endisset
               @empty($address)
-<div class="card-footer text-muted">
-</div>
-
-                <h5 class="card-header">ที่อยู่</h5>
-
-                    <p class ='text-right'><a class="btn btn-outline-success " href="{{route('addresses.create')}}" class="btn btn-warning" role="button">เพิ่มที่อยู่</a></p>
-
-
-
+              <h5 class="card-header">ที่อยู่</h5>
+                              <div class="card-body">
+                  <p class ='text-right'><a class="btn btn-outline-success " href="{{route('addresses.create')}}" class="btn btn-warning" role="button">เพิ่มที่อยู่</a></p>
+                              </div>
               @endempty
     </div>
   </div>

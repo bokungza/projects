@@ -92,7 +92,7 @@ class UsersController extends Controller
 
        'first_name' => [ 'string', 'min:3'],
        'last_name' => [ 'string', 'min:3'],
-        'image' => 'required|image|mimes:jpeg,png,jpg',
+        'image' => 'image|mimes:jpeg,png,jpg',
 
      ]);
      $user =Auth::user();
