@@ -110,7 +110,7 @@ if(Gate::denies('show-order',$orders)){
         $orders = Order::findOrFail($request->input('id'));
         $orders->status = $request->input('status');
         $orders->save();
-          return redirect()->route('products.index');
+          return redirect()->route('orders.index');
     }
     public function destroy($id)
     {
@@ -124,6 +124,6 @@ if(Gate::denies('show-order',$orders)){
 
       $order->delete();
       $orders = Order::all();
-      return view('orders.index',['orders'=>$orders]);
+      return redirect()->route('orders.index');
     }
 }
