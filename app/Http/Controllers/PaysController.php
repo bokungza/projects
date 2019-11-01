@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Pay;
 use Gate;
+use Auth;
 
 class PaysController extends Controller
 {
@@ -24,7 +25,9 @@ class PaysController extends Controller
         return view('pays.show', ['pay' => $pays]);
     }
     public function create(){
-        return view('pays.create');
+        $user = Auth::user();
+        $orders = $user->orders()->get();
+        return view('pays.create',['orders' => $orders]);
     }
     public function store(Request $request){
         $validatedData = $request->validate([
