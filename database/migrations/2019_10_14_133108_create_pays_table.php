@@ -19,7 +19,6 @@ class CreatePaysTable extends Migration
             $table->bigInteger('user_id');
             $table->string('bank');
             $table->dateTime('pay_time');
-            $table->string('status');
             $table->string('first_name');
             $table->string('last_name');
             $table->float('price');

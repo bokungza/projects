@@ -40,7 +40,11 @@
           <td>{{ $order->id}}</td>
           <td>{{ $order->created_at}}</td>
           <td>{{ $order->total_price}}</td>
-          <td class="text-danger"> {{$order->status}}</td>
+          @if ($order->status == 'ยังไม่ชำระเงิน')
+            <td class="text-danger"> {{$order->status}}</td>
+          @else
+            <td class="text-success"> {{$order->status}}</td>
+          @endif
           <td><a href="{{ action('OrdersController@show', [$order->id]) }}">ดูรายละเอียดการสั่งซื้อ</a></td>
           <td><a href="{{route('users.show' ,  ['user' => $user->id])}}"> {{$user->username}}</a></td>
           <td class="border-0 align-middle text-center">

@@ -32,7 +32,6 @@
               <th>
                 <div class="py-2 text-uppercase">จำนวน(กก.)</div>
               </th>
-
               <th>
                 <div class="py-2 text-uppercase">ราคา</div>
               </th>
@@ -72,9 +71,7 @@
         @if(Auth::user()->role == "CUSTOMER")
         <p class="text-center"><a class="float-center btn btn-primary" href="{{ action('PaysController@create') }}" role="button">แจ้งชำระเงิน</a><p>
           @endif
-        @if(Auth::user()->role == "ADMIN")
-            <p class="text-center"><a class="float-center btn btn-primary" href="/pays/{{ $orders->id}}" role="button">เช็คชำระเงิน</a><p>
-          @endif
+          
       </div>
     </div>
   </div>

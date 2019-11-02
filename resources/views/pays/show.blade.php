@@ -1,7 +1,6 @@
 @extends('layouts.master')
 
 @section('content')
-
 <div>
     <h1>Order ID : {{ $pay->order_id }}</h1>
     <nav aria-label="breadcrumb">
@@ -19,10 +18,14 @@
             <p>ชื่อผู้ชำระเงิน : {{ $pay->first_name }} {{ $pay->last_name }}</p>
             <p>วันและเวลาชำระเงิน :  : {{ $pay->pay_time }}</p>
             <p>จำนวนเงิน : {{ $pay->price }}</p>
-            <p>สถานะ : {{ $pay->status }}</p>
+            @foreach ($orders as $order)
+                @if ($order->id == $pay->order_id )
+                <p>สถานะ : {{ $order->status}}</p>
+                @endif
+            @endforeach
 
             @can('update',$pay)
-            <a class="btn btn-primary" href="/pays/{{ $pay->id }}/edit" role="button">อัพเดทสถานะ</a>
+            <a class="btn btn-primary" href="/orders/{{ $pay->order_id }}/edit" role="button">อัพเดทสถานะ</a>
             @endcan
             @can('delete',$pay)
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">ลบข้อมูล</button>
