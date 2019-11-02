@@ -1,7 +1,13 @@
 @extends('layouts.master')
 
 @section('content')
+    
     <h1>รายการชำระเงินทั้งหมด</h1>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item active" aria-current="page">ดูรายการแจ้งชำระเงินทั้งหมด</li>
+        </ol>
+    </nav>
     <div class='card'>
     @foreach ($pays->sortByDesc('id') as $pay)
     @can ('view', $pay)

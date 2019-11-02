@@ -22,9 +22,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(order::class);
     }
-    public function order_details()
+    public function pays()
     {
-        return $this->hasMany(OrderDetail::class);
+        return $this->hasMany(pay::class);
     }
     /**
      * The attributes that are mass assignable.

@@ -25,9 +25,9 @@ class OrdersController extends Controller
     public function show($id){
 
         $orders = Order::findOrFail($id);
-if(Gate::denies('show-order',$orders)){
-    return redirect()->route('orders.index');
-}
+        if(Gate::denies('show-order',$orders)){
+            return redirect()->route('orders.index');
+        }
         $address = DB::table('addresses')->where('id',$orders->address_id)->first();
         $order_details = OrderDetail::where('order_id', $id)->get();
         return view('orders.show',['orders'=>$orders,'order_details'=>$order_details,'address'=>$address]);

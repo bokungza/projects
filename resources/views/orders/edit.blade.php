@@ -23,7 +23,6 @@
         <label for="status">แก้ไขสถานะ</label>
       <select class="custom-select" id="inputGroupSelect02" name='status'>
         <option selected>{{ $order->status}}</option>
-        <option >ยังไม่ชำระเงิน</option>
         <option >กำลังเตรียมส่ง</option>
         <option >จัดส่งเรียบร้อย</option>
       </select>

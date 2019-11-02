@@ -8,6 +8,12 @@
     <div class="card-header text-center">
   รายละเอียดorder
   </div>
+  <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/orders">รายการสั่งซื้อ</a></li>
+        <li class="breadcrumb-item active" aria-current="page">รายการสั่งซื้อหมายเลข {{ $orders->id}}</li>
+      </ol>
+    </nav>
   <div class="card-body">
     <p class="card-title">Order ID : {{ $orders->id}}</p>
     <p class="card-text"> ผู้สั่ง:<a href="{{route('users.show' ,  ['user' => $user->id])}}"> {{$user->username}}</a></p>
@@ -65,6 +71,9 @@
         <p class="text-center">ราคาสุทธิ {{ $orders->total_price}} บาท</p>
         @if(Auth::user()->role == "CUSTOMER")
         <p class="text-center"><a class="float-center btn btn-primary" href="{{ action('PaysController@create') }}" role="button">แจ้งชำระเงิน</a><p>
+          @endif
+        @if(Auth::user()->role == "ADMIN")
+            <p class="text-center"><a class="float-center btn btn-primary" href="/pays/{{ $orders->id}}" role="button">เช็คชำระเงิน</a><p>
           @endif
       </div>
     </div>
