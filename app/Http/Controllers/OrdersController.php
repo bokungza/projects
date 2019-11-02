@@ -24,13 +24,13 @@ class OrdersController extends Controller
     }
     public function show($id){
 
-        $orders = Order::findOrFail($id);
-        if(Gate::denies('show-order',$orders)){
+        $order = Order::findOrFail($id);
+        if(Gate::denies('show-order',$order)){
             return redirect()->route('orders.index');
         }
-        $address = DB::table('addresses')->where('id',$orders->address_id)->first();
+        $address = DB::table('addresses')->where('id',$order->address_id)->first();
         $order_details = OrderDetail::where('order_id', $id)->get();
-        return view('orders.show',['orders'=>$orders,'order_details'=>$order_details,'address'=>$address]);
+        return view('orders.show',['order'=>$order,'order_details'=>$order_details,'address'=>$address]);
     }
     public function store(Request $request){
         $in_cart = Cart::where('user_id',Auth::user()->id)->count();

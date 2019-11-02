@@ -1,8 +1,8 @@
 @extends('layouts.master')
 
 @section('content')
-@can ('view', $orders)
-<p style="display: none">{{$user = \App\User::findOrFail($orders->user_id)}}</p>
+@can ('view', $order)
+<p style="display: none">{{$user = \App\User::findOrFail($order->user_id)}}</p>
 <div >
   <div class="card">
     <div class="card-header text-center">
@@ -11,13 +11,20 @@
   <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="/orders">รายการสั่งซื้อ</a></li>
-        <li class="breadcrumb-item active" aria-current="page">รายการสั่งซื้อหมายเลข {{ $orders->id}}</li>
+        <li class="breadcrumb-item active" aria-current="page">รายการสั่งซื้อหมายเลข {{ $order->id}}</li>
       </ol>
     </nav>
   <div class="card-body">
-    <p class="card-title">Order ID : {{ $orders->id}}</p>
+    <p class="card-title">Order ID : {{ $order->id}}</p>
     <p class="card-text"> ผู้สั่ง:<a href="{{route('users.show' ,  ['user' => $user->id])}}"> {{$user->username}}</a></p>
-    <p> สถานะ:{{ $orders->status}}</p>
+    @if ($order->status == 'ยังไม่ชำระเงิน')
+    <p class="text-danger">สถานะ: {{$order->status}}</p>
+    @elseif($order->status == 'จัดส่งเรียบร้อย')
+      <p class="text-success">สถานะ: {{$order->status}}</p>
+    @else
+    <p >สถานะ: {{$order->status}}</p>
+    @endif
+
     <p>ที่อยู่จัดส่ง :  {{$address->house_address}} ถนน{{$address->street}} แขวง/ตำบล{{$address->sub_district}} เขต/อำเภอ{{$address->district}} {{$address->province}} {{$address->zip_code}}</p>
   </div>
   <table class="table  table-bordered table-hover ">
@@ -44,7 +51,7 @@
       <p style="display: none">{{$product = \App\Product::findOrFail($order_detail->product_id)}}</p>
     <tbody>
     <tr>
-      @if ($order_detail->order_id === $orders->id)
+      @if ($order_detail->order_id === $order->id)
         <td><img src="{{ asset('img/'.$product->picture) }}"  width="70" class="img-fluid rounded shadow-sm">{{$product->name}}</td>
         <td >{{$product->unit_price}}</td>
         <td>{{ $order_detail->weight}}</td>
@@ -65,13 +72,13 @@
     สรุปราคาทั้งหมด
   </div>
 <div class="card-body">
-        <p class="text-center">ราคาสิงค้าทั้งหมด {{ $orders->total_price-50}} บาท</p>
+        <p class="text-center">ราคาสิงค้าทั้งหมด {{ $order->total_price-50}} บาท</p>
         <p class="text-center">ค่าจัดส่งสินค้า 50 บาท</p>
-        <p class="text-center">ราคาสุทธิ {{ $orders->total_price}} บาท</p>
+        <p class="text-center">ราคาสุทธิ {{ $order->total_price}} บาท</p>
         @if(Auth::user()->role == "CUSTOMER")
         <p class="text-center"><a class="float-center btn btn-primary" href="{{ action('PaysController@create') }}" role="button">แจ้งชำระเงิน</a><p>
           @endif
-          
+
       </div>
     </div>
   </div>

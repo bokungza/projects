@@ -43,8 +43,10 @@
           <td>{{ $order->total_price}}</td>
           @if ($order->status == 'ยังไม่ชำระเงิน')
             <td class="text-danger"> {{$order->status}}</td>
-          @else
+          @elseif($order->status == 'จัดส่งเรียบร้อย')
             <td class="text-success"> {{$order->status}}</td>
+          @else
+          <td > {{$order->status}}</td>
           @endif
           <td><a href="{{ action('OrdersController@show', [$order->id]) }}">ดูรายละเอียดการสั่งซื้อ</a></td>
           <td><a href="{{route('users.show' ,  ['user' => $user->id])}}"> {{$user->username}}</a></td>
@@ -52,6 +54,7 @@
           @can ('update', $order)
             <td><a class="btn btn-primary" href="{{ action('OrdersController@edit', [$order->id]) }}" role="button">อัพเดทสถานะ</a></td>
           @endcan
+          @if ($order->status == 'ยังไม่ชำระเงิน')
           <td class="border-0 align-middle text-center">
             <button type="button" class="btn btn-danger " data-toggle="modal" data-target="#exampleModal">Delete</button>
             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -78,9 +81,12 @@
                 </div>
               </div>
             </div>
-
-
-  </td>
+        </td>
+        @else
+          <td class="border-0 align-middle text-center">
+        <button type="button" class="btn btn-danger " data-toggle="modal" data-target="#exampleModal" disabled>Delete</button>
+          </td>
+        @endif
         </tr>
         @endcan
         @endforeach
