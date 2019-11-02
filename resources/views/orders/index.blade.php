@@ -24,11 +24,12 @@
           <th>สถานะ</th>
           <th>ดูรายละเอียด</th>
           <th>ผู้สั่ง</th>
-          <th >ยกเลิก</div>
-          </th>
           @if(Auth::user()->role == "ADMIN")
             <th>อัพเดตสถานะ</th>
           @endif
+          <th >ยกเลิก</div>
+          </th>
+
         </tr>
       </thead>
       @foreach ($orders as $order)
@@ -47,6 +48,10 @@
           @endif
           <td><a href="{{ action('OrdersController@show', [$order->id]) }}">ดูรายละเอียดการสั่งซื้อ</a></td>
           <td><a href="{{route('users.show' ,  ['user' => $user->id])}}"> {{$user->username}}</a></td>
+
+          @can ('update', $order)
+            <td><a class="btn btn-primary" href="{{ action('OrdersController@edit', [$order->id]) }}" role="button">อัพเดทสถานะ</a></td>
+          @endcan
           <td class="border-0 align-middle text-center">
             <button type="button" class="btn btn-danger " data-toggle="modal" data-target="#exampleModal">Delete</button>
             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -56,7 +61,7 @@
                   <div class="modal-header">
                      <h5 class="modal-title">ลบ</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
+                      <span  style = "height:100%;padding:0;"  aria-hidden="true">&times;</span>
                     </button>
                   </div>
                   <div class="modal-body">
@@ -76,9 +81,6 @@
 
 
   </td>
-          @can ('update', $order)
-            <td><a class="btn btn-primary" href="{{ action('OrdersController@edit', [$order->id]) }}" role="button">อัพเดทสถานะ</a></td>
-          @endcan
         </tr>
         @endcan
         @endforeach

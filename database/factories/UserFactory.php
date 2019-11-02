@@ -18,12 +18,10 @@ use Illuminate\Support\Str;
 
 $factory->define(User::class, function (Faker $faker) {
     return [
-
-
-        'username' => $faker->name,
+        'username' => $faker->username,
         'role' => 'CUSTOMER',
-        'first_name' => $faker->name,
-        'last_name' => $faker->name,
+        'first_name' => $faker->firstname,
+        'last_name' => $faker->lastname,
         'picture' => 'avatar.png',
         'email' => $faker->unique()->safeEmail,
         'email_verified_at' => now(),

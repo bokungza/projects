@@ -6,7 +6,7 @@
 <div >
   <div class="card">
     <div class="card-header text-center">
-  รายละเอียดorder
+  รายละเอียดรายการสั่งซื้อ
   </div>
   <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
