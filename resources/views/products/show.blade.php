@@ -2,6 +2,12 @@
 
 @section('content')
     <div class="products-container">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/products">สินค้า</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{{ $product->name}}</li>
+      </ol>
+    </nav>
         <div>
             <a href="#">
                 <img class="img" src='../img/{{$product->picture}}'>
