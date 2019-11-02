@@ -18,9 +18,8 @@
             </h5>
             <p>จำนวนเงินที่ชำระ : {{ $pay->price}}</p>
             <p>ผู้ชำระเงิน : {{ $pay->first_name}} {{ $pay->last_name}}</p>
-            
             @foreach ($orders as $order)
-                @if ($order->id == $pay->order_id )
+                @if ($order->id === $pay->order_id )
                 <p>สถานะ : {{ $order->status}}</p>
                 @endif
             @endforeach
