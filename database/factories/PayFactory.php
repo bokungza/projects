@@ -4,16 +4,17 @@
 
 use App\Pay;
 use Faker\Generator as Faker;
+use Illuminate\Support\Str;
 
 $factory->define(Pay::class, function (Faker $faker) {
     return [
-        'orderid' => $faker->numberBetween(1000000000, 9999999999),
-        'bank' => $faker->sentence(8),
-        
-        //'paystime' => $faker-> random(),
-
-        'firstname' => $faker->text(50),
-        'lastname' => $faker->text(50),
-        'cost' => $faker->numberBetween(100, 10000)
+        'order_id' => $faker->numberBetween(1, 200),
+        'user_id' => $faker->numberBetween(1, 200),
+        'bank' => $faker->text(100),
+        'pay_time' => $faker->dateTime($min = 'now', $timezone = null),
+        'first_name' => $faker->firstname,
+        'last_name' => $faker->lastname,
+        'price' => $faker->numberBetween(0, 200),
+        'picture' => 'avatar.png',
     ];
 });
