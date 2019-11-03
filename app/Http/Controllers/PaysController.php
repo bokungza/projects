@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use App\Pay;
+use App\Order;
+use App\User;
 use Gate;
 
 class PaysController extends Controller
@@ -13,25 +16,31 @@ class PaysController extends Controller
         $this->middleware('auth');
     }
     public function index() {
+        $user = Auth::user();
+        $orders = $user->orders()->get();
         $pays = pay::all();
-        return view('pays.index', ['pays' => $pays]);
+        return view('pays.index', ['pays' => $pays,'orders' => $orders]);
     }
     public function show($id){
         $pays = pay::findOrFail($id);
         if(Gate::denies('show-pay',$pays)){
             return redirect()->route('pays.index');
         }
-        return view('pays.show', ['pay' => $pays]);
+        $user = Auth::user();
+        $orders = $user->orders()->get();
+        return view('pays.show', ['pay' => $pays,'orders' => $orders]);
     }
     public function create(){
-        return view('pays.create');
+        $user = Auth::user();
+        $orders = $user->orders()->get();
+        //$order_details = $user->order_details()->get();
+        return view('pays.create',['orders' => $orders]);
     }
     public function store(Request $request){
         $validatedData = $request->validate([
             'order_id' => ['required' , 'min:1'],
             'user_id' => ['required' , 'max:500'],
             'bank' => ['required' , 'max:500'],
-            'status' => ['required' , 'max:500'],
             'pay_time' => ['required' , 'min:1'],
             'first_name' => ['required' , 'max:500'],
             'last_name' => ['required' , 'max:500'],
@@ -49,29 +58,15 @@ class PaysController extends Controller
         $pay->order_id = $validatedData['order_id'];
         $pay->user_id = $validatedData['user_id'];
         $pay->bank = $validatedData['bank'];
-        $pay->status = $validatedData['status'];
         $pay->pay_time = $validatedData['pay_time'];
         $pay->first_name = $validatedData['first_name'];
         $pay->last_name = $validatedData['last_name'];
         $pay->price = $validatedData['price'];
         $pay->save();
+        $pay = DB::table('orders')
+              ->where('id', $pay->order_id)
+              ->update(['status' => 'กำลังตรวจสอบการชำระเงิน']);
         return redirect()->route('pays.index',['pay' => $pay]);
-    }
-    public function update(Request $request, $id) {
-
-        $pay = pay::findOrFail($id);
-        //$this->authorize('update',Pay::class);
-        $validatedData = $request->validate([
-            'status' => ['required' , 'max:500'],
-        ]);
-        $pay->status = $validatedData['status'];
-        $this->authorize('update', $pay);
-        $pay->save();
-        return redirect()->route('pays.show',['pays' => $pay->id]);
-    }
-    public function edit($id){
-        $pay = pay::findOrFail($id);
-        return view('pays.edit', ['pay' => $pay]);
     }
     public function destroy(Pay $pay){
         $pay->delete();

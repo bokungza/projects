@@ -37,46 +37,60 @@
               @endempty
     </div>
   </div>
-<table class="table  table-bordered table-hover ">
-  <thead class="thead-dark">
-    <tr>
-      <th>รหัสorder</th>
-      <th>ราคา</th>
-      <th>สถานะ</th>
-      <th>ดูรายละเอียด</th>
-      <th>ผู้สั่ง</th>  @if(Auth::user()->role == "ADMIN")
-          <th>อัพเดตสถานะ</th>
+  <div class="card">
+    <div class="card-header">
+    รายการสั่งซื้อของลูกค้า
+    </div>
+    <div class="card-body">
+      <table class="table  table-bordered table-hover ">
+        <thead class="thead-dark">
+          <tr>
+            <th>รหัสorder</th>
+            <th>ราคา</th>
+            <th>สถานะ</th>
+            <th>ดูรายละเอียด</th>
+            <th>ผู้สั่ง</th>  @if(Auth::user()->role == "ADMIN")
+                <th>อัพเดตสถานะ</th>
 
-      <th >ยกเลิก</div>
-      </th>
-      @endif
-    </tr>
-  </thead>
-  @foreach ($orders as $order)
+            <th >ยกเลิก</div>
+            </th>
+            @endif
+          </tr>
+        </thead>
+        @foreach ($orders as $order)
 
-  <tbody>
-      <p style="display: none">{{$user = \App\User::findOrFail($order->user_id)}}</p>
-    <tr>
+        <tbody>
+            <p style="display: none">{{$user = \App\User::findOrFail($order->user_id)}}</p>
+          <tr>
 
-      <td>{{ $order->id}}</td>
-      <td>{{ $order->total_price}}</td>
-      <td class="text-danger">{{ $order->status}}</td>
-      <td><a href="{{ action('OrdersController@show', [$order->id]) }}">ดูรายละเอียดการสั่งซื้อ</a></td>
-      <td><a href="{{route('users.show' ,  ['user' => $user->id])}}"> {{$user->username}}</a></td>
-      <td><a class="btn btn-primary" href="{{ action('OrdersController@edit', [$order->id]) }}" role="button">อัพเดทสถานะ</a></td>
-      <td class="border-0 align-middle text-center">
-        <form method = "post" action ="{{route('orders.destroy' , ['order'=>$order->id])}}" >
-          @csrf
-          <input type="hidden" name="_method" value="DELETE">
-         <button type="submit" class="btn btn-danger ">Delete</button>
-      </form>
-</td>
+            <td>{{ $order->id}}</td>
+            <td>{{ $order->total_price}}</td>
+            @if ($order->status == 'ยังไม่ชำระเงิน')
+              <td class="text-danger"> {{$order->status}}</td>
+            @elseif($order->status == 'จัดส่งเรียบร้อย')
+              <td class="text-success"> {{$order->status}}</td>
+            @else
+            <td text-primary> {{$order->status}}</td>
+            @endif
+            <td><a href="{{ action('OrdersController@show', [$order->id]) }}">ดูรายละเอียดการสั่งซื้อ</a></td>
+            <td><a href="{{route('users.show' ,  ['user' => $user->id])}}"> {{$user->username}}</a></td>
+            <td><a class="btn btn-primary" href="{{ action('OrdersController@edit', [$order->id]) }}" role="button">อัพเดทสถานะ</a></td>
+            <td class="border-0 align-middle text-center">
+              <form method = "post" action ="{{route('orders.destroy' , ['order'=>$order->id])}}" >
+                @csrf
+                <input type="hidden" name="_method" value="DELETE">
+               <button type="submit" class="btn btn-danger ">Delete</button>
+            </form>
+      </td>
 
 
 
-    </tr>
+          </tr>
 
-    @endforeach
-  </tbody>
-</table>
+          @endforeach
+        </tbody>
+      </table>
+    </div>
+  </div>
+
 @endsection

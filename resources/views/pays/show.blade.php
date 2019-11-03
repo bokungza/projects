@@ -1,9 +1,14 @@
 @extends('layouts.master')
 
 @section('content')
-
 <div>
     <h1>Order ID : {{ $pay->order_id }}</h1>
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/pays">ดูรายการแจ้งชำระเงินทั้งหมด</a></li>
+        <li class="breadcrumb-item active" aria-current="page">รายการชำระเงินหมายเลข {{ $pay->order_id }}</li>
+      </ol>
+    </nav>
     <a href='../img/payimages/{{$pay->picture}}'>
                 <img src='../img/payimages/{{$pay->picture}}' class="img" style="float: left;
                             margin-right: 15px;">
@@ -13,14 +18,19 @@
             <p>ชื่อผู้ชำระเงิน : {{ $pay->first_name }} {{ $pay->last_name }}</p>
             <p>วันและเวลาชำระเงิน :  : {{ $pay->pay_time }}</p>
             <p>จำนวนเงิน : {{ $pay->price }}</p>
-            <p>สถานะ : {{ $pay->status }}</p>
+            @foreach ($orders as $order)
+                @if ($order->id == $pay->order_id )
+                <p>สถานะ : {{ $order->status}}</p>
+                @endif
+            @endforeach
 
             @can('update',$pay)
-            <a class="btn btn-primary" href="/pays/{{ $pay->id }}/edit" role="button">อัพเดทสถานะ</a>
+            <a class="btn btn-primary" href="/orders/{{ $pay->order_id }}/edit" role="button">อัพเดทสถานะ</a>
             @endcan
             @can('delete',$pay)
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">ลบข้อมูล</button>
             @endcan
+            <a class="btn btn-primary" href="/orders/{{ $pay->order_id }}" role="button">เช็ครายการ</a>
             <a class="btn btn-primary" href="/pays/" role="button">ย้อนกลับ</a>
               <!-- Modal -->
               <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

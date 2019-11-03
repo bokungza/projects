@@ -4,12 +4,22 @@
 <h1>แจ้งชำระเงิน</h1>
 <form action="{{ route('pays.store') }}" method = 'post' enctype="multipart/form-data">
     @csrf
-    <div>
-        Order ID : <input type="number" name= 'order_id' class="form-control @error('order_id') is-invalid @enderror" value="{{ old('order_id')}}"><br>
-        @error('order_id')
-        <div class = 'alert alert-danger'>{{$message}}</div>
-        @enderror
-    </div>
+    @foreach ($orders as $order)
+        @if(Auth::user()->id == $order->user_id)
+            เลือกรายการชำระเงิน : <div class="form-check">
+                <input class="form-check-input @error('order_id') is-invalid @enderror" type="radio" name="order_id" value="{{$order->id}}" checked>
+                <label class="form-check-label">
+                    <p>Order หมายเลข : {{$order->id}}</p>
+                    <p>จำนวนเงิน : {{$order->total_price}}</p>
+                </label>
+                <hr>
+                
+            </div>
+            @error('order_id')
+            <div class = 'alert alert-danger'>{{$message}}</div>
+            @enderror
+        @endif
+    @endforeach
     <div>
       <select class="form-control" name ='bank' class="form-control @error('bank') is-invalid @enderror" value="{{ old('bank')}}">
         <option>ธนาคารกรุงเทพ</option>

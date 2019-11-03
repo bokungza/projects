@@ -1,56 +1,99 @@
 @extends('layouts.master')
 
 @section('content')
+@can ('view', $order)
+<p style="display: none">{{$user = \App\User::findOrFail($order->user_id)}}</p>
+<div >
+  <div class="card">
+    <div class="card-header text-center">
+  รายละเอียดรายการสั่งซื้อ
+  </div>
+  <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/orders">รายการสั่งซื้อ</a></li>
+        <li class="breadcrumb-item active" aria-current="page">รายการสั่งซื้อหมายเลข {{ $order->id}}</li>
+      </ol>
+    </nav>
+  <div class="card-body">
+    <p class="card-title">Order ID : {{ $order->id}}</p>
+    <p class="card-text"> ผู้สั่ง:<a href="{{route('users.show' ,  ['user' => $user->id])}}"> {{$user->username}}</a></p>
+    @if ($order->status == 'ยังไม่ชำระเงิน')
+    <p class="text-danger">สถานะ: {{$order->status}}</p>
+    @elseif($order->status == 'จัดส่งเรียบร้อย')
+      <p class="text-success">สถานะ: {{$order->status}}</p>
+    @else
+    <p >สถานะ: {{$order->status}}</p>
+    @endif
 
-<div>
-  @can ('view', $orders)
-    <h1>Order ID : {{ $orders->id}}</h1>
-      <p style="display: none">{{$user = \App\User::findOrFail($orders->user_id)}}</p>
-      <p>ผู้สั่ง:<a href="{{route('users.show' ,  ['user' => $user->id])}}"> {{$user->username}}</p>
-      <p></a> สถานะ:{{ $orders->status}}</p>
-      <p>ที่อยู่จัดส่ง :  {{$address->house_address}} ถนน{{$address->street}} แขวง/ตำบล{{$address->sub_district}} เขต/อำเภอ{{$address->district}} {{$address->province}} {{$address->zip_code}}</p>
+    <p>ที่อยู่จัดส่ง :  {{$address->house_address}} ถนน{{$address->street}} แขวง/ตำบล{{$address->sub_district}} เขต/อำเภอ{{$address->district}} {{$address->province}} {{$address->zip_code}}</p>
+  </div>
+  <table class="table  table-bordered table-hover ">
+    <thead class="thead-dark">
+            <tr>
+              <th >
+                <div class="p-2 px-3 text-uppercase">สินค้า</div>
+              </th>
+              <th>
+                <div class="py-2 text-uppercase">กก.ละ</div>
+              </th>
+              <th>
+                <div class="py-2 text-uppercase">จำนวน(กก.)</div>
+              </th>
+              <th>
+                <div class="py-2 text-uppercase">ราคา</div>
+              </th>
 
-      <table class="table  table-bordered table-hover ">
-        <thead class="thead-dark">
-                <tr>
-                  <th >
-                    <div class="p-2 px-3 text-uppercase">สินค้า</div>
-                  </th>
-                  <th>
-                    <div class="py-2 text-uppercase">กก.ละ</div>
-                  </th>
-                  <th>
-                    <div class="py-2 text-uppercase">จำนวน(กก.)</div>
-                  </th>
+            </tr>
+          </thead>
+          <tbody>
 
-                  <th>
-                    <div class="py-2 text-uppercase">ราคา</div>
-                  </th>
+    @foreach ($order_details as $order_detail)
+      <p style="display: none">{{$product = \App\Product::findOrFail($order_detail->product_id)}}</p>
+    <tbody>
+    <tr>
+      @if ($order_detail->order_id === $order->id)
+        <td><img src="{{ asset('img/'.$product->picture) }}"  width="70" class="img-fluid rounded shadow-sm">{{$product->name}}</td>
+        <td >{{$product->unit_price}}</td>
+        <td>{{ $order_detail->weight}}</td>
+          <td>{{ $order_detail->price}}</td>
 
-                </tr>
-              </thead>
-              <tbody>
-
-        @foreach ($order_details as $order_detail)
-          <p style="display: none">{{$product = \App\Product::findOrFail($order_detail->product_id)}}</p>
-        <tbody>
-        <tr>
-          @if ($order_detail->order_id === $orders->id)
-            <td><img src="{{ asset('img/'.$product->picture) }}"  width="70" class="img-fluid rounded shadow-sm">{{$product->name}}</td>
-            <td >{{$product->unit_price}}</td>
-            <td>{{ $order_detail->weight}}</td>
-              <td>{{ $order_detail->price}}</td>
-
-          @endif
-        </tr>
-        @endforeach
-        </table>
-        <hr>
-        <p class="text-right">ราคาสิงค้าทั้งหมด {{ $orders->total_price-50}} บาท</p>
-        <p class="text-right">ค่าจัดส่งสินค้า 50 บาท</p>
-        <p class="text-right">ราคาสุทธิ {{ $orders->total_price}} บาท</p>
-        <a class="float-right btn btn-primary" href="{{ action('PaysController@create') }}" role="button">แจ้งชำระเงิน</a>
-        @endcan
+      @endif
+    </tr>
+    @endforeach
+    </table>
 </div>
+<div class="row">
+  <div class="col-sm-8">
+
+  </div>
+  <div class="col-sm-4">
+    <div class="card">
+    <div class="card-header text-center">
+    สรุปราคาทั้งหมด
+  </div>
+<div class="card-body">
+        <p class="text-center">ราคาสิงค้าทั้งหมด {{ $order->total_price-50}} บาท</p>
+        <p class="text-center">ค่าจัดส่งสินค้า 50 บาท</p>
+        <p class="text-center">ราคาสุทธิ {{ $order->total_price}} บาท</p>
+        @if(Auth::user()->role == "CUSTOMER")
+        <p class="text-center"><a class="float-center btn btn-primary" href="{{ action('PaysController@create') }}" role="button">แจ้งชำระเงิน</a><p>
+          @endif
+
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+        @endcan
+
 
 @endsection

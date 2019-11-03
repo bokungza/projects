@@ -24,13 +24,13 @@ class OrdersController extends Controller
     }
     public function show($id){
 
-        $orders = Order::findOrFail($id);
-if(Gate::denies('show-order',$orders)){
-    return redirect()->route('orders.index');
-}
-        $address = DB::table('addresses')->where('id',$orders->address_id)->first();
+        $order = Order::findOrFail($id);
+        if(Gate::denies('show-order',$order)){
+            return redirect()->route('orders.index');
+        }
+        $address = DB::table('addresses')->where('id',$order->address_id)->first();
         $order_details = OrderDetail::where('order_id', $id)->get();
-        return view('orders.show',['orders'=>$orders,'order_details'=>$order_details,'address'=>$address]);
+        return view('orders.show',['order'=>$order,'order_details'=>$order_details,'address'=>$address]);
     }
     public function store(Request $request){
         $in_cart = Cart::where('user_id',Auth::user()->id)->count();
@@ -110,13 +110,20 @@ if(Gate::denies('show-order',$orders)){
         $orders = Order::findOrFail($request->input('id'));
         $orders->status = $request->input('status');
         $orders->save();
-          return redirect()->route('products.index');
+          return redirect()->route('orders.index');
     }
     public function destroy($id)
     {
       $order= Order::find($id);
+      $order_details = DB::table('order_details')->where('order_id',$order->id)->get();
+      foreach($order_details as $order_detail){
+        $product = Product::findOrFail($order_detail->id);
+        $product->count = $product->count+$order_detail->weight;
+        $product->save();
+      }
+
       $order->delete();
       $orders = Order::all();
-      return view('orders.index',['orders'=>$orders]);
+      return redirect()->route('orders.index');
     }
 }

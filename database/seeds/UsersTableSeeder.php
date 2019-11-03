@@ -12,36 +12,26 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
       $user = new User;
-        $user->username = "zelos";
+        $user->username = "admin";
         $user->role = 'ADMIN';
         $user->first_name = "sikharin";
         $user->last_name = "kadeeroj";
-        $user->email = "zelos@hotmail.com";
+        $user->email = "admin@ku.th";
         $user->password = Hash::make('123456');
         $user->picture = 'avatar.png';
         $user->email_verified_at = now();
         $user->save();
         $user = new User;
-        $user->username = "bokungza";
+        $user->username = "customer";
         $user->role = 'CUSTOMER';
         $user->first_name = "itsales";
         $user->last_name = "singtaweesak";
-        $user->email = "itsales@hotmail.com";
+        $user->email = "customer@ku.th";
         $user->password = Hash::make('123456');
         $user->picture = 'avatar.png';
         $user->email_verified_at = now();
         $user->save();
-        $user = new User;
-          $user->username = "folk";
-          $user->role = 'CUSTOMER';
-          $user->first_name = "pattalapon";
-          $user->last_name = "pontaku";
-          $user->email = "folk@gmail.com";
-          $user->password = Hash::make('123456');
-          $user->email_verified_at = now();
-          $user->picture = 'avatar.png';
-          $user->save();
-            factory(App\User::class, 50)->create();
+      factory(App\User::class, 50)->create();
 
     }
 }
