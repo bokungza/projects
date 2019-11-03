@@ -28,7 +28,7 @@ class OrdersController extends Controller
 
         $order = Order::findOrFail($id);
         if(Gate::denies('show-order',$order)){
-            return redirect()->route('orders.index');
+            return $this->index(1);
         }
         $address = DB::table('addresses')->where('id',$order->address_id)->first();
         $order_details = DB::table('order_details')->where('order_id',$order->id)->get();
@@ -99,23 +99,24 @@ class OrdersController extends Controller
         }
         $order->total_price = DB::table('order_details')->where('order_id',$order->id)->sum('price')+50;
         $order->save();
-        return redirect()->route('products.index');
+        return $this->index(1);
     }
     public function edit($id){
         $orders = order::findOrFail($id);
         $user = DB::table('users')->where('id',$orders->user_id)->first();
         if(Gate::denies('edit-order',$orders)){
-            return redirect()->route('orders.index');
+            return $this->index(1);
         }
         return view('orders.edit', ['order' => $orders,'user' => $user]);
     }
     public function update(Request $request)
     {
 
-        $orders = Order::findOrFail($request->input('id'));
-        $orders->status = $request->input('status');
-        $orders->save();
-          return redirect()->route('orders.index');
+        $order = Order::findOrFail($request->input('id'));
+        $order->status = $request->input('status');
+        $order->save();
+          return $this->index(1);
+
     }
     public function destroy($id)
     {
@@ -130,6 +131,6 @@ class OrdersController extends Controller
 
       $order->delete();
       $orders = Order::all();
-      return redirect()->route('orders.index');
+      return $this->index(1);;
     }
 }

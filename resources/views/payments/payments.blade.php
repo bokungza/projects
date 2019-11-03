@@ -2,7 +2,7 @@
 
 
 @section('content')
-    <h1 class="p" style="font-size: 40px ; text-decoration: underline;">วิธีการซื้อสินค้า</h1>
+<h1 class="p" style="font-size: 40px ; text-decoration: underline;">วิธีการซื้อสินค้า</h1>
 <div class="pay-p" style="margin-left: 20px">
     <p>1.<a href="{{route('register')}}">สมัครสมาชิก</a></p>
     <p>2.เข้าสู่ระบบเลือกสินค้าที่ต้องการลงตะกร้าสินค้า</p>

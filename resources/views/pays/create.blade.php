@@ -4,9 +4,10 @@
 <h1>แจ้งชำระเงิน</h1>
 <form action="{{ route('pays.store') }}" method = 'post' enctype="multipart/form-data">
     @csrf
+    เลือกรายการชำระเงิน : <div class="card">
     @foreach ($orders as $order)
         @if(Auth::user()->id == $order->user_id)
-            เลือกรายการชำระเงิน : <div class="form-check">
+            <div class="form-check">
                 <input class="form-check-input @error('order_id') is-invalid @enderror" type="radio" name="order_id" value="{{$order->id}}" checked>
                 <label class="form-check-label">
                     <p>Order หมายเลข : {{$order->id}}</p>
@@ -20,7 +21,8 @@
             @enderror
         @endif
     @endforeach
-    <div>
+    </div>
+    เลือกธนาคารที่ชำระเงิน : <div>
       <select class="form-control" name ='bank' class="form-control @error('bank') is-invalid @enderror" value="{{ old('bank')}}">
         <option>ธนาคารกรุงเทพ</option>
         <option>ธนาคารกรุงไทย</option>
