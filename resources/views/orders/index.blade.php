@@ -18,8 +18,9 @@
     <table class="table  table-bordered table-hover ">
       <thead class="thead-dark">
         <tr>
-          <th>รหัสorder</th>
           <th>วันที่สั่ง</th>
+          <th>รหัสorder</th>
+
           <th>ราคา</th>
           <th>สถานะ</th>
           <th>ดูรายละเอียด</th>
@@ -37,9 +38,9 @@
       <tbody>
           <p style="display: none">{{$user = \App\User::findOrFail($order->user_id)}}</p>
         <tr>
-
+  <td>{{ $order->created_at}}</td>
           <td>{{ $order->id}}</td>
-          <td>{{ $order->created_at}}</td>
+
           <td>{{ $order->total_price}}</td>
           @if ($order->status == 'ยังไม่ชำระเงิน')
             <td class="text-danger"> {{$order->status}}</td>
@@ -138,7 +139,7 @@
                 </div>
               </div>
             </td>
-            @else 
+            @else
               <td class="border-0 align-middle text-center">
                 <button type="button" class="btn btn-danger " data-toggle="modal" data-target="#exampleModal" disabled>Delete</button>
               </td>
@@ -198,7 +199,7 @@
                 </div>
               </div>
             </td>
-            @else 
+            @else
               <td class="border-0 align-middle text-center">
                 <button type="button" class="btn btn-danger " data-toggle="modal" data-target="#exampleModal" disabled>Delete</button>
               </td>
