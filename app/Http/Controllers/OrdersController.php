@@ -18,7 +18,7 @@ class OrdersController extends Controller
   public function __construct(){
      $this->middleware('auth');
  }
-    public function index($page) {
+    public function index($page = 1) {
         $orders = Order::all()->skip(15 * ($page - 1))->take(15);
         $count = DB::table('orders')->count();
         $page_count = $count / 15;

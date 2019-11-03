@@ -15,11 +15,13 @@ class PaysController extends Controller
     public function __construct(){
         $this->middleware('auth');
     }
-    public function index() {
+    public function index($page = 1) {
         $user = Auth::user();
         $orders = $user->orders()->get();
-        $pays = pay::all();
-        return view('pays.index', ['pays' => $pays,'orders' => $orders]);
+        $pays = pay::all()->sortByDesc('id')->skip(($page-1)*15)->take(15);
+        $count = pay::all()->count();
+        $page_count = $count / 15;
+        return view('pays.index', ['pays' => $pays,'orders' => $orders , 'page_count' => $page_count]);
     }
     public function show($id){
         $pays = pay::findOrFail($id);

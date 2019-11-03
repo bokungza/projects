@@ -63,10 +63,9 @@
                   @endforeach
                 </tbody>
     </table>
-      @for ($i = 1; $i < ceil($page_count) + 1; $i++)
-           <a href="/users/page/{{$i}}" class="btn btn-primary">{{$i}}</a>
-      @endfor
-
   </div>
+    @for ($i = 1; $i < ceil($page_count) + 1; $i++)
+        <a href="/users/page/{{$i}}" class="btn btn-primary">{{$i}}</a>
+    @endfor
 </div>
 @endsection

@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
-    
+
     <h1>รายการชำระเงินทั้งหมด</h1>
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
@@ -9,7 +9,7 @@
         </ol>
     </nav>
     <div class='card'>
-    @foreach ($pays->sortByDesc('id') as $pay)
+    @foreach ($pays as $pay)
     @can ('view', $pay)
         <div class="card">
             <div class="card-body">
@@ -49,5 +49,10 @@
         </div>
     @endcan
     @endforeach
+    </div>
+    <div style="margin: 15px; text-align: center">
+        @for ($i = 1; $i < ceil($page_count) + 1; $i++)
+            <a href="/pays/page/{{$i}}" class="btn btn-primary">{{$i}}</a>
+        @endfor
     </div>
 @endsection
