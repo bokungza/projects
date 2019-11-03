@@ -18,11 +18,13 @@
     <p class="card-title">Order ID : {{ $order->id}}</p>
     <p class="card-text"> ผู้สั่ง:<a href="{{route('users.show' ,  ['user' => $user->id])}}"> {{$user->username}}</a></p>
     @if ($order->status == 'ยังไม่ชำระเงิน')
-    <p class="text-danger">สถานะ: {{$order->status}}</p>
-    @elseif($order->status == 'จัดส่งเรียบร้อย')
-      <p class="text-success">สถานะ: {{$order->status}}</p>
+      <p class="card-text"> สถานะ : <a class="text-danger"> {{$order->status}}</a></p>
+    @elseif ($order->status == 'ชำระเงินผิดพลาด')
+      <p class="card-text"> สถานะ : <a class="text-danger"> {{$order->status}}</a></p>
+    @elseif($order->status == 'กำลังตรวจสอบการชำระเงิน')
+      <p class="card-text"> สถานะ : <a> {{$order->status}}</a></p>
     @else
-    <p >สถานะ: {{$order->status}}</p>
+      <p class="card-text"> สถานะ : <a class="text-success"> {{$order->status}}</a></p>
     @endif
 
     <p>ที่อยู่จัดส่ง :  {{$address->house_address}} ถนน{{$address->street}} แขวง/ตำบล{{$address->sub_district}} เขต/อำเภอ{{$address->district}} {{$address->province}} {{$address->zip_code}}</p>
@@ -77,6 +79,8 @@
         <p class="text-center">ราคาสุทธิ {{ $order->total_price}} บาท</p>
         @if(Auth::user()->role == "CUSTOMER")
         <p class="text-center"><a class="float-center btn btn-primary" href="{{ action('PaysController@create') }}" role="button">แจ้งชำระเงิน</a><p>
+        @elseif(Auth::user()->role == "ADMIN")
+        <p class="text-center"><a class="float-center btn btn-primary" href="/pays" role="button">ดูการแจ้งชำระเงิน</a><p>
           @endif
 
       </div>

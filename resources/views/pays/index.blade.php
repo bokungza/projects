@@ -20,8 +20,17 @@
             <p>ผู้ชำระเงิน : {{ $pay->first_name}} {{ $pay->last_name}}</p>
             @foreach ($orders as $order)
                 @if ($order->id === $pay->order_id )
-                <p>สถานะ : {{ $order->status}}</p>
+                    @if ($order->status == 'ยังไม่ชำระเงิน')
+                        <p class="card-text"> สถานะ : <a class="text-danger"> {{$order->status}}</a></p>
+                    @elseif ($order->status == 'ชำระเงินผิดพลาด')
+                        <p class="card-text"> สถานะ : <a class="text-danger"> {{$order->status}}</a></p>
+                    @elseif($order->status == 'กำลังตรวจสอบการชำระเงิน')
+                        <p class="card-text"> สถานะ : <a> {{$order->status}}</a></p>
+                    @else
+                        <p class="card-text"> สถานะ : <a class="text-success"> {{$order->status}}</a></p>
+                    @endif
                 @endif
+
             @endforeach
             </div>
         </div>
