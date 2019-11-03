@@ -14,205 +14,223 @@
             <li class="breadcrumb-item active" aria-current="page">รายการสั่งซื้อ</li>
         </ol>
     </nav>
-  <div class="card-body">
-    <table class="table  table-bordered table-hover ">
-      <thead class="thead-dark">
-        <tr>
-          <th>วันที่สั่ง</th>
-          <th>รหัสorder</th>
+    <nav>
+  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+    <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">ทั้งหมด</a>
+    <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Profile</a>
+    <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Contact</a>
+  </div>
+</nav>
+<div class="tab-content" id="nav-tabContent">
+  <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+    <div class="card-body">
+      <table class="table  table-bordered table-hover ">
+        <thead class="thead-dark">
+          <tr>
+            <th>วันที่สั่ง</th>
+            <th>รหัสorder</th>
 
-          <th>ราคา</th>
-          <th>สถานะ</th>
-          <th>ดูรายละเอียด</th>
-          <th>ผู้สั่ง</th>
-          @if(Auth::user()->role == "ADMIN")
-            <th>อัพเดตสถานะ</th>
+            <th>ราคา</th>
+            <th>สถานะ</th>
+            <th>ดูรายละเอียด</th>
+            <th>ผู้สั่ง</th>
+            @if(Auth::user()->role == "ADMIN")
+              <th>อัพเดตสถานะ</th>
+            @endif
+            <th >ยกเลิก</div>
+            </th>
+
+          </tr>
+        </thead>
+        @foreach ($orders as $order)
+        @can ('view', $order)
+        <tbody>
+            <p style="display: none">{{$user = \App\User::findOrFail($order->user_id)}}</p>
+          <tr>
+    <td>{{ $order->created_at}}</td>
+            <td>{{ $order->id}}</td>
+
+            <td>{{ $order->total_price}}</td>
+            @if ($order->status == 'ยังไม่ชำระเงิน')
+              <td class="text-danger"> {{$order->status}}</td>
+            @elseif($order->status == 'กำลังตรวจสอบการชำระเงิน')
+              <td > {{$order->status}}</td>
+            @elseif($order->status == 'ชำระเงินผิดพลาด')
+              <td class="text-danger"> {{$order->status}}</td>
+            @else
+              <td class="text-success"> {{$order->status}}</td>
+            @endif
+            <td><a href="{{ action('OrdersController@show', [$order->id]) }}">ดูรายละเอียดการสั่งซื้อ</a></td>
+            <td><a href="{{route('users.show' ,  ['user' => $user->id])}}"> {{$user->username}}</a></td>
+
+            @can ('update', $order)
+              <td><a class="btn btn-primary" href="{{ action('OrdersController@edit', [$order->id]) }}" role="button">อัพเดทสถานะ</a></td>
+            @endcan
+            @if(Auth::user()->role == "ADMIN")
+              @if ($order->status == 'ยังไม่ชำระเงิน')
+              <td class="border-0 align-middle text-center">
+                <button type="button" class="btn btn-danger " data-toggle="modal" data-target="#exampleModal">Delete</button>
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title">ลบ</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span  style = "height:100%;padding:0;"  aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <p>คุณต้องการลบรายการสั่งซื้อใช่ไหม</p>
+                      </div>
+                      <div class="modal-footer">
+                        <form method = "post" action ="{{route('orders.destroy' , ['order'=>$order->id])}}" >
+                          @csrf
+                          <input type="hidden" name="_method" value="DELETE">
+                        <button type="submit" class="btn btn-danger ">ลบ</button>
+                      </form>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </td>
+            @elseif ($order->status == 'ชำระเงินผิดพลาด')
+              <td class="border-0 align-middle text-center">
+                <button type="button" class="btn btn-danger " data-toggle="modal" data-target="#exampleModal">Delete</button>
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title">ลบ</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span  style = "height:100%;padding:0;"  aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <p>คุณต้องการลบรายการสั่งซื้อใช่ไหม</p>
+                      </div>
+                      <div class="modal-footer">
+                        <form method = "post" action ="{{route('orders.destroy' , ['order'=>$order->id])}}" >
+                          @csrf
+                          <input type="hidden" name="_method" value="DELETE">
+                        <button type="submit" class="btn btn-danger ">ลบ</button>
+                      </form>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </td>
+            @elseif ($order->status == 'จัดส่งเรียบร้อย')
+              <td class="border-0 align-middle text-center">
+                <button type="button" class="btn btn-danger " data-toggle="modal" data-target="#exampleModal">Delete</button>
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title">ลบ</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span  style = "height:100%;padding:0;"  aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <p>คุณต้องการลบรายการสั่งซื้อใช่ไหม</p>
+                      </div>
+                      <div class="modal-footer">
+                        <form method = "post" action ="{{route('orders.destroy' , ['order'=>$order->id])}}" >
+                          @csrf
+                          <input type="hidden" name="_method" value="DELETE">
+                        <button type="submit" class="btn btn-danger ">ลบ</button>
+                      </form>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </td>
+              @else
+                <td class="border-0 align-middle text-center">
+                  <button type="button" class="btn btn-danger " data-toggle="modal" data-target="#exampleModal" disabled>Delete</button>
+                </td>
+            @endif
+            @elseif(Auth::user()->role == "CUSTOMER")
+              @if ($order->status == 'ยังไม่ชำระเงิน')
+              <td class="border-0 align-middle text-center">
+                <button type="button" class="btn btn-danger " data-toggle="modal" data-target="#exampleModal">Delete</button>
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title">ลบ</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span  style = "height:100%;padding:0;"  aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <p>คุณต้องการลบรายการสั่งซื้อใช่ไหม</p>
+                      </div>
+                      <div class="modal-footer">
+                        <form method = "post" action ="{{route('orders.destroy' , ['order'=>$order->id])}}" >
+                          @csrf
+                          <input type="hidden" name="_method" value="DELETE">
+                        <button type="submit" class="btn btn-danger ">ลบ</button>
+                      </form>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </td>
+            @elseif ($order->status == 'ชำระเงินผิดพลาด')
+              <td class="border-0 align-middle text-center">
+                <button type="button" class="btn btn-danger " data-toggle="modal" data-target="#exampleModal">Delete</button>
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title">ลบ</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span  style = "height:100%;padding:0;"  aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <p>คุณต้องการลบรายการสั่งซื้อใช่ไหม</p>
+                      </div>
+                      <div class="modal-footer">
+                        <form method = "post" action ="{{route('orders.destroy' , ['order'=>$order->id])}}" >
+                          @csrf
+                          <input type="hidden" name="_method" value="DELETE">
+                        <button type="submit" class="btn btn-danger ">ลบ</button>
+                      </form>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </td>
+              @else
+                <td class="border-0 align-middle text-center">
+                  <button type="button" class="btn btn-danger " data-toggle="modal" data-target="#exampleModal" disabled>Delete</button>
+                </td>
+            @endif
           @endif
-          <th >ยกเลิก</div>
-          </th>
-
-        </tr>
-      </thead>
-      @foreach ($orders as $order)
-      @can ('view', $order)
-      <tbody>
-          <p style="display: none">{{$user = \App\User::findOrFail($order->user_id)}}</p>
-        <tr>
-  <td>{{ $order->created_at}}</td>
-          <td>{{ $order->id}}</td>
-
-          <td>{{ $order->total_price}}</td>
-          @if ($order->status == 'ยังไม่ชำระเงิน')
-            <td class="text-danger"> {{$order->status}}</td>
-          @elseif($order->status == 'กำลังตรวจสอบการชำระเงิน')
-            <td > {{$order->status}}</td>
-          @elseif($order->status == 'ชำระเงินผิดพลาด')
-            <td class="text-danger"> {{$order->status}}</td>
-          @else
-            <td class="text-success"> {{$order->status}}</td>
-          @endif
-          <td><a href="{{ action('OrdersController@show', [$order->id]) }}">ดูรายละเอียดการสั่งซื้อ</a></td>
-          <td><a href="{{route('users.show' ,  ['user' => $user->id])}}"> {{$user->username}}</a></td>
-
-          @can ('update', $order)
-            <td><a class="btn btn-primary" href="{{ action('OrdersController@edit', [$order->id]) }}" role="button">อัพเดทสถานะ</a></td>
+          </tr>
           @endcan
-          @if(Auth::user()->role == "ADMIN")
-            @if ($order->status == 'ยังไม่ชำระเงิน')
-            <td class="border-0 align-middle text-center">
-              <button type="button" class="btn btn-danger " data-toggle="modal" data-target="#exampleModal">Delete</button>
-              <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title">ลบ</h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span  style = "height:100%;padding:0;"  aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body">
-                      <p>คุณต้องการลบรายการสั่งซื้อใช่ไหม</p>
-                    </div>
-                    <div class="modal-footer">
-                      <form method = "post" action ="{{route('orders.destroy' , ['order'=>$order->id])}}" >
-                        @csrf
-                        <input type="hidden" name="_method" value="DELETE">
-                      <button type="submit" class="btn btn-danger ">ลบ</button>
-                    </form>
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </td>
-          @elseif ($order->status == 'ชำระเงินผิดพลาด')
-            <td class="border-0 align-middle text-center">
-              <button type="button" class="btn btn-danger " data-toggle="modal" data-target="#exampleModal">Delete</button>
-              <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title">ลบ</h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span  style = "height:100%;padding:0;"  aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body">
-                      <p>คุณต้องการลบรายการสั่งซื้อใช่ไหม</p>
-                    </div>
-                    <div class="modal-footer">
-                      <form method = "post" action ="{{route('orders.destroy' , ['order'=>$order->id])}}" >
-                        @csrf
-                        <input type="hidden" name="_method" value="DELETE">
-                      <button type="submit" class="btn btn-danger ">ลบ</button>
-                    </form>
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </td>
-          @elseif ($order->status == 'จัดส่งเรียบร้อย')
-            <td class="border-0 align-middle text-center">
-              <button type="button" class="btn btn-danger " data-toggle="modal" data-target="#exampleModal">Delete</button>
-              <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title">ลบ</h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span  style = "height:100%;padding:0;"  aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body">
-                      <p>คุณต้องการลบรายการสั่งซื้อใช่ไหม</p>
-                    </div>
-                    <div class="modal-footer">
-                      <form method = "post" action ="{{route('orders.destroy' , ['order'=>$order->id])}}" >
-                        @csrf
-                        <input type="hidden" name="_method" value="DELETE">
-                      <button type="submit" class="btn btn-danger ">ลบ</button>
-                    </form>
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </td>
-            @else
-              <td class="border-0 align-middle text-center">
-                <button type="button" class="btn btn-danger " data-toggle="modal" data-target="#exampleModal" disabled>Delete</button>
-              </td>
-          @endif
-          @elseif(Auth::user()->role == "CUSTOMER")
-            @if ($order->status == 'ยังไม่ชำระเงิน')
-            <td class="border-0 align-middle text-center">
-              <button type="button" class="btn btn-danger " data-toggle="modal" data-target="#exampleModal">Delete</button>
-              <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title">ลบ</h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span  style = "height:100%;padding:0;"  aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body">
-                      <p>คุณต้องการลบรายการสั่งซื้อใช่ไหม</p>
-                    </div>
-                    <div class="modal-footer">
-                      <form method = "post" action ="{{route('orders.destroy' , ['order'=>$order->id])}}" >
-                        @csrf
-                        <input type="hidden" name="_method" value="DELETE">
-                      <button type="submit" class="btn btn-danger ">ลบ</button>
-                    </form>
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </td>
-          @elseif ($order->status == 'ชำระเงินผิดพลาด')
-            <td class="border-0 align-middle text-center">
-              <button type="button" class="btn btn-danger " data-toggle="modal" data-target="#exampleModal">Delete</button>
-              <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title">ลบ</h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span  style = "height:100%;padding:0;"  aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body">
-                      <p>คุณต้องการลบรายการสั่งซื้อใช่ไหม</p>
-                    </div>
-                    <div class="modal-footer">
-                      <form method = "post" action ="{{route('orders.destroy' , ['order'=>$order->id])}}" >
-                        @csrf
-                        <input type="hidden" name="_method" value="DELETE">
-                      <button type="submit" class="btn btn-danger ">ลบ</button>
-                    </form>
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </td>
-            @else
-              <td class="border-0 align-middle text-center">
-                <button type="button" class="btn btn-danger " data-toggle="modal" data-target="#exampleModal" disabled>Delete</button>
-              </td>
-          @endif
-        @endif
-        </tr>
-        @endcan
-        @endforeach
-      </tbody>
-    </table>
-            @for ($i = 1; $i < ceil($page_count) + 1; $i++)
-                <a href="/users/page/{{$i}}" class="btn btn-primary">{{$i}}</a>
-            @endfor
+          @endforeach
+        </tbody>
+      </table>
+              @for ($i = 1; $i < ceil($page_count) + 1; $i++)
+                  <a href="/users/page/{{$i}}" class="btn btn-primary">{{$i}}</a>
+              @endfor
+    </div>
+
+  </div>
+  <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+    ...
+  </div>
+  <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+    ...
   </div>
 </div>
+
 @endsection

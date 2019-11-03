@@ -8,6 +8,7 @@
     <div class="card-header text-center">
   รายละเอียดรายการสั่งซื้อ
   </div>
+  
   <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="/orders">รายการสั่งซื้อ</a></li>
