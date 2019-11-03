@@ -20,14 +20,16 @@ class ProductsController extends Controller
         $products = Product::all();
         return view('products.index',['products' => $products]);
     }
-    public function add() {
-      $products = Product::all();
-      return view('products.add',['products' => $products]);
+    public function add(){
+      if(Gate::denies('add-product',Product::class)){
+           return redirect()->route('products.index');
+       }
+       else{
+        $products = Product::all();
+        return view('products.add',['products' => $products]);
+      }
 
     }
-
-
-
     public function show($id)
     {
         $product = Product::findOrFail($id);
