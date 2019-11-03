@@ -81,7 +81,7 @@ class ProductsController extends Controller
         $product->count = $validatedData['count'];
         $product->save();
         $products = Product::all();
-        return redirect()->route('products.index',['products' => $products]);
+        return redirect()->route('products.add',['products' => $products]);
     }
 
 }

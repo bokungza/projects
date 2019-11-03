@@ -1,5 +1,5 @@
 <!-- Footer -->
-<footer class="page-footer font-small teal pt-4" style="border: 1px solid black; float: left; background-color: #343a40;">
+<footer class="page-footer font-small teal pt-4" style="border: 1px solid black; float: left; background-color: #343a40; margin-top: 40px;">
 
   <!-- Footer Text -->
   <div class="container-fluid text-center text-md-left" style="color: #899da0;">
