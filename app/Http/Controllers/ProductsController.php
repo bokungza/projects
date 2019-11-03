@@ -35,8 +35,9 @@ class ProductsController extends Controller
     public function store(Request $request){
         $validatedData = $request->validate([
             'name' => ['required' , 'min:5' , 'max:255'],
-            'detail' => ['required' , 'max:500'],
-            'price' => ['required' , 'min:1'],
+            'detail' => ['required'],
+            'price' => ['required' , 'min:1' , 'numeric'],
+            'count' => ['required' , 'min:1' , 'numeric'],
             'image' => 'required|image|mimes:jpeg,png,jpg',
         ]);
 
@@ -50,7 +51,7 @@ class ProductsController extends Controller
         $product->name = $validatedData['name'];
         $product->detail = $validatedData['detail'];
         $product->unit_price = $validatedData['price'];
-
+        $product->count = $validatedData['count'];
         $product->save();
         return redirect()->route('products.show',['product' => $product->id]);
     }

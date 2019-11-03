@@ -23,6 +23,12 @@
         @enderror
     </div>
     <div>
+        จำนวน : <input type="number" name='count' class="form-control @error('count') is-invalid @enderror" value="{{ old('count')}}"><br>
+        @error('count')
+        <div class = 'alert alert-danger'>{{$message}}</div>
+        @enderror
+    </div>
+    <div>
         <input id="file-upload" type="file" name="image" style="margin-bottom: 10px" class = "@error('image') is-invalid @enderror"><br>
         @error('image')
         <div class = 'alert alert-danger'>{{$message}}</div>

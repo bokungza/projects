@@ -50,11 +50,11 @@
           <tbody>
 
     @foreach ($order_details as $order_detail)
-      <p style="display: none">{{$product = \App\Product::findOrFail($order_detail->product_id)}}</p>
+      <p style="display: none">{{$product = \App\Product::withTrashed()->where('id',$order_detail->product_id)->first()}}</p>
     <tbody>
     <tr>
       @if ($order_detail->order_id === $order->id)
-        <td><img src="{{ asset('img/'.$product->picture) }}"  width="70" class="img-fluid rounded shadow-sm">{{$product->name}}</td>
+        <td><img src="{{ asset('img/'.$product->picture) }}"  width="70" class="img-fluid rounded shadow-sm">  {{$product->name}}</td>
         <td >{{$product->unit_price}}</td>
         <td>{{ $order_detail->weight}}</td>
           <td>{{ $order_detail->price}}</td>

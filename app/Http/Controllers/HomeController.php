@@ -23,7 +23,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $products = DB::table('products')->orderBy('sales', 'desc')->take(3)->get();
+        $products = DB::table('products')->where('deleted_at' ,'=',null)->orderBy('sales', 'desc')->take(3)->get();
         return view('home',['products' => $products]);
     }
 }

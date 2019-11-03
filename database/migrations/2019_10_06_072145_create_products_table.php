@@ -22,6 +22,7 @@ class CreateProductsTable extends Migration
             $table->bigInteger('count')->default(0);
             $table->bigInteger('sales')->default(0);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
