@@ -37,6 +37,9 @@
 <a class="nav-link" href="{{route('payments')}}">วิธีการสั่งซื้อสินค้า</a>
 </li>
 <li class="nav-item">
+<a class="nav-link" href="/pays/create">แจ้งชำระเงิน </a>
+</li>
+<li class="nav-item">
 <a class="nav-link" href="/pays">ดูการรายละเอียดการชำระเงิน </a>
 </li>
 <li class="nav-item">

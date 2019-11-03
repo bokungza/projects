@@ -10,8 +10,10 @@
       </ol>
     </nav>
     <a href='../img/payimages/{{$pay->picture}}'>
-                <img src='../img/payimages/{{$pay->picture}}' class="img" style="float: left;
-                            margin-right: 15px;">
+                <img src='../img/payimages/{{$pay->picture}}' style="float: left;
+                            margin-right: 15px; width: 322.5px; height: 503.25px; border:1px solid navy;
+  padding:5px;
+  background-image:url(f_t.jpg); ">
     </a>
 
             <p>ธนาคาร : {{ $pay->bank }}</p>
