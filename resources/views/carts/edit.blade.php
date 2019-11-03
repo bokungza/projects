@@ -67,12 +67,12 @@
                                         </td>
                                         </form>
                                         <td class="border-0 align-middle text-center">
-                                        <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#exampleModal">
+                                        <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#exampleModal{{$cart->product_id}}">
                                             ลบรายการ
                                         </button>
 
                                         <!-- Modal -->
-                                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal fade" id="exampleModal{{$cart->product_id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content">
                                             <div class="modal-header">
