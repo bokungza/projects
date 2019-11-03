@@ -6,6 +6,9 @@ use App\Cart;
 use App\Product;
 use Illuminate\Http\Request;
 use Gate;
+use Auth;
+use Illuminate\Support\Facades\DB;
+
 
 class ProductsController extends Controller
 {
@@ -17,6 +20,12 @@ class ProductsController extends Controller
         $products = Product::all();
         return view('products.index',['products' => $products]);
     }
+    public function add() {
+      $products = Product::all();
+      return view('products.add',['products' => $products]);
+
+    }
+
 
 
     public function show($id)
@@ -61,6 +70,17 @@ class ProductsController extends Controller
         $product->delete();
         $products = Product::all();
         $this->authorize('delete', $product);
+        return redirect()->route('products.index',['products' => $products]);
+    }
+    public function update(Request $request, Product $product)
+    {
+        $validatedData = $request->validate([
+            'count' => ['required' , 'min:1' , 'max:255'],
+        ]);
+
+        $product->count = $validatedData['count'];
+        $product->save();
+        $products = Product::all();
         return redirect()->route('products.index',['products' => $products]);
     }
 
