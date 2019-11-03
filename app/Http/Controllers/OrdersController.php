@@ -29,7 +29,7 @@ class OrdersController extends Controller
             return redirect()->route('orders.index');
         }
         $address = DB::table('addresses')->where('id',$order->address_id)->first();
-        $order_details = OrderDetail::where('order_id', $id)->get();
+        $order_details = DB::table('order_details')->where('order_id',$order->id)->get();
         return view('orders.show',['order'=>$order,'order_details'=>$order_details,'address'=>$address]);
     }
     public function store(Request $request){
@@ -87,6 +87,9 @@ class OrdersController extends Controller
             $order_detail->weight = $cart->count;
             $order_detail->product_id = $cart->product_id;
             $product = DB::table('products')->where('id',$cart->product_id)->first();
+            $count = $product->count - $cart->count;
+            $sales = $product->sales + $cart->count;
+            DB::table('products')->where('id',$cart->product_id)->update(['count' => $count , 'sales' => $sales]);
             $order_detail->price = $product->unit_price * $cart->count;
             $order_detail->save();
             $temp_cart = Cart::findOrFail($cart->id);
@@ -117,8 +120,9 @@ class OrdersController extends Controller
       $order= Order::find($id);
       $order_details = DB::table('order_details')->where('order_id',$order->id)->get();
       foreach($order_details as $order_detail){
-        $product = Product::findOrFail($order_detail->id);
+        $product = Product::withTrashed()->where('id',$order_detail->product_id)->first();
         $product->count = $product->count+$order_detail->weight;
+        $product->sales = $product->sales-$order_detail->weight;
         $product->save();
       }
 
