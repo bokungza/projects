@@ -19,7 +19,7 @@ class PaysTableSeeder extends Seeder
         $pay->first_name = "itsales";
         $pay->last_name = "singtaweesak";
         $pay->price = 1000;
-        $pay->picture = "payimages/avatar.png";
+        $pay->picture = "example.jpg";
         $pay->save();
         factory(App\Pay::class, 50)->create();
     }

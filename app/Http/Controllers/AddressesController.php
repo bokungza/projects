@@ -50,7 +50,9 @@ class AddressesController extends Controller
       $address->district = $request->input('district');
       $address->zip_code = $request->input('zip_code');
       $address->save();
-      return redirect()->route('profile');
+      $user = Auth::user();
+      $address = $user->addresses()->latest()->first();
+      return view('users.profile',['user'=>$user,'address'=>$address,'message'=>'แก้ไขเรียบร้อย']);
     }
 
     /**
@@ -94,7 +96,9 @@ class AddressesController extends Controller
       $address->district = $request->input('district');
       $address->zip_code = $request->input('zip_code');
       $address->save();
-      return redirect()->route('profile');
+      $user = Auth::user();
+      $address = $user->addresses()->latest()->first();
+      return view('users.profile',['user'=>$user,'address'=>$address,'message'=>'แก้ไขเรียบร้อย']);
     }
 
     /**

@@ -115,7 +115,11 @@ class OrdersController extends Controller
         $order = Order::findOrFail($request->input('id'));
         $order->status = $request->input('status');
         $order->save();
-          return $this->index(1);
+        $page =1;
+        $orders = Order::all()->skip(15 * ($page - 1))->take(15);
+        $count = DB::table('orders')->count();
+        $page_count = $count / 15;
+        return view('orders.index',['orders'=>$orders , 'page_count' => $page_count,'message'=>'อัพเดตเรียบร้อย']);
 
     }
     public function destroy($id)
@@ -130,7 +134,10 @@ class OrdersController extends Controller
       }
 
       $order->delete();
-      $orders = Order::all();
-      return $this->index(1);;
+      $page =1;
+      $orders = Order::all()->skip(15 * ($page - 1))->take(15);
+      $count = DB::table('orders')->count();
+      $page_count = $count / 15;
+      return view('orders.index',['orders'=>$orders , 'page_count' => $page_count,'message'=>'ลบเรียบร้อย']);
     }
 }

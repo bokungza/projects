@@ -32,10 +32,10 @@
                                         <div class="py-2 text-uppercase" style="text-align: center">In Stock (กก.)</div>
                                     </th>
                                     <th scope="col" class="border-0 bg-secondary">
-                                        <div class="py-2 text-uppercase" style="text-align: center"></div>
+                                        <div class="py-2 text-uppercase" style="text-align: center">เพิ่ม/ลด จำนวนสินค้า</div>
                                     </th>
                                     <th scope="col" class="border-0 bg-secondary">
-                                        <div class="py-2 text-uppercase" style="text-align: center"></div>
+                                        <div class="py-2 text-uppercase" style="text-align: center">ลบรายการ</div>
                                     </th>
                                 </tr>
                                 </thead>
@@ -63,18 +63,39 @@
                                         <td class="border-0 align-middle text-center"><strong>฿{{$cart->total_price}}</strong></td>
                                         <td class="border-0 align-middle text-center"><strong>{{$product->count}}</strong></td>
                                         <td class="border-0 align-middle text-center">
-                                            <button type='submit' class="btn btn-primary">บันทึก</button>
+                                            <button type='submit' class="btn btn-primary">แก้ไขจำนวน</button>
                                         </td>
                                         </form>
                                         <td class="border-0 align-middle text-center">
-                                            <form action="{{ route('cart.destroy',['cart' => $cart->id])}}" method="post">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type='submit' class="btn btn-outline-danger">DELETE</button>
-                                            </form>
+                                        <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#exampleModal">
+                                            ลบรายการ
+                                        </button>
+
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">ลบรายการ <a class="text-primary">{{$product->name}}</a></h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                ลูกค้าต้องการยกเลิกสินค้า <a class="text-primary">{{$product->name}}</a> ใช่หรือไม่?
+                                            </div>
+                                            <div class="modal-footer">
+                                                <form action="{{ route('cart.destroy',['cart' => $cart->id])}}" method="post">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type='submit' class="btn btn-danger">ใช่</button>
+                                                </form>
+                                                <button type="button" class="btn btn-primary" data-dismiss="modal">ไม่</button>
+                                            </div>
+                                            </div>
+                                        </div>
+                                        </div>
                                         </td>
-
-
                                     </tr>
                                 @endforeach
                                 </tbody>
