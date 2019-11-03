@@ -116,7 +116,9 @@ class UsersController extends Controller
      $user->first_name = $request->first_name;
      $user->last_name = $request->last_name;
      $user->save();
-     return redirect()->route('profile');
+     $user = Auth::user();
+     $address = $user->addresses()->latest()->first();
+      return view('users.profile',['user'=>$user,'address'=>$address,'message' =>'แก้ไขเรียบร้อย']);
     }
 
     /**
@@ -125,10 +127,15 @@ class UsersController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        $user = User::find($id);
+        
         $user->delete();
-        return redirect()->route('users.index')->with('success','ลบเรียบร้อย');
+        $page =1;
+        $users = DB::table('users')->where('role','=','CUSTOMER')
+            ->skip(15 * ($page-1))->take(15)->get();
+        $count = DB::table('users')->where('role','=','CUSTOMER')->count();
+        $page_count = $count / 15;
+        return view('users.index',['users' => $users , 'page_count' => $page_count,'message' =>'ลบเรียบร้อย']);
     }
 }

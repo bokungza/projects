@@ -1,6 +1,10 @@
 @extends('layouts.master')
 
 @section('content')
+@isset($message)
+    <script>alert('{{$message}}');</script>
+@endisset
+
 <div class="card text-center">
   <div class="card-header">
     <h2>รายชื่อลูกค้า</h2>
@@ -30,32 +34,13 @@
                         <a href="{{route('users.show' ,  ['user' => $user->id])}}">ดู</a>
                      </td>
                      <td>
-                        <button type="button" class="btn btn-danger " data-toggle="modal" data-target="#exampleModal">Delete</button>
-                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 
-                          <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                              <div class="modal-header">
-                                 <h5 class="modal-title">ลบ</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                  <span style = "height:100%;padding:0;"  aria-hidden="true">&times;</span>
-                                </button>
-                              </div>
-                              <div class="modal-body">
-                                <p>คุณต้องการลบลูกค้าคนนี้ใช่ไหม</p>
-                              </div>
-                              <div class="modal-footer">
-                                <form method = "post" action ="{{route('users.destroy' , ['user'=>$user->id])}}" >
+                                <form onsubmit="return confirm('คุณต้องการลบลูกค้าคนนี้ใช่ไหม!');"method = "post" action ="{{route('users.destroy' , ['user'=>$user->id])}}" >
                                   @csrf
                                   @method('DELETE')
                                   <input type="hidden" name="_method" value="DELETE">
-                                  <button  type="submit" class="btn btn-danger">ลบ</button>
+                                  <button   onsubmit="geek()" type="submit" class="btn btn-danger">ลบ</button>
                                 </form>
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
 
 
                      </td>
@@ -68,4 +53,35 @@
         <a href="/users/page/{{$i}}" class="btn btn-primary">{{$i}}</a>
     @endfor
 </div>
+<script>
+// Example starter JavaScript for disabling form submissions if there are invalid fields
+(function() {
+  'use strict';
+  window.addEventListener('load', function() {
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.getElementsByClassName('needs-validation');
+    // Loop over them and prevent submission
+    var validation = Array.prototype.filter.call(forms, function(form) {
+      form.addEventListener('submit', function(event) {
+        if (form.checkValidity() === false) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  }, false);
+})();
+</script> <script type="text/javascript">
+    var ctext = 'Confirm you want to Delete ? \n'
+    var permissiontext = document.getElementsByName('permissionname');
+
+    console.log(ctext);
+    console.log(permissiontext);
+    function ConfirmDelete(){
+
+        return confirm(ctext);
+        };
+
+</script>
 @endsection
