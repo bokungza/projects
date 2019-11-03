@@ -13,9 +13,11 @@
 <body>
 
     <div class="my-container">
-        @include('layouts._navbar')
-        <div class="container my-content-container">
-            @yield('content')
+        <div>
+            @include('layouts._navbar')
+            <div class="container my-content-container">
+                @yield('content')
+            </div>
         </div>
     </div>
 

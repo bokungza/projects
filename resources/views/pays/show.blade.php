@@ -19,18 +19,26 @@
             <p>วันและเวลาชำระเงิน :  : {{ $pay->pay_time }}</p>
             <p>จำนวนเงิน : {{ $pay->price }}</p>
             @foreach ($orders as $order)
-                @if ($order->id == $pay->order_id )
-                <p>สถานะ : {{ $order->status}}</p>
+              @if ($order->id === $pay->order_id )
+                    @if ($order->status == 'ยังไม่ชำระเงิน')
+                        <p class="card-text"> สถานะ : <a class="text-danger"> {{$order->status}}</a></p>
+                    @elseif ($order->status == 'ชำระเงินผิดพลาด')
+                        <p class="card-text"> สถานะ : <a class="text-danger"> {{$order->status}}</a></p>
+                    @elseif($order->status == 'กำลังตรวจสอบการชำระเงิน')
+                        <p class="card-text"> สถานะ : <a> {{$order->status}}</a></p>
+                    @else
+                        <p class="card-text"> สถานะ : <a class="text-success"> {{$order->status}}</a></p>
+                    @endif
                 @endif
             @endforeach
 
             @can('update',$pay)
             <a class="btn btn-primary" href="/orders/{{ $pay->order_id }}/edit" role="button">อัพเดทสถานะ</a>
             @endcan
-            @can('delete',$pay)
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">ลบข้อมูล</button>
-            @endcan
             <a class="btn btn-primary" href="/orders/{{ $pay->order_id }}" role="button">เช็ครายการ</a>
+            @can('delete',$pay)
+            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">ลบข้อมูล</button>
+            @endcan
             <a class="btn btn-primary" href="/pays/" role="button">ย้อนกลับ</a>
               <!-- Modal -->
               <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
