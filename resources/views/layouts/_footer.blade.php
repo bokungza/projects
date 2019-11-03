@@ -1,5 +1,5 @@
 <!-- Footer -->
-<footer class="page-footer font-small teal pt-4" style="border: 1px solid black; float: left; background-color: #343a40; width: 100%;">
+<footer class="page-footer font-small teal pt-4" style="border: 1px solid black; float: left; background-color: #343a40; margin-top: 40px; width: 100%">
 
   <!-- Footer Text -->
   <div class="container-fluid text-center text-md-left" style="color: #899da0;">
@@ -12,7 +12,7 @@
         <li class="text-white">โทร : 08X-XXX-XXXX หรือ 02-XXX-XXXX</li>
         <br>
       </div>
-      
+
       <div class="col-md-6 mb-md-0 mb-3">
         <h5 class="text-uppercase font-weight-bold text-white ">บัญชีสมาชิก</h5>
         <li class="text-white">

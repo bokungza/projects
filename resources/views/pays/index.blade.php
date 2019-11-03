@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
-    
+
     <h1>รายการชำระเงินทั้งหมด</h1>
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
@@ -9,7 +9,7 @@
         </ol>
     </nav>
     <div class='card'>
-    @foreach ($pays->sortByDesc('id') as $pay)
+    @foreach ($pays as $pay)
     @can ('view', $pay)
         <div class="card">
             <div class="card-body">
@@ -32,9 +32,27 @@
                 @endif
 
             @endforeach
+            @if (Auth::user()->role == "ADMIN")
+                @foreach ($orders as $order)
+                    @if ($order->status == 'ยังไม่ชำระเงิน')
+                        <p class="card-text"> สถานะ : <a class="text-danger"> {{$order->status}}</a></p>
+                    @elseif ($order->status == 'ชำระเงินผิดพลาด')
+                        <p class="card-text"> สถานะ : <a class="text-danger"> {{$order->status}}</a></p>
+                    @elseif($order->status == 'กำลังตรวจสอบการชำระเงิน')
+                        <p class="card-text"> สถานะ : <a> {{$order->status}}</a></p>
+                    @else
+                        <p class="card-text"> สถานะ : <a class="text-success"> {{$order->status}}</a></p>
+                    @endif
+                @endforeach
+            @endif
             </div>
         </div>
     @endcan
     @endforeach
+    </div>
+    <div style="margin: 15px; text-align: center">
+        @for ($i = 1; $i < ceil($page_count) + 1; $i++)
+            <a href="/pays/page/{{$i}}" class="btn btn-primary">{{$i}}</a>
+        @endfor
     </div>
 @endsection

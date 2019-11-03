@@ -32,6 +32,7 @@
                         <p class="card-text"> สถานะ : <a class="text-success"> {{$order->status}}</a></p>
                     @endif
                 @endif
+                
             @endforeach
 
             @can('update',$pay)

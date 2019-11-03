@@ -24,7 +24,7 @@ class UsersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($page)
+    public function index($page = 1)
     {
       if(Gate::denies('index-user',User::class)){
            return redirect()->route('home');

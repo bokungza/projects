@@ -162,3 +162,37 @@ li a:hover {
 button.disabled {
     pointer-events:none;
 }
+
+.payment-container {
+    align-content: center;
+    position: relative;
+    height: 255px;
+    width: 95%;
+    border: #d1d1d1 solid 1px;
+    margin: 25px;
+    float: left;
+    box-shadow: 1px 1px 1px grey;
+}
+
+.img-payment {
+    position: absolute;
+    max-width: 550px;
+    max-height: 250px;
+    float: left;
+    background-size: cover;
+}
+
+.payment-detail {
+    position: absolute;
+    margin-left: 530px;
+    float: left;
+}
+
+.pay-p {
+    font-weight: bold;
+    display: block;
+    width: 100%;
+    font-size: 20px;
+    padding-left: 15px;
+}
+
