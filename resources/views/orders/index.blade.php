@@ -138,7 +138,7 @@
                 </div>
               </div>
             </td>
-            @else 
+            @else
               <td class="border-0 align-middle text-center">
                 <button type="button" class="btn btn-danger " data-toggle="modal" data-target="#exampleModal" disabled>Delete</button>
               </td>
@@ -198,7 +198,7 @@
                 </div>
               </div>
             </td>
-            @else 
+            @else
               <td class="border-0 align-middle text-center">
                 <button type="button" class="btn btn-danger " data-toggle="modal" data-target="#exampleModal" disabled>Delete</button>
               </td>
@@ -209,6 +209,9 @@
         @endforeach
       </tbody>
     </table>
+            @for ($i = 1; $i < ceil($page_count) + 1; $i++)
+                <a href="/users/page/{{$i}}" class="btn btn-primary">{{$i}}</a>
+            @endfor
   </div>
 </div>
 @endsection

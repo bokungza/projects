@@ -17,7 +17,7 @@ Route::post('/testdb','ProductsController@index');
 
 Route::get('/change-password', 'Auth\ChangePasswordController@index')->name('password.change');
 Route::post('/change-password', 'Auth\ChangePasswordController@changepassword')->name('password.updated');
-Route::get('/orders', 'OrdersController@index')->name('orders')->middleware('auth');
+Route::get('/orders/page/{page}', 'OrdersController@index')->middleware('auth');
 
 Route::resource('/orders', 'OrdersController');
 
@@ -44,7 +44,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/profile','UsersController@profile')->name('profile');
 Route::get('/profile/edit','UsersController@edit')->name('profile.edit');
 Route::post('/profile/update', 'UsersController@update')->name('profile.update');
-Route::get('/users','UsersController@index')->name('users.index');
+Route::get('/users/page/{page}','UsersController@index')->name('users.index');
 Route::get('/users','UsersController@destroy')->name('users.destroy');
 
 

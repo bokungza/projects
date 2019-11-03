@@ -24,13 +24,16 @@ class UsersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($page)
     {
       if(Gate::denies('index-user',User::class)){
            return redirect()->route('home');
        }
-      $users = DB::select('select * from users where role = ?', ['CUSTOMER']);
-      return view('users.index',['users' => $users]);
+      $users = DB::table('users')->where('role','=','CUSTOMER')
+          ->skip(15 * ($page-1))->take(15)->get();
+      $count = DB::table('users')->where('role','=','CUSTOMER')->count();
+      $page_count = $count / 15;
+      return view('users.index',['users' => $users , 'page_count' => $page_count]);
     }
 
     /**

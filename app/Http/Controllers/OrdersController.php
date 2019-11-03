@@ -18,9 +18,11 @@ class OrdersController extends Controller
   public function __construct(){
      $this->middleware('auth');
  }
-    public function index() {
-        $orders = Order::all();
-        return view('orders.index',['orders'=>$orders]);
+    public function index($page) {
+        $orders = Order::all()->skip(15 * ($page - 1))->take(15);
+        $count = DB::table('orders')->count();
+        $page_count = $count / 15;
+        return view('orders.index',['orders'=>$orders , 'page_count' => $page_count]);
     }
     public function show($id){
 
