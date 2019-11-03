@@ -15,6 +15,6 @@ $factory->define(Pay::class, function (Faker $faker) {
         'first_name' => $faker->firstname,
         'last_name' => $faker->lastname,
         'price' => $faker->numberBetween(0, 200),
-        'picture' => 'avatar.png',
+        'picture' => 'example.jpg',
     ];
 });

@@ -60,9 +60,9 @@
                       <form  action="{{route('pays.destroy', ['pay' => $pay->id ])}}" method='post'>
                       @csrf
                       @method('DELETE')
-                      <button href="/pay" type="submit" class="btn btn-secondary">ใช่</button>
+                      <button href="/pay" type="submit" class="btn btn-danger">ใช่</button>
                       </form>
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">ไม่</button>
+                      <button type="button" class="btn btn-primary" data-dismiss="modal">ไม่</button>
                     </div>
                   </div>
                 </div>
