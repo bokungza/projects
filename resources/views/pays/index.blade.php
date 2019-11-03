@@ -32,6 +32,19 @@
                 @endif
 
             @endforeach
+            @if (Auth::user()->role == "ADMIN")
+                @foreach ($orders as $order)
+                    @if ($order->status == 'ยังไม่ชำระเงิน')
+                        <p class="card-text"> สถานะ : <a class="text-danger"> {{$order->status}}</a></p>
+                    @elseif ($order->status == 'ชำระเงินผิดพลาด')
+                        <p class="card-text"> สถานะ : <a class="text-danger"> {{$order->status}}</a></p>
+                    @elseif($order->status == 'กำลังตรวจสอบการชำระเงิน')
+                        <p class="card-text"> สถานะ : <a> {{$order->status}}</a></p>
+                    @else
+                        <p class="card-text"> สถานะ : <a class="text-success"> {{$order->status}}</a></p>
+                    @endif
+                @endforeach
+            @endif
             </div>
         </div>
     @endcan
