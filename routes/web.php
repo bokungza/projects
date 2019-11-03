@@ -27,6 +27,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/payments', 'PaymentsController@index')->name('payments');
 
+Route::get('/products/add', 'ProductsController@add')->name('products.add');
 Route::resource('/products','ProductsController');
 
 Route::resource('/addresses','AddressesController')->middleware('auth');

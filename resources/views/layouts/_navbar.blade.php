@@ -57,7 +57,10 @@
 <a class="nav-link" href="{{route('products.index')}}">สินค้า</a>
 </li>
 <li class="nav-item">
-<a class="nav-link" href="/products/create">เพิ่มสินค้า</a>
+<a class="nav-link" href="/products/create">เพิ่มสินค้าใหม่</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="{{route('products.add')}}">เพิ่มสินค้าในคลัง</a>
 </li>
 <li class="nav-item">
 <a class="nav-link" href="{{route('pays.index')}}">ดูการแจ้งชำระเงิน </a>

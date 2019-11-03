@@ -73,7 +73,10 @@ class UsersController extends Controller
       $user = User::findOrFail($id);
       $address = $user->addresses()->latest()->first();
       $orders = DB::select('select * from orders where user_id = ?', [$id]);
-
+      $orders = DB::table('orders')
+               ->where('user_id', $id)
+               ->orderBy('created_at', 'desc')
+               ->get();
       return view('users.show',['user' => $user,'orders' => $orders,'address' =>$address]);
     }
 

@@ -45,6 +45,7 @@
       <table class="table  table-bordered table-hover ">
         <thead class="thead-dark">
           <tr>
+            <th>วันที่สั่ง</th>
             <th>รหัสorder</th>
             <th>ราคา</th>
             <th>สถานะ</th>
@@ -62,7 +63,7 @@
         <tbody>
             <p style="display: none">{{$user = \App\User::findOrFail($order->user_id)}}</p>
           <tr>
-
+            <td>{{ $order->created_at}}</td>
             <td>{{ $order->id}}</td>
             <td>{{ $order->total_price}}</td>
             @if ($order->status == 'ยังไม่ชำระเงิน')
