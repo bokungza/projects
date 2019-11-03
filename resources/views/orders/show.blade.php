@@ -16,7 +16,7 @@
     </nav>
   <div class="card-body">
     <p class="card-title">Order ID : {{ $order->id}}</p>
-    <p class="card-text"> ผู้สั่ง:<a href="{{route('users.show' ,  ['user' => $user->id])}}"> {{$user->username}}</a></p>
+    <p class="card-text"> ผู้สั่ง : <a href="{{route('users.show' ,  ['user' => $user->id])}}"> {{$user->username}}</a></p>
     @if ($order->status == 'ยังไม่ชำระเงิน')
       <p class="card-text"> สถานะ : <a class="text-danger"> {{$order->status}}</a></p>
     @elseif ($order->status == 'ชำระเงินผิดพลาด')
