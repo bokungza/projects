@@ -16,16 +16,16 @@
                             <table class="table  table-bordered table-hover ">
                                 <thead class="thead-dark">
                                 <tr >
-                                    <th scope="col" class="border-0 bg-secondary">
+                                    <td class=" bg-secondary">
                                         <div class="p-2 px-3 text-uppercase" style="text-align: center">สินค้า</div>
-                                    </th>
+                                    </td>
 
-                                    <th scope="col" class="border-0 bg-secondary">
+                                    <td class=" bg-secondary">
                                         <div class="py-2 text-uppercase" style="text-align: center">In Stock (กก.)</div>
-                                    </th>
-                                    <th scope="col" class="border-0 bg-secondary">
+                                    </td>
+                                    <td class=" bg-secondary">
                                         <div class="py-2 text-uppercase" style="text-align: center"></div>
-                                    </th>
+                                    </td>
 
                                 </tr>
                                 </thead>
