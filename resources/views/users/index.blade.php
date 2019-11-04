@@ -49,6 +49,8 @@
                 </tbody>
     </table>
   </div>
+</div>
+<div style="margin: 15px; text-align: center">
     @for ($i = 1; $i < ceil($page_count) + 1; $i++)
         <a href="/users/page/{{$i}}" class="btn btn-primary">{{$i}}</a>
     @endfor
