@@ -22,9 +22,7 @@
             <p>จำนวนเงิน : {{ $pay->price }}</p>
             @foreach ($orders as $order)
               @if ($order->id === $pay->order_id )
-                    @if ($order->status == 'ยังไม่ชำระเงิน')
-                        <p class="card-text"> สถานะ : <a class="text-danger"> {{$order->status}}</a></p>
-                    @elseif ($order->status == 'ชำระเงินผิดพลาด')
+                    @if ($order->status == 'ยังไม่ชำระเงิน' || $order->status == 'ชำระเงินผิดพลาด')
                         <p class="card-text"> สถานะ : <a class="text-danger"> {{$order->status}}</a></p>
                     @elseif($order->status == 'กำลังตรวจสอบการชำระเงิน')
                         <p class="card-text"> สถานะ : <a> {{$order->status}}</a></p>
@@ -32,7 +30,6 @@
                         <p class="card-text"> สถานะ : <a class="text-success"> {{$order->status}}</a></p>
                     @endif
                 @endif
-                
             @endforeach
 
             @can('update',$pay)
