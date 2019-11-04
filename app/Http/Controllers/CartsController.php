@@ -143,6 +143,9 @@ class CartsController extends Controller
         $validatedData = $request->validate([
             'count' => ['required' , 'min:1' , 'max:255'],
         ]);
+        if ($validatedData['count'] <= 0){
+            return $this->destroy($cart);
+        }
         $cart->count = $validatedData['count'];
         $product = Product::findOrFail($cart->product_id);
         $cart->total_price = $cart->count * $product->unit_price;
