@@ -21,6 +21,6 @@ class PaysTableSeeder extends Seeder
         $pay->price = 1000;
         $pay->picture = "example.jpg";
         $pay->save();
-        factory(App\Pay::class, 50)->create();
+        factory(App\Pay::class, 25)->create();
     }
 }
