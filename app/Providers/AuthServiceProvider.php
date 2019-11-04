@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Pay;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 
 class AuthServiceProvider extends ServiceProvider
@@ -53,6 +55,10 @@ class AuthServiceProvider extends ServiceProvider
         });
         Gate::define('add-product',function($user,$product){
             return $user->isAdmin();
+        });
+        Gate::define('status-show',function($pay){
+            return Auth::user()->isAdmin()
+                or Auth::user()->id === $pay->user_id;
         });
 
 

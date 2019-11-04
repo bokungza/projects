@@ -112,6 +112,7 @@
                 </table>
                 @for ($i = 1; $i < ceil($page_count) + 1; $i++)
                     <form action="{{url('/orders/search/'.$i)}}" method="POST">
+                        @csrf
                         <input type="hidden" value="{{$status}}" name="select">
                         <input type="submit" class="btn btn-primary" value="{{$i}}" >
                     </form>
