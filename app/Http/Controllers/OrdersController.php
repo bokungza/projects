@@ -147,6 +147,7 @@ class OrdersController extends Controller
     }
 
     public function search(Request $request , $page = 1){
+        $status= $request->input('select');
         if ($request->input('select') == "ทั้งหมด"){
             return $this->index();
         }
@@ -157,7 +158,8 @@ class OrdersController extends Controller
             $orders = Order::all()->where('status',$request->input('select'))->where('user_id',Auth::user()->id)->skip(15 * ($page - 1))->take(15);
             $count = DB::table('orders')->where('status',$request->input('select'))->where('user_id',Auth::user()->id)->count();
         }
+
         $page_count = $count / 15;
-        return view('orders.search',['orders'=>$orders , 'page_count' => $page_count,'status'=>'ทั้งหมด' , 'status' => $request->input('select')]);
+        return view('orders.search',['orders'=>$orders , 'page_count' => $page_count, 'status' => $status]);
     }
 }

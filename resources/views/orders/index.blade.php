@@ -18,8 +18,9 @@
     </nav>
   <form action="{{url('/orders/search/1')}}" method="POST">
       @csrf
-    <div class="input-group">
+    <div class="input-group col-md-4">
       <select class="custom-select" id="inputGroupSelect04" name = "select"aria-label="Example select with button addon">
+        <option selected> {{$status}}</option>
           <option value="ทั้งหมด">ทั้งหมด</option>
         <option value="ยังไม่ชำระเงิน">ยังไม่ชำระเงิน</option>
         <option value="กำลังตรวจสอบการชำระเงิน">กำลังตรวจสอบการชำระเงิน</option>
@@ -28,7 +29,7 @@
         <option value="จัดส่งเรียบร้อย">จัดส่งเรียบร้อย</option>
       </select>
       <div class="input-group-append">
-        <button class="btn btn-outline-secondary" type="submit">Button</button>
+        <button class="btn btn-primary" type="submit">ค้นหา</button>
       </div>
     </div>
 </form>
