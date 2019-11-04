@@ -16,8 +16,21 @@
             <li class="breadcrumb-item active" aria-current="page">รายการสั่งซื้อ</li>
         </ol>
     </nav>
-
-
+  <form action="" method="POST">
+    <div class="input-group">
+      <select class="custom-select" id="inputGroupSelect04" aria-label="Example select with button addon">
+        <option selected>{{$status}}</option>
+        <option value="ยังไม่ชำระเงิน">ยังไม่ชำระเงิน</option>
+        <option value="กำลังตรวจสอบการชำระเงิน">กำลังตรวจสอบการชำระเงิน</option>
+        <option value="ชำระเงินผิดพลาด">ชำระเงินผิดพลาด</option>
+        <option value="กำลังเตรียมส่ง">กำลังเตรียมส่ง</option>
+        <option value="จัดส่งเรียบร้อย">จัดส่งเรียบร้อย</option>
+      </select>
+      <div class="input-group-append">
+        <button class="btn btn-outline-secondary" type="button">Button</button>
+      </div>
+    </div>
+</form>
     <div class="card-body">
       <table class="table  table-bordered table-hover ">
         <thead class="thead-dark">

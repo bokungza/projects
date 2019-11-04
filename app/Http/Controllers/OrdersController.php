@@ -27,7 +27,7 @@ class OrdersController extends Controller
             $count = DB::table('orders')->where('user_id',Auth::user()->id)->count();
         }
         $page_count = $count / 15;
-        return view('orders.index',['orders'=>$orders , 'page_count' => $page_count]);
+        return view('orders.index',['orders'=>$orders , 'page_count' => $page_count,'status'=>'ทั้งหมด']);
     }
     public function show($id){
 
