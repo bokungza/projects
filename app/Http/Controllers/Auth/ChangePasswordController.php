@@ -22,8 +22,8 @@ class ChangePasswordController extends Controller
         $user = User::find(Auth::id());
         $user->password = Hash::make($request->password);
         $user->save();
-        Auth::logout();
-        return redirect()->route('login');
+
+        return redirect()->route('profile');
       }
       else{
         return redirect()->back();
