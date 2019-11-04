@@ -17,10 +17,9 @@ Route::post('/testdb','ProductsController@index');
 
 Route::get('/change-password', 'Auth\ChangePasswordController@index')->name('password.change');
 Route::post('/change-password', 'Auth\ChangePasswordController@changepassword')->name('password.updated');
-
 Route::get('/pays/page/{page}', 'PaysController@index')->middleware('auth');
 Route::get('/orders/page/{page}', 'OrdersController@index')->name('order')->middleware('auth');
-Route::get('/orders/search/{page}', 'OrdersController@search')->middleware('auth');
+Route::POST('/orders/search/{page}', 'OrdersController@search')->middleware('auth');
 Route::resource('/orders', 'OrdersController');
 
 Auth::routes();

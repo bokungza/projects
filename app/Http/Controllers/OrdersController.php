@@ -145,4 +145,19 @@ class OrdersController extends Controller
       $page_count = $count / 15;
       return view('orders.index',['orders'=>$orders , 'page_count' => $page_count,'message'=>'ลบเรียบร้อย']);
     }
+
+    public function search(Request $request , $page = 1){
+        if ($request->input('select') == "ทั้งหมด"){
+            return $this->index();
+        }
+        if (Auth::user()->isAdmin()){
+            $orders = Order::all()->where('status',$request->input('select'))->skip(15 * ($page - 1))->take(15);
+            $count = DB::table('orders')->where('status',$request->input('select'))->count();
+        } else if (Auth::user()->isCustomer()){
+            $orders = Order::all()->where('status',$request->input('select'))->where('user_id',Auth::user()->id)->skip(15 * ($page - 1))->take(15);
+            $count = DB::table('orders')->where('status',$request->input('select'))->where('user_id',Auth::user()->id)->count();
+        }
+        $page_count = $count / 15;
+        return view('orders.search',['orders'=>$orders , 'page_count' => $page_count,'status'=>'ทั้งหมด' , 'status' => $request->input('select')]);
+    }
 }
