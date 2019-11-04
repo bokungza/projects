@@ -124,7 +124,7 @@ class OrdersController extends Controller
         $orders = Order::all()->skip(15 * ($page - 1))->take(15);
         $count = DB::table('orders')->count();
         $page_count = $count / 15;
-        return view('orders.index',['orders'=>$orders , 'page_count' => $page_count,'message'=>'อัพเดตเรียบร้อย']);
+        return view('orders.index',['orders'=>$orders , 'page_count' => $page_count,'message'=>'อัพเดตเรียบร้อย','status'=>'ทั้งหมด']);
 
     }
     public function destroy($id)
@@ -143,7 +143,7 @@ class OrdersController extends Controller
       $orders = Order::all()->skip(15 * ($page - 1))->take(15);
       $count = DB::table('orders')->count();
       $page_count = $count / 15;
-      return view('orders.index',['orders'=>$orders , 'page_count' => $page_count,'message'=>'ลบเรียบร้อย']);
+      return view('orders.index',['orders'=>$orders , 'page_count' => $page_count,'message'=>'ลบเรียบร้อย','status'=>'ทั้งหมด']);
     }
 
     public function search(Request $request , $page = 1){
