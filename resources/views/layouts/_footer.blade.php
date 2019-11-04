@@ -22,7 +22,7 @@
           <a href="/orders/page/1" class="text-white">ประวัติการสั่งซื้อ</a>
         </li>
         <li class="text-white">
-          <a href="/cart" class="text-white">ตะกล้าสินค้า</a>
+          <a href="/cart" class="text-white">ตะกร้าสินค้า</a>
         </li>
         <li class="text-white">
           <a href="/payments" class="text-white">วิธีการสั่งซื้อ</a>
