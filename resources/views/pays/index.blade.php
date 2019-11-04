@@ -14,7 +14,7 @@
         <div class="card">
             <div class="card-body">
             <h5 class="card-title">
-                <a href="{{ action('PaysController@show', [$pay->id]) }}">Order หมายเลข : {{ $pay->id }}</a>
+                <a href="{{ action('PaysController@show', [$pay->id]) }}">Order หมายเลข : {{ $pay->order_id }}</a>
             </h5>
             <p>จำนวนเงินที่ชำระ : {{ $pay->price}}</p>
             <p>ผู้ชำระเงิน : {{ $pay->first_name}} {{ $pay->last_name}}</p>
