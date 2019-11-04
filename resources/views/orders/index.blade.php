@@ -19,7 +19,7 @@
   <form action="{{url('/orders/search/1')}}" method="POST">
       @csrf
     <div class="input-group col-md-4">
-      <select class="custom-select" id="inputGroupSelect04" name = "select"aria-label="Example select with button addon">
+    สถานะ : <select class="custom-select" id="inputGroupSelect04" name = "select"aria-label="Example select with button addon">
         <option selected> {{$status}}</option>
           <option value="ทั้งหมด">ทั้งหมด</option>
         <option value="ยังไม่ชำระเงิน">ยังไม่ชำระเงิน</option>

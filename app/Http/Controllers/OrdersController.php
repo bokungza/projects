@@ -23,7 +23,7 @@ class OrdersController extends Controller
             $orders = Order::all()->skip(15 * ($page - 1))->take(15);
             $count = DB::table('orders')->count();
         } else if (Auth::user()->isCustomer()){
-            $orders = Order::all()->where('user_id',Auth::user()->id)->skip(15 * ($page - 1))->take(15);
+            $orders = Order::all()->where('user_id',Auth::user()->id)->sortByDesc('updated_at')->skip(15 * ($page - 1))->take(15);
             $count = DB::table('orders')->where('user_id',Auth::user()->id)->count();
         }
         $page_count = $count / 15;
@@ -121,7 +121,7 @@ class OrdersController extends Controller
         $order->status = $request->input('status');
         $order->save();
         $page =1;
-        $orders = Order::all()->skip(15 * ($page - 1))->take(15);
+        $orders = Order::all()->sortByDesc('updated_at')->skip(15 * ($page - 1))->take(15);
         $count = DB::table('orders')->count();
         $page_count = $count / 15;
         return view('orders.index',['orders'=>$orders , 'page_count' => $page_count,'message'=>'อัพเดตเรียบร้อย','status'=>'ทั้งหมด']);
@@ -140,7 +140,7 @@ class OrdersController extends Controller
 
       $order->delete();
       $page =1;
-      $orders = Order::all()->skip(15 * ($page - 1))->take(15);
+      $orders = Order::all()->sortByDesc('updated_at')->skip(15 * ($page - 1))->take(15);
       $count = DB::table('orders')->count();
       $page_count = $count / 15;
       return view('orders.index',['orders'=>$orders , 'page_count' => $page_count,'message'=>'ลบเรียบร้อย','status'=>'ทั้งหมด']);
@@ -152,10 +152,10 @@ class OrdersController extends Controller
             return $this->index();
         }
         if (Auth::user()->isAdmin()){
-            $orders = Order::all()->where('status',$request->input('select'))->skip(15 * ($page - 1))->take(15);
+            $orders = Order::all()->where('status',$request->input('select'))->sortByDesc('updated_at')->skip(15 * ($page - 1))->take(15);
             $count = DB::table('orders')->where('status',$request->input('select'))->count();
         } else if (Auth::user()->isCustomer()){
-            $orders = Order::all()->where('status',$request->input('select'))->where('user_id',Auth::user()->id)->skip(15 * ($page - 1))->take(15);
+            $orders = Order::all()->where('status',$request->input('select'))->where('user_id',Auth::user()->id)->sortByDesc('updated_at')->skip(15 * ($page - 1))->take(15);
             $count = DB::table('orders')->where('status',$request->input('select'))->where('user_id',Auth::user()->id)->count();
         }
 
