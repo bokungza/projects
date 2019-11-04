@@ -47,8 +47,8 @@ class ProductsController extends Controller
         $validatedData = $request->validate([
             'name' => ['required' , 'min:5' , 'max:255'],
             'detail' => ['required'],
-            'price' => ['required' , 'min:1' , 'numeric'],
-            'count' => ['required' , 'min:1' , 'numeric'],
+            'price' => ['required' , 'min:1' , 'numeric', 'gt:-1'],
+            'count' => ['required' , 'min:1' , 'numeric', 'gt:-1'],
             'image' => 'required|image|mimes:jpeg,png,jpg',
         ]);
 
@@ -77,7 +77,7 @@ class ProductsController extends Controller
     public function update(Request $request, Product $product)
     {
         $validatedData = $request->validate([
-            'count' => ['required' , 'min:1' , 'max:255'],
+            'count' => ['required' , 'min:1' , 'max:255','gt:-1'],
         ]);
 
         $product->count = $validatedData['count'];
