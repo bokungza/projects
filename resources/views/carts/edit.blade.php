@@ -90,7 +90,7 @@
                                                         @method('DELETE')
                                                         <button type='submit' class="btn btn-danger">ใช่</button>
                                                 </form>
-                                                <button type="button" class="btn btn-primary" data-dismiss="modal">ไม่</button>
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">ไม่</button>
                                             </div>
                                             </div>
                                         </div>

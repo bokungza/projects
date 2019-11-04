@@ -8,8 +8,8 @@
     <div class="row">
       <div class="col-md-6 mt-md-0 mt-3">
         <h5 class="text-uppercase font-weight-bold text-white">ติดต่อเรา</h5>
-        <li class="text-white">Email : XXXXX@hotmail.com</li>
-        <li class="text-white">โทร : 08X-XXX-XXXX หรือ 02-XXX-XXXX</li>
+        <li class="text-white">Email : Example@hotmail.com</li>
+        <li class="text-white">โทร : 084-123-0845 หรือ 02-584-4632</li>
         <br>
       </div>
 
