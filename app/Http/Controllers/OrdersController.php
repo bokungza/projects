@@ -19,8 +19,13 @@ class OrdersController extends Controller
      $this->middleware('auth');
  }
     public function index($page = 1) {
-        $orders = Order::all()->skip(15 * ($page - 1))->take(15);
-        $count = DB::table('orders')->count();
+        if (Auth::user()->isAdmin()){
+            $orders = Order::all()->skip(15 * ($page - 1))->take(15);
+            $count = DB::table('orders')->count();
+        } else if (Auth::user()->isCustomer()){
+            $orders = Order::all()->where('user_id',Auth::user()->id)->skip(15 * ($page - 1))->take(15);
+            $count = DB::table('orders')->where('user_id',Auth::user()->id)->count();
+        }
         $page_count = $count / 15;
         return view('orders.index',['orders'=>$orders , 'page_count' => $page_count]);
     }

@@ -15,11 +15,16 @@ class PaysController extends Controller
     public function __construct(){
         $this->middleware('auth');
     }
-    public function index($page = 1) {
+    public function index($page = 1){
         $user = Auth::user();
         $orders = $user->orders()->get();
-        $pays = pay::all()->sortByDesc('id')->skip(($page-1)*15)->take(15);
-        $count = pay::all()->count();
+        if (Auth::user()->isAdmin()){
+            $pays = pay::all()->sortByDesc('id')->skip(($page-1)*15)->take(15);
+            $count = pay::all()->count();
+        } else if (Auth::user()->isCustomer()){
+            $pays = pay::all()->where('user_id',Auth::user()->id)->sortByDesc('id')->skip(($page-1)*15)->take(15);
+            $count = pay::all()->where('user_id',Auth::user()->id)->count();
+        }
         $page_count = $count / 15;
         return view('pays.index', ['pays' => $pays,'orders' => $orders , 'page_count' => $page_count]);
     }
