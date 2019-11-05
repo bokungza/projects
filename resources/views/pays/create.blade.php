@@ -6,7 +6,7 @@
     @csrf
     เลือกรายการชำระเงิน : <div class="card">
     @foreach ($orders as $order)
-        @if(Auth::user()->id == $order->user_id)
+        @if(Auth::user()->id == $order->user_id && $order->status=="ยังไม่ชำระเงิน" || $order->status=="ชำระเงินผิดพลาด")
             <div class="form-check">
                 <input class="form-check-input @error('order_id') is-invalid @enderror" type="radio" name="order_id" value="{{$order->id}}" checked>
                 <label class="form-check-label">
