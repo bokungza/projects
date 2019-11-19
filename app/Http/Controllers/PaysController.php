@@ -72,7 +72,8 @@ class PaysController extends Controller
         $pay->save();
         $pay = DB::table('orders')
               ->where('id', $pay->order_id)
-              ->update(['status' => 'กำลังตรวจสอบการชำระเงิน']);
+              ->update(['status' => 'กำลังตรวจสอบการชำระเงิน', 'pay_id' => $pay->id]);
+              
         return redirect()->route('pays.index',['pay' => $pay]);
     }
     public function destroy(Pay $pay){
