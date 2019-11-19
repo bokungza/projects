@@ -9,10 +9,14 @@
     "license": "MIT",
     "require": {
         "php": "^7.2",
+        "anhskohbo/no-captcha": "^3.1",
+        "captcha-com/laravel-captcha": "4.*",
         "fideloper/proxy": "^4.0",
+        "google/recaptcha": "^1.2",
         "laravel/framework": "^6.0",
         "laravel/tinker": "^1.0",
-        "laravel/ui": "^1.0"
+        "laravel/ui": "^1.0",
+        "mews/captcha": "^3.0"
     },
     "require-dev": {
         "facade/ignition": "^1.4",
