@@ -74,6 +74,9 @@
 <li class="nav-item">
 <a class="nav-link" href="{{url('/orders/page/1')}}">รายการสั่งของลูกค้า</a>
 </li>
+<li class="nav-item">
+<a class="nav-link" href="{{route('reports.index')}}">รายงานยอดขายสินค้า</a>
+</li>
 </ul>
 <ul class="navbar-nav ml-auto ">
 @endif
