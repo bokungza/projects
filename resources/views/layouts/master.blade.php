@@ -10,7 +10,7 @@
     <title>{{ env('APP_NAME' )}}</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
     <link href="{{ captcha_layout_stylesheet_url() }}" type="text/css" rel="stylesheet">
-    
+
 
 </head>
 <body>
@@ -35,6 +35,18 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <script>
+    // Change the type of input to password or text
+        function Toggle() {
+            var temp = document.getElementById("password");
+            if (temp.type === "password") {
+                temp.type = "text";
+            }
+            else {
+                temp.type = "password";
+            }
+        }
+</script>
+    <script>
         $('.btn-refresh').click(function(){
             $.ajax({
               type: 'GET',
@@ -45,6 +57,7 @@
             })
         });
     </script>
+  
 </body>
 
 

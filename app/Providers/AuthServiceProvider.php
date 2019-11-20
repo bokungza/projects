@@ -60,6 +60,9 @@ class AuthServiceProvider extends ServiceProvider
             return Auth::user()->isAdmin()
                 or Auth::user()->id === $pay->user_id;
         });
+        Gate::define('index-report',function($user,$report){
+            return $user->isAdmin();
+        });
 
 
     }

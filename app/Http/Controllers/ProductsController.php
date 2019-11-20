@@ -17,7 +17,9 @@ class ProductsController extends Controller
         $this->middleware('auth')->except(['index','show']);
     }
     public function index() {
-        $products = Product::all();
+      $products = DB::table('products')
+              ->orderBy('sales', 'desc')
+              ->get();
         return view('products.index',['products' => $products]);
     }
     public function add(){
