@@ -65,7 +65,7 @@ class CartsController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'count' => ['required' , 'min:1' , 'max:255'],
+            'count' => ['required' , 'min:1' , 'max:255' , 'gt:0'],
             'pid' => ['required']
         ]);
         $product = Product::findOrFail($validatedData['pid']);
