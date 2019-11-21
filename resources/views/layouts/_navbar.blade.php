@@ -25,7 +25,7 @@
       @auth
 @if(Auth::user()->role == "CUSTOMER")
        <ul class="navbar-nav mr-auto">
-<li class="nav-item active">
+<li class="nav-item">
 <a class="nav-link" href="{{route('home')}}">หน้าหลัก
  <span class="sr-only">(current)</span>
 </a>
@@ -51,7 +51,7 @@
      @endif
      @if(Auth::user()->role == "ADMIN")
      <ul class="navbar-nav mr-auto">
-<li class="nav-item active">
+<li class="nav-item">
 <a class="nav-link" href="{{route('home')}}">หน้าหลัก
  <span class="sr-only">(current)</span>
 </a>
