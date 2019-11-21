@@ -17,7 +17,7 @@ class PaysController extends Controller
     }
     public function index($page = 1){
         $user = Auth::user();
-        $orders = $user->orders()->get();
+        $orders = Order::all()->skip(15 * ($page - 1))->take(15);
         if (Auth::user()->isAdmin()){
             $pays = pay::all()->sortByDesc('id')->skip(($page-1)*15)->take(15);
             $count = pay::all()->count();
@@ -34,7 +34,7 @@ class PaysController extends Controller
             return redirect()->route('pays.index');
         }
         $user = Auth::user();
-        $orders = $user->orders()->get();
+        $orders = Order::all();
         return view('pays.show', ['pay' => $pays,'orders' => $orders]);
     }
     public function create(){
@@ -72,7 +72,8 @@ class PaysController extends Controller
         $pay->save();
         $pay = DB::table('orders')
               ->where('id', $pay->order_id)
-              ->update(['status' => 'กำลังตรวจสอบการชำระเงิน']);
+              ->update(['status' => 'กำลังตรวจสอบการชำระเงิน', 'pay_id' => $pay->id]);
+              
         return redirect()->route('pays.index',['pay' => $pay]);
     }
     public function destroy(Pay $pay){

@@ -18,6 +18,8 @@
                         </h5>
                         <p>จำนวนเงินที่ชำระ : {{ $pay->price}}</p>
                         <p>ผู้ชำระเงิน : {{ $pay->first_name}} {{ $pay->last_name}}</p>
+                        @if (Auth::user()->role == "ADMIN")
+                            @endif
                         @foreach ($orders as $order)
                             @if ($order->id === $pay->order_id )
                                 @if ($order->status == 'ยังไม่ชำระเงิน' || $order->status == 'ชำระเงินผิดพลาด')

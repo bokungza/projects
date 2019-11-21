@@ -81,8 +81,13 @@
         @if(Auth::user()->role == "CUSTOMER")
         <p class="text-center"><a class="float-center btn btn-primary" href="{{ action('PaysController@create') }}" role="button">แจ้งชำระเงิน</a><p>
         @elseif(Auth::user()->role == "ADMIN")
-        <p class="text-center"><a class="float-center btn btn-primary" href="/pays" role="button">ดูการแจ้งชำระเงิน</a><p>
+         @if ($order->pay_id == 0)
+          <p class="text-center"><a class="float-center btn btn-primary" href="/pays" role="button">ดูการแจ้งชำระเงินทั้งหมด</a><p>
+          @else
+          <p class="text-center"><a class="float-center btn btn-primary" href="/pays/{{ $order->pay_id}}" role="button">ดูการแจ้งชำระเงิน</a><p>
           @endif
+          
+        @endif
 
       </div>
     </div>

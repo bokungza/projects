@@ -16,6 +16,7 @@ class CreateOrdersTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->double('total_price');
+            $table->bigInteger('pay_id')->default(0);
             $table->enum('status',['ยังไม่ชำระเงิน','กำลังตรวจสอบการชำระเงิน','ชำระเงินผิดพลาด','กำลังเตรียมส่ง','จัดส่งเรียบร้อย'])->default('ยังไม่ชำระเงิน');
             $table->timestamps();
         });
