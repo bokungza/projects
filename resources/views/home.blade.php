@@ -30,7 +30,7 @@
                     <img class="img" src="img/{{$product->picture}}">
                 </a>
                 <span>{{$product->name}}<br>{{$product->detail}}</span>
-                <p class = "p">฿{{$product->unit_price}}</p>
+                <p class = "p">กิโลกรัมละ {{$product->unit_price}} บาท</p>
             </div>
         @endforeach
     </div>

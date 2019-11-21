@@ -14,7 +14,7 @@
                     <p>จำนวนเงิน : {{$order->total_price}}</p>
                 </label>
                 <hr>
-                
+
             </div>
             @error('order_id')
             <div class = 'alert alert-danger'>{{$message}}</div>
@@ -46,6 +46,9 @@
       @enderror
     </div>
     <div class="col">
+
+
+
       นามสกุล : <input type="text" name= 'last_name' class="form-control @error('last_name') is-invalid @enderror" value="{{ Auth::user()->last_name }}"><br>
       @error('last_name')
       <div class = 'alert alert-danger'>{{$message}}</div>
@@ -59,7 +62,9 @@
         @enderror
     </div>
     <div>
-        <input id="file-upload" type="file" name="image" style="margin-bottom: 10px" class = "@error('image') is-invalid @enderror"><br>
+      <img id="blah" alt="" width="500" height="500"><br>
+      <input  id="file-upload"  type="file" onchange="document.getElementById('blah').src = window.URL.createObjectURL(this.files[0])"name = "image"class = "@error('image') is-invalid @enderror">
+
         @error('image')
         <div class = 'alert alert-danger'>{{$message}}</div>
         @enderror

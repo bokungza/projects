@@ -16,7 +16,7 @@
         <div class = "detail-container">
             <h3>{{ $product->name }}</h3><hr>
             <p>{{ $product->detail }}</p>
-            <p style="float: left;width: 50%;" class = "p-detail">฿{{ $product->unit_price }}</p>
+            <p style="float: left;width: 50%;" class = "p-detail">กิโลกรัมละ {{ $product->unit_price }} บาท</p>
             <p style="float: right ; width: 50% ;text-align: right" class = "p-detail">In Stock : {{$product->count}}</p>
             @if (Gate::allows('add-cart',\App\Cart::class))
                 <form action="{{ route('cart.store') }}" method = 'post' style="float: left;width: 100%">
