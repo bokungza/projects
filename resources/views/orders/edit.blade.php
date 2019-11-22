@@ -25,16 +25,11 @@
         <label for="status">อัพเดตถานะ : </label>
       <select class="custom-select" id="inputGroupSelect02" name='status'>
         <option selected>{{ $order->status}}</option>
-        @if ($order->status == "ยังไม่ชำระเงิน")
-        <option >กำลังตรวจสอบการชำระเงิน</option>
-        <option >ชำระเงินผิดพลาด</option>
-        <option >กำลังเตรียมส่ง</option>
-        <option >จัดส่งเรียบร้อย</option>
+        @if ($order->status == "ยังไม่ชำระเงิน" || $order->status == "ชำระเงินผิดพลาด")
         @elseif ($order->status == "กำลังตรวจสอบการชำระเงิน")
         <option >ชำระเงินผิดพลาด</option>
         <option >กำลังเตรียมส่ง</option>
         <option >จัดส่งเรียบร้อย</option>
-        @elseif ($order->status == "ชำระเงินผิดพลาด")
         @elseif ($order->status == "กำลังเตรียมส่ง")
         <option >จัดส่งเรียบร้อย</option>
         @elseif ($order->status == "จัดส่งเรียบร้อย")
