@@ -31,25 +31,13 @@
         <option >กำลังเตรียมส่ง</option>
         <option >จัดส่งเรียบร้อย</option>
         @elseif ($order->status == "กำลังตรวจสอบการชำระเงิน")
-        <option >ยังไม่ชำระเงิน</option>
         <option >ชำระเงินผิดพลาด</option>
         <option >กำลังเตรียมส่ง</option>
         <option >จัดส่งเรียบร้อย</option>
         @elseif ($order->status == "ชำระเงินผิดพลาด")
-        <option >ยังไม่ชำระเงิน</option>
-        <option >กำลังตรวจสอบการชำระเงิน</option>
-        <option >กำลังเตรียมส่ง</option>
-        <option >จัดส่งเรียบร้อย</option>
         @elseif ($order->status == "กำลังเตรียมส่ง")
-        <option >ยังไม่ชำระเงิน</option>
-        <option >กำลังตรวจสอบการชำระเงิน</option>
-        <option >ชำระเงินผิดพลาด</option>
         <option >จัดส่งเรียบร้อย</option>
         @elseif ($order->status == "จัดส่งเรียบร้อย")
-        <option >ยังไม่ชำระเงิน</option>
-        <option >กำลังตรวจสอบการชำระเงิน</option>
-        <option >ชำระเงินผิดพลาด</option>
-        <option >กำลังเตรียมส่ง</option>
         @endif
       </select>
       <div class="input-group-append">
