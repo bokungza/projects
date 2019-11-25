@@ -58,7 +58,7 @@
                                             @method('PUT')
                                         <td class="border-0 align-middle text-center"><strong>฿{{$product->unit_price}}</strong></td>
                                         <td class="border-0 align-middle text-center">
-                                            <input type="number" value="{{$cart->count}}" name="count" style="width: 30%">
+                                            <input type="number" value="{{$cart->count}}" name="count" style="width: 50%" min="1" max="99" value="1">
                                         </td>
                                         <td class="border-0 align-middle text-center"><strong>฿{{$cart->total_price}}</strong></td>
                                         <td class="border-0 align-middle text-center"><strong>{{$product->count}}</strong></td>
