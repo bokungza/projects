@@ -79,7 +79,7 @@
             @if(Auth::user()->role == "CUSTOMER")
 
             @if ($order->status == 'ยังไม่ชำระเงิน' || $order->status == 'ชำระเงินผิดพลาด' )
-            <td >
+              <td >
                         <form  onsubmit="return confirm('คุณต้องการลบคำสั่งซื้อนี้ใช่ไหม!');" method = "post" action ="{{route('orders.destroy' , ['order'=>$order->id])}}" >
                           @csrf
                           <input type="hidden" name="_method" value="DELETE">
@@ -96,11 +96,13 @@
           @endif
           @if(Auth::user()->role == "ADMIN")
           <td >
-                      <form  onsubmit="return confirm('คุณต้องการลบคำสั่งซื้อนี้ใช่ไหม!');" method = "post" action ="{{route('orders.destroy' , ['order'=>$order->id])}}" >
+              @if ($order->status == 'ยังไม่ชำระเงิน' || $order->status == 'ชำระเงินผิดพลาด' )
+                    <form  onsubmit="return confirm('คุณต้องการลบคำสั่งซื้อนี้ใช่ไหม!');" method = "post" action ="{{route('orders.destroy' , ['order'=>$order->id])}}" >
                         @csrf
                         <input type="hidden" name="_method" value="DELETE">
                       <button type="submit" class="btn btn-danger ">ลบ</button>
                     </form>
+              @endif
 
             </td>
           @endif

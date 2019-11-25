@@ -37,7 +37,9 @@
             @endcan
             <a class="btn btn-primary" href="/orders/{{ $pay->order_id }}" role="button">เช็ครายการ</a>
             @can('delete',$pay)
-            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">ลบข้อมูล</button>
+              @if ($order->status == 'ชำระเงินผิดพลาด')
+              <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">ลบข้อมูล</button>
+              @endif
             @endcan
             <a class="btn btn-primary" href="/pays/" role="button">ย้อนกลับ</a>
               <!-- Modal -->
