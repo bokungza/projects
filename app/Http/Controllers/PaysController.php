@@ -48,10 +48,11 @@ class PaysController extends Controller
             'order_id' => ['required' , 'min:1'],
             'user_id' => ['required' , 'max:500'],
             'bank' => ['required' , 'max:500'],
+            'refer_number' => ['required' ,'alpha_dash','min:10', 'max:30'],
             'pay_time' => ['required' , 'min:1'],
-            'first_name' => ['required' , 'max:500'],
-            'last_name' => ['required' , 'max:500'],
-            'price' => ['required' , 'min:1'],
+            'first_name' => ['required' ,'alpha_dash', 'max:500'],
+            'last_name' => ['required' ,'alpha_dash', 'max:500'],
+            'price' => ['required' , 'min:1', 'numeric', 'gt:-1'],
             'image' => 'required|image|mimes:jpeg,png,jpg',
         ]);
 
@@ -65,6 +66,7 @@ class PaysController extends Controller
         $pay->order_id = $validatedData['order_id'];
         $pay->user_id = $validatedData['user_id'];
         $pay->bank = $validatedData['bank'];
+        $pay->refer_number = $validatedData['refer_number'];
         $pay->pay_time = $validatedData['pay_time'];
         $pay->first_name = $validatedData['first_name'];
         $pay->last_name = $validatedData['last_name'];
