@@ -6,10 +6,11 @@
 <form action="{{route('addresses.update', ['id' => $address->id])}}" method="post">
   @csrf
 
+<input type="hidden"  name="type" >
   <div class="form-row">
     <div class="col-md-2 mb-3">
       <label>บ้านเลขที่</label>
-      <input type="text" class="form-control" placeholder="่บ้านเลขที่"  name = 'house_address' value ='{{$address->house_address}}' required>
+      <input type="text" class="form-control" placeholder="่บ้านเลขที่"  name = 'house_address' value ='{{$address->house_address}}'pattern="[0-9/-]{1,}" required>
       <div class="valid-feedback">
         ดีมาก!
       </div>
@@ -21,7 +22,7 @@
     <div class="col-md-5 mb-3">
       <label>ถนน</label>
       <div class="input-group">
-        <input type="text" class="form-control"  name = 'street' value ='{{$address->street}}' placeholder="ถนน"  required>
+        <input type="text" class="form-control"  name = 'street' value ='{{$address->street}}' placeholder="ถนน" pattern="[A-Za-zก-ฮะัาำิีึืุูํเแโใไ็่้๊๋์0-9]{1,}" required>
         <div class="valid-feedback">
           ดีมาก!
         </div>
@@ -32,7 +33,7 @@
     </div>
     <div class="col-md-5 mb-3">
       <label >ตำบล/แขวง</label>
-      <input type="text" class="form-control"  name = 'sub_district' value ='{{$address->sub_district}}' placeholder="ตำบล/แขวง" required>
+      <input type="text" class="form-control"  name = 'sub_district' value ='{{$address->sub_district}}' placeholder="ตำบล/แขวง" pattern="[A-Za-zก-ฮะัาำิีึืุูํเแโใไ็่้๊๋์]{1,}"required>
       <div class="valid-feedback">
         ดีมาก!
       </div>
@@ -45,7 +46,7 @@
 
     <div class="col-md-4 mb-3">
       <label>อำเภอ/เขต</label>
-      <input type="text" class="form-control" name = 'district'value ='{{$address->district}}'  placeholder="อำเภอ/เขต" required>
+      <input type="text" class="form-control" name = 'district'value ='{{$address->district}}'  placeholder="อำเภอ/เขต" pattern="[A-Za-zก-ฮะัาำิีึืุูํเแโใไ็่้๊๋์]{1,}"required>
       <div class="valid-feedback">
         ดีมาก!
       </div>
@@ -55,7 +56,7 @@
     </div>
     <div class="col-md-2 mb-3">
       <label >รหัสไปรษณีย์</label>
-      <input type="number" class="form-control"  name = 'zip_code' value ='{{$address->zip_code}}' placeholder="รหัสไปรษณีย์"  required>
+      <input type="number" class="form-control"  name = 'zip_code' value ='{{$address->zip_code}}' placeholder="รหัสไปรษณีย์"  min="10000" max="99999" required>
       <div class="valid-feedback">
         ดีมาก!
       </div>

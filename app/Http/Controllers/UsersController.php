@@ -129,7 +129,7 @@ class UsersController extends Controller
      */
     public function destroy(User $user)
     {
-        
+
         $user->delete();
         $page =1;
         $users = DB::table('users')->where('role','=','CUSTOMER')

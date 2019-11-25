@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use App\User;
 use Auth;
 use App\Cart;
@@ -9,19 +7,16 @@ use App\Product;
 use Illuminate\Http\Request;
 use Gate;
 use Illuminate\Support\Facades\DB;
-
 class CartsController extends Controller
 {
   public function __construct(){
      $this->middleware('auth');
  }
-
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-
     public function index()
     {
       if ( Gate::denies('index-cart',Cart::class)){
@@ -45,7 +40,6 @@ class CartsController extends Controller
                'total_price' => $total_price
            ]);
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -55,7 +49,6 @@ class CartsController extends Controller
     {
         //
     }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -88,7 +81,6 @@ class CartsController extends Controller
         }
         return redirect()->route('products.show',['product' => $product->id]);
     }
-
     /**
      * Display the specified resource.
      *
@@ -99,7 +91,6 @@ class CartsController extends Controller
     {
         //
     }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -121,7 +112,6 @@ class CartsController extends Controller
         $total_price = DB::table('carts')
             ->where('user_id', Auth::user()->id)
             ->sum('total_price');
-
         return view('carts.edit',[
             'carts' => $carts,
             'address' => $address ,
@@ -130,7 +120,6 @@ class CartsController extends Controller
             'total_price' => $total_price
         ]);
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -152,7 +141,6 @@ class CartsController extends Controller
         $cart->save();
         return $this->index();
     }
-
     /**
      * Remove the specified resource from storage.
      *

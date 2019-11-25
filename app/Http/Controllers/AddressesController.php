@@ -1,10 +1,8 @@
 <?php
-
 namespace App\Http\Controllers;
 use Auth;
 use App\Address;
 use Illuminate\Http\Request;
-
 class AddressesController extends Controller
 {
   public function __construct(){
@@ -20,9 +18,7 @@ class AddressesController extends Controller
       $user = Auth::user();
       $address = $user->addresses()->latest()->first();
        return view('users.profile',['user'=>$user,'address'=>$address]);
-
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -32,7 +28,6 @@ class AddressesController extends Controller
     {
         return view('addresses.create');
     }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -52,9 +47,8 @@ class AddressesController extends Controller
       $address->save();
       $user = Auth::user();
       $address = $user->addresses()->latest()->first();
-      return view('users.profile',['user'=>$user,'address'=>$address,'message'=>'แก้ไขเรียบร้อย']);
+      return view('users.profile',['user'=>$user,'address'=>$address,'message'=>'เพิ่มเรียบร้อย']);
     }
-
     /**
      * Display the specified resource.
      *
@@ -65,7 +59,6 @@ class AddressesController extends Controller
     {
         //
     }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -77,7 +70,6 @@ class AddressesController extends Controller
       $address = Address::findOrFail($id);
       return view('addresses.edit', ['address' => $address]);
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -100,7 +92,6 @@ class AddressesController extends Controller
       $address = $user->addresses()->latest()->first();
       return view('users.profile',['user'=>$user,'address'=>$address,'message'=>'แก้ไขเรียบร้อย']);
     }
-
     /**
      * Remove the specified resource from storage.
      *
@@ -109,6 +100,5 @@ class AddressesController extends Controller
      */
     public function destroy(Address $address)
     {
-
     }
 }

@@ -15,6 +15,7 @@ Route::get('/', 'HomeController@index')->name('home');
 
 Route::post('/testdb','ProductsController@index');
 Route::get('/refresh_captcha','Auth\RegisterController@refreshCaptcha')->name('refresh');
+Route::get('/address/edit','AddressesController@edit')->name('address.edit');
 Route::get('/change-password', 'Auth\ChangePasswordController@index')->name('password.change');
 Route::post('/change-password', 'Auth\ChangePasswordController@changepassword')->name('password.updated');
 Route::get('/pays/page/{page}', 'PaysController@index')->middleware('auth');
