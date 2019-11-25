@@ -39,20 +39,20 @@
         @enderror
     </div>
     <div>
-        เลขอ้างอิง : <input type="number" name='refer_number' class="form-control @error('refer_number') is-invalid @enderror" value="{{ old('refer_number')}}"><br>
+        เลขอ้างอิง : <input type="name" name='refer_number' class="form-control @error('refer_number') is-invalid @enderror" value="{{ old('refer_number')}}"><br>
         @error('refer_number')
         <div class = 'alert alert-danger'>{{$message}}</div>
         @enderror
     </div>
     <div class="row">
     <div class="col">
-      ชื่อ : <input type="text" name= 'first_name' class="form-control @error('first_name') is-invalid @enderror" value="{{ Auth::user()->first_name }}"><br>
+      ชื่อ : <input type="name" name= 'first_name' class="form-control @error('first_name') is-invalid @enderror" value="{{ Auth::user()->first_name }}"><br>
       @error('first_name')
       <div class = 'alert alert-danger'>{{$message}}</div>
       @enderror
     </div>
     <div class="col">
-      นามสกุล : <input type="text" name= 'last_name' class="form-control @error('last_name') is-invalid @enderror" value="{{ Auth::user()->last_name }}"><br>
+      นามสกุล : <input type="name" name= 'last_name' class="form-control @error('last_name') is-invalid @enderror" value="{{ Auth::user()->last_name }}"><br>
       @error('last_name')
       <div class = 'alert alert-danger'>{{$message}}</div>
       @enderror

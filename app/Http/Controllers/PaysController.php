@@ -48,10 +48,10 @@ class PaysController extends Controller
             'order_id' => ['required' , 'min:1'],
             'user_id' => ['required' , 'max:500'],
             'bank' => ['required' , 'max:500'],
-            'refer_number' => ['required' , 'min:10', 'max:30'],
+            'refer_number' => ['required' ,'alpha_dash','min:10', 'max:30'],
             'pay_time' => ['required' , 'min:1'],
-            'first_name' => ['required' , 'max:500'],
-            'last_name' => ['required' , 'max:500'],
+            'first_name' => ['required' ,'alpha_dash', 'max:500'],
+            'last_name' => ['required' ,'alpha_dash', 'max:500'],
             'price' => ['required' , 'min:1', 'numeric', 'gt:-1'],
             'image' => 'required|image|mimes:jpeg,png,jpg',
         ]);
