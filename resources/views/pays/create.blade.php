@@ -13,6 +13,7 @@
                     <p>Order หมายเลข : {{$order->id}}</p>
                     <p>จำนวนเงิน : {{$order->total_price}}</p>
                 </label>
+
                 <hr>
 
             </div>

@@ -8,6 +8,6 @@ use Faker\Generator as Faker;
 $factory->define(Order::class, function (Faker $faker) {
     return [
       'total_price' =>  $faker->numberBetween(200,50000),
-      'status' => $faker->randomElement(['ยังไม่ชำระเงิน','กำลังตรวจสอบการชำระเงิน','ชำระเงินผิดพลาด','กำลังเตรียมส่ง','จัดส่งเรียบร้อย']),
+      'status' => $faker->randomElement(['ยังไม่ชำระเงิน','กำลังตรวจสอบการชำระเงิน','ชำระเงินผิดพลาด','ชำระเงินถูกต้องกำลังเตรียมส่ง','จัดส่งเรียบร้อย']),
     ];
 });

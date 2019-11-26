@@ -28,8 +28,8 @@
         @if ($order->status == "ยังไม่ชำระเงิน" || $order->status == "ชำระเงินผิดพลาด" || $order->status == "จัดส่งเรียบร้อย")
         @elseif ($order->status == "กำลังตรวจสอบการชำระเงิน")
         <option >ชำระเงินผิดพลาด</option>
-        <option >กำลังเตรียมส่ง</option>
-        @elseif ($order->status == "กำลังเตรียมส่ง")
+        <option >ชำระเงินถูกต้องกำลังเตรียมส่ง</option>
+        @elseif ($order->status == "ชำระเงินถูกต้องกำลังเตรียมส่ง")
         <option >จัดส่งเรียบร้อย</option>
         @endif
       </select>
