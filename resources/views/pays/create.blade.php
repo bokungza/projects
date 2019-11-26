@@ -13,13 +13,11 @@
                     <p>Order หมายเลข : {{$order->id}}</p>
                     <p>จำนวนเงิน : {{$order->total_price}}</p>
                 </label>
-
-                <hr>
-
             </div>
             @error('order_id')
             <div class = 'alert alert-danger'>{{$message}}</div>
             @enderror
+            <hr>
         @endif
     @endforeach
     </div>
