@@ -26,7 +26,7 @@
                     <option value="ยังไม่ชำระเงิน">ยังไม่ชำระเงิน</option>
                     <option value="กำลังตรวจสอบการชำระเงิน">กำลังตรวจสอบการชำระเงิน</option>
                     <option value="ชำระเงินผิดพลาด">ชำระเงินผิดพลาด</option>
-                    <option value="กำลังเตรียมส่ง">กำลังเตรียมส่ง</option>
+                    <option value="ชำระเงินถูกต้องกำลังเตรียมส่ง">ชำระเงินถูกต้องกำลังเตรียมส่ง</option>
                     <option value="จัดส่งเรียบร้อย">จัดส่งเรียบร้อย</option>
                 </select>
                 <div class="input-group-append">
