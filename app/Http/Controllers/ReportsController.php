@@ -34,7 +34,54 @@ class ReportsController extends Controller
 
       return view('reports.index',['products' => $products,'total'=>$total]);
     }
+    public function search(Request $request)
+    {
+      $total =DB::table('sales_histories')
+           ->whereBetween('sales_date', [$request->input('from'), $request->input('to')])
+           ->sum('total_price');
 
+      $total1 =DB::table('sales_histories')->where('product_id', 1)
+           ->whereBetween('sales_date', [$request->input('from'), $request->input('to')])
+           ->sum('total_price');
+      $total2 =DB::table('sales_histories')->where('product_id', 2)
+            ->whereBetween('sales_date', [$request->input('from'), $request->input('to')])
+           ->sum('total_price');
+      $total3=DB::table('sales_histories')->where('product_id', 3)
+            ->whereBetween('sales_date', [$request->input('from'), $request->input('to')])
+           ->sum('total_price');
+      $total4 =DB::table('sales_histories')->where('product_id', 4)
+                    ->whereBetween('sales_date', [$request->input('from'), $request->input('to')])
+                           ->sum('total_price');
+      $total5 =DB::table('sales_histories')->where('product_id', 5)
+                    ->whereBetween('sales_date', [$request->input('from'), $request->input('to')])
+                 ->sum('total_price');
+      $total6 =DB::table('sales_histories')->where('product_id', 6)
+                                    ->whereBetween('sales_date', [$request->input('from'), $request->input('to')])
+                                   ->sum('weight');
+                                   $weight1 =DB::table('sales_histories')->where('product_id', 1)
+                                        ->whereBetween('sales_date', [$request->input('from'), $request->input('to')])
+                                        ->sum('weight');
+                                   $weight2 =DB::table('sales_histories')->where('product_id', 2)
+                                         ->whereBetween('sales_date', [$request->input('from'), $request->input('to')])
+                                        ->sum('weight');
+                                   $weight3=DB::table('sales_histories')->where('product_id', 3)
+                                         ->whereBetween('sales_date', [$request->input('from'), $request->input('to')])
+                                        ->sum('weight');
+                                    $weight4 =DB::table('sales_histories')->where('product_id', 4)
+                                                 ->whereBetween('sales_date', [$request->input('from'), $request->input('to')])
+                                                        ->sum('weight');
+                                    $weight5 =DB::table('sales_histories')->where('product_id', 5)
+                                                 ->whereBetween('sales_date', [$request->input('from'), $request->input('to')])
+                                              ->sum('weight');
+                                    $weight6=DB::table('sales_histories')->where('product_id', 6)
+                                                                 ->whereBetween('sales_date', [$request->input('from'), $request->input('to')])
+                                                                ->sum('weight');
+            $form=$request->input('from');
+            $to = $request->input('to');
+
+      return view('reports.search',['total'=>$total,'form'=>$form,'to'=>$to,'total1'=>$total1,'total2'=>$total2,'total3'=>$total3,'total4'=>$total4,'total5'=>$total5,'total6'=>$total6
+    ,'weight1'=>$weight1,'weight2'=>$weight2,'weight3'=>$weight3,'weight4'=>$weight4,'weight5'=>$weight5,'weight6'=>$weight6]);
+    }
     /**
      * Show the form for creating a new resource.
      *
