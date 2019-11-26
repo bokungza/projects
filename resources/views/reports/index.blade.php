@@ -11,7 +11,7 @@
     </nav>
     <form action="{{url('/report/search')}}" method="POST">
           @csrf
-่<p class = "text-left"> ค้นหาระหว่างวันที่<input type="date" name="from" min="2019-01-01" max="2019-11-28">ถึงวันที่<input min="2019-01-01" max="2019-11-28"type="date" name="to"><button  type="submit" class="btn btn-primary">ค้นหา</button></p>
+่<p class = "text-left"> ค้นหาระหว่างวันที่ <input type="date" name="from" min="2019-01-01" max="2019-11-28"> ถึงวันที่ <input min="2019-01-01" max="2019-11-28"type="date" name="to"><button  type="submit" class="btn btn-primary">ค้นหา</button></p>
 </form>
     <div class="card-body "id="printableArea">
 

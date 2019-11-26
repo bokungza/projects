@@ -18,7 +18,7 @@
     </span>
       <div class="card-header">
           <h2><p class = "text-center">รายงานยอดขายสินค้า</p></h2>
-          <p class = "text-right">รายงานยอดขายสินค้าตั้งแต่{{$form}}ถึง{{$to}}</p>
+          <p class = "text-right">รายงานยอดขายสินค้าตั้งแต่ <a class="text-danger">{{$form}}</a> ถึง <a class="text-danger">{{$to}}</a></p>
       </div>
       <table class="table  table-bordered table-hover ">
         <thead class="thead-dark">
