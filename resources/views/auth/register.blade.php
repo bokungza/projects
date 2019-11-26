@@ -23,7 +23,7 @@
                             <label for="username" class="col-md-4 col-form-label text-md-right">{{ __('Username') }}</label>
 
                             <div class="col-md-6">
-                                <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
+                                <input id="username" type="text" class="form-control @error('username') is-invalid @enderror"  pattern="[A-Za-z0-9]{1,}" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
 
 
                             </div>
@@ -32,7 +32,7 @@
                             <label for="first_name" class="col-md-4 col-form-label text-md-right">{{ __('Firstname') }}</label>
 
                             <div class="col-md-6">
-                                <input id="first_name" type="text" class="form-control @error('first_name') is-invalid @enderror" name="first_name" value="{{ old('first_name') }}" required autocomplete="first_name" autofocus>
+                                <input id="first_name" type="text" class="form-control @error('first_name') is-invalid @enderror"pattern="[A-Za-zก-ฮะัาำิีึืุูํเแโใไ็่้๊๋์]{1,}" name="first_name" value="{{ old('first_name') }}" required autocomplete="first_name" autofocus>
 
 
                             </div>
@@ -41,7 +41,7 @@
                             <label for="last_name" class="col-md-4 col-form-label text-md-right">{{ __('Lastname') }}</label>
 
                             <div class="col-md-6">
-                                <input id="last_name" type="text" class="form-control @error('last_name') is-invalid @enderror" name="last_name" value="{{ old('last_name') }}" required autocomplete="last_name" autofocus>
+                                <input id="last_name" type="text" class="form-control @error('last_name') is-invalid @enderror" pattern="[A-Za-zก-ฮะัาำิีึืุูํเแโใไ็่้๊๋์]{1,}"name="last_name" value="{{ old('last_name') }}" required autocomplete="last_name" autofocus>
 
 
                             </div>

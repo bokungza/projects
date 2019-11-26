@@ -34,6 +34,11 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script src="html2pdf.bundle.min.js"></script>
+    <script src="https://docraptor.com/docraptor-1.0.0.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+  
     <script>
     // Change the type of input to password or text
         function Toggle() {
@@ -57,7 +62,7 @@
             })
         });
     </script>
-  
+
 </body>
 
 

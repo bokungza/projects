@@ -9,10 +9,11 @@
             <li class="breadcrumb-item active" aria-current="page">รายงานยอดขายสินค้า</li>
         </ol>
     </nav>
-
+่<p class = "text-left"> ค้นหาตั้งแต่วันที่<input type="date" name="bday">ถึงวันที่<input type="date" name="bday"><button type="button" class="btn btn-primary">ค้นหา</button></p>
 
     <div class="card-body "id="printableArea">
 
+    </span>
       <div class="card-header">
           <h2><p class = "text-center">รายงานยอดขายสินค้า</p></h2>
       </div>
@@ -66,4 +67,10 @@ function printDiv(divName) {
 
    document.body.innerHTML = originalContents;
 }
+</script>
+<script>
+	// Date picker only
+	$('#datepicker').datetimepicker({
+		format: 'DD-MM-YYYY'
+	});
 </script>
