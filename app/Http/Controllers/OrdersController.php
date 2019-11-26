@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Cart;
 use App\OrderDetail;
 use App\Product;
+use App\SalesHistory;
 use Illuminate\Http\Request;
 use App\Order;
 use Illuminate\Support\Facades\Auth;
@@ -119,8 +120,19 @@ class OrdersController extends Controller
 
         $order = Order::findOrFail($request->input('id'));
         $order->status = $request->input('status');
+        if ($request->input('status') == 'กำลังเตรียมส่ง'){
+            $order_details = OrderDetail::where('order_id' , $order->id)->get();
+            foreach($order_details as $order_detail){
+                $sales_history = new SalesHistory();
+                $sales_history->product_id = $order_detail->product_id;
+                $sales_history->weight = $order_detail->weight;
+                $sales_history->total_price = $order_detail->price;
+                $sales_history->sales_date = now();
+                $sales_history->save();
+            }
+        }
         $order->save();
-        $page =1;
+        $page = 1;
         $orders = Order::all()->sortByDesc('updated_at')->skip(15 * ($page - 1))->take(15);
         $count = DB::table('orders')->count();
         $page_count = $count / 15;
