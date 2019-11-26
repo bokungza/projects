@@ -120,7 +120,7 @@ class OrdersController extends Controller
 
         $order = Order::findOrFail($request->input('id'));
         $order->status = $request->input('status');
-        if ($request->input('status') == 'กำลังเตรียมส่ง'){
+        if ($request->input('status') == 'ชำระเงินถูกต้องกำลังเตรียมส่ง'){
             $order_details = OrderDetail::where('order_id' , $order->id)->get();
             foreach($order_details as $order_detail){
                 $sales_history = new SalesHistory();
