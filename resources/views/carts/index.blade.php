@@ -153,7 +153,7 @@
 <div class="form-row">
 <div class="col-md-2 mb-3">
   <label>บ้านเลขที่</label>
-<input type="text" class="form-control" placeholder="่บ้านเลขที่"  name = 'house_address' value ='{{$address->house_address}}'pattern="[0-9/]{1,}" required>
+<input type="text" class="form-control" placeholder="่บ้านเลขที่"  name = 'house_address'pattern="[0-9/]{1,}" required>
   <div class="valid-feedback">
     ดีมาก!
   </div>
@@ -165,7 +165,7 @@
 <div class="col-md-5 mb-3">
   <label>ถนน</label>
   <div class="input-group">
-  <input type="text" class="form-control"  name = 'street' value ='{{$address->street}}' placeholder="ถนน" pattern="[A-Za-zก-ฮะัาำิีึืุูํเแโใไ็่้๊๋์0-9]{1,}" required>
+  <input type="text" class="form-control"  name = 'street' placeholder="ถนน" pattern="[A-Za-zก-ฮะัาำิีึืุูํเแโใไ็่้๊๋์0-9]{1,}" required>
     <div class="valid-feedback">
       ดีมาก!
     </div>
@@ -176,7 +176,7 @@
 </div>
 <div class="col-md-5 mb-3">
   <label >ตำบล/แขวง</label>
-<input type="text" class="form-control"  name = 'sub_district' value ='{{$address->sub_district}}' placeholder="ตำบล/แขวง" pattern="[A-Za-zก-ฮะัาำิีึืุูํเแโใไ็่้๊๋์]{1,}"required>
+<input type="text" class="form-control"  name = 'sub_district' placeholder="ตำบล/แขวง" pattern="[A-Za-zก-ฮะัาำิีึืุูํเแโใไ็่้๊๋์]{1,}"required>
   <div class="valid-feedback">
     ดีมาก!
   </div>
@@ -189,7 +189,7 @@
 
 <div class="col-md-4 mb-3">
   <label>อำเภอ/เขต</label>
-<input type="text" class="form-control" name = 'district'value ='{{$address->district}}'  placeholder="อำเภอ/เขต" pattern="[A-Za-zก-ฮะัาำิีึืุูํเแโใไ็่้๊๋์]{1,}"required>
+<input type="text" class="form-control" name = 'district'  placeholder="อำเภอ/เขต" pattern="[A-Za-zก-ฮะัาำิีึืุูํเแโใไ็่้๊๋์]{1,}"required>
   <div class="valid-feedback">
     ดีมาก!
   </div>
