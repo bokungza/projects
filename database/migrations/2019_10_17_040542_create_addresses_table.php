@@ -20,7 +20,7 @@ class CreateAddressesTable extends Migration
             $table->string('sub_district');//แขวง
             $table->string('district');//เขต
             $table->string('province');//จังหวัด
-            $table->string('zip_code');
+            $table->integer('zip_code');
             $table->timestamps();
         });
     }

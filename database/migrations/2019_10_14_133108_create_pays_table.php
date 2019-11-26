@@ -18,6 +18,7 @@ class CreatePaysTable extends Migration
             $table->bigInteger('order_id');
             $table->bigInteger('user_id');
             $table->string('bank');
+            $table->string('refer_number');
             $table->dateTime('pay_time');
             $table->string('first_name');
             $table->string('last_name');

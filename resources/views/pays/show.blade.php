@@ -19,6 +19,7 @@
             <p>ธนาคาร : {{ $pay->bank }}</p>
             <p>ชื่อผู้ชำระเงิน : {{ $pay->first_name }} {{ $pay->last_name }}</p>
             <p>วันและเวลาชำระเงิน :  : {{ $pay->pay_time }}</p>
+            <p>เลขอ้างอิง : {{ $pay->refer_number }}</p>
             <p>จำนวนเงิน : {{ $pay->price }}</p>
             @foreach ($orders as $order)
               @if ($order->id === $pay->order_id )

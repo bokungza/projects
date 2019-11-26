@@ -67,90 +67,93 @@
     ที่อยู่จัดส่ง
   </div>
   <form action="{{ asset('/orders') }}" method = 'post' enctype="multipart/form-data">
+
       @csrf
-        @isset($address)
-  <div class="card-body">
-    <div class="form-row">
-      <div class="col-md-2 mb-3">
-        <label>บ้านเลขที่</label>
-        <input type="text" class="form-control" placeholder="่บ้านเลขที่"  name = 'house_address' value ='{{$address->house_address}}' required>
-        <div class="valid-feedback">
-          ดีมาก!
-        </div>
-        <div class="invalid-feedback">
-          กรุณาใส่บ้านเลขที่!
-        </div>
-      </div>
+          @isset($address)
+          <div class="card-body">
+            <div class="form-row">
+              <div class="col-md-2 mb-3">
+                <label>บ้านเลขที่</label>
+                <input type="text" class="form-control" placeholder="่บ้านเลขที่"  name = 'house_address' value ='{{$address->house_address}}'pattern="[0-9/]{1,}" required>
+                <div class="valid-feedback">
+                  ดีมาก!
+                </div>
+                <div class="invalid-feedback">
+                  กรุณาใส่บ้านเลขที่!
+                </div>
+              </div>
 
-      <div class="col-md-5 mb-3">
-        <label>ถนน</label>
-        <div class="input-group">
-          <input type="text" class="form-control"  name = 'street' value ='{{$address->street}}' placeholder="ถนน"  required>
-          <div class="valid-feedback">
-            ดีมาก!
-          </div>
-          <div class="invalid-feedback">
-          กรุณาใส่ชื่อถนน!
-          </div>
-        </div>
-      </div>
-      <div class="col-md-5 mb-3">
-        <label >ตำบล/แขวง</label>
-        <input type="text" class="form-control"  name = 'sub_district' value ='{{$address->sub_district}}' placeholder="ตำบล/แขวง" required>
-        <div class="valid-feedback">
-          ดีมาก!
-        </div>
-        <div class="invalid-feedback">
-          กรุณาใส่ตำบล/แขวง
-        </div>
-      </div>
-    </div>
-    <div class="form-row">
+              <div class="col-md-5 mb-3">
+                <label>ถนน</label>
+                <div class="input-group">
+                  <input type="text" class="form-control"  name = 'street' value ='{{$address->street}}' placeholder="ถนน" pattern="[A-Za-zก-ฮะัาำิีึืุูํเแโใไ็่้๊๋์0-9]{1,}" required>
+                  <div class="valid-feedback">
+                    ดีมาก!
+                  </div>
+                  <div class="invalid-feedback">
+                  กรุณาใส่ชื่อถนน!
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-5 mb-3">
+                <label >ตำบล/แขวง</label>
+                  <input type="text" class="form-control"  name = 'sub_district' value ='{{$address->sub_district}}' placeholder="ตำบล/แขวง" pattern="[A-Za-zก-ฮะัาำิีึืุูํเแโใไ็่้๊๋์]{1,}"required>
+                <div class="valid-feedback">
+                  ดีมาก!
+                </div>
+                <div class="invalid-feedback">
+                  กรุณาใส่ตำบล/แขวง
+                </div>
+              </div>
+            </div>
+            <div class="form-row">
 
-      <div class="col-md-4 mb-3">
-        <label>อำเภอ/เขต</label>
-        <input type="text" class="form-control" name = 'district'value ='{{$address->district}}'  placeholder="อำเภอ/เขต" required>
-        <div class="valid-feedback">
-          ดีมาก!
-        </div>
-        <div class="invalid-feedback">
-          กรุณาใส่อำเภอ/เขต
-        </div>
-      </div>
-      <div class="col-md-2 mb-3">
-        <label >รหัสไปรษณีย์</label>
-        <input type="number" class="form-control"  name = 'zip_code' value ='{{$address->zip_code}}' placeholder="รหัสไปรษณีย์"  required>
-        <div class="valid-feedback">
-          ดีมาก!
-        </div>
-        <div class="invalid-feedback">
-          กรุณาใส่จังหวัด
-        </div>
-      </div>
-      <div class="col-md-3 mb-3">
-        <label>จังหวัด</label>
-          <select class="custom-select" name = 'province' value ='{{$address->province}}' required>
-          <option selected>{{$address->province}}</option>
-          <option >กรุงเทพมหานคร</option>
-          <option >นนทบุรี</option>
-          <option >ปทุมธานี</option>
-    </select>
-        <div class="valid-feedback">
-          ดีมาก!
-        </div>
-        <div class="invalid-feedback">
-          กรุณาใส่จังหวัด
-        </div>
-      </div>
-    </div>
-  </div>
-  @endisset
+              <div class="col-md-4 mb-3">
+                <label>อำเภอ/เขต</label>
+            <input type="text" class="form-control" name = 'district'value ='{{$address->district}}'  placeholder="อำเภอ/เขต" pattern="[A-Za-zก-ฮะัาำิีึืุูํเแโใไ็่้๊๋์]{1,}"required>
+                <div class="valid-feedback">
+                  ดีมาก!
+                </div>
+                <div class="invalid-feedback">
+                  กรุณาใส่อำเภอ/เขต
+                </div>
+              </div>
+              <div class="col-md-2 mb-3">
+                <label >รหัสไปรษณีย์</label>
+                <input type="number" class="form-control"  name = 'zip_code' value ='{{$address->zip_code}}' placeholder="รหัสไปรษณีย์"   min="10000" max="99999" required>
+                <div class="valid-feedback">
+                  ดีมาก!
+                </div>
+                <div class="invalid-feedback">
+                  กรุณาใส่จังหวัด
+                </div>
+              </div>
+              <div class="col-md-3 mb-3">
+                <label>จังหวัด</label>
+                  <select class="custom-select" name = 'province' value ='{{$address->province}}' required>
+                  <option selected>{{$address->province}}</option>
+                  <option >กรุงเทพมหานคร</option>
+                  <option >นนทบุรี</option>
+                  <option >ปทุมธานี</option>
+            </select>
+                <div class="valid-feedback">
+                  ดีมาก!
+                </div>
+                <div class="invalid-feedback">
+                  กรุณาใส่จังหวัด
+                </div>
+              </div>
+            </div>
+          </div>
+          @endisset
+
+
     @empty($address)
 <div class="card-body">
 <div class="form-row">
 <div class="col-md-2 mb-3">
   <label>บ้านเลขที่</label>
-  <input type="text" class="form-control" placeholder="่บ้านเลขที่"  name = 'house_address'  required>
+<input type="text" class="form-control" placeholder="่บ้านเลขที่"  name = 'house_address' value ='{{$address->house_address}}'pattern="[0-9/]{1,}" required>
   <div class="valid-feedback">
     ดีมาก!
   </div>
@@ -162,7 +165,7 @@
 <div class="col-md-5 mb-3">
   <label>ถนน</label>
   <div class="input-group">
-    <input type="text" class="form-control"  name = 'street'  placeholder="ถนน"  required>
+  <input type="text" class="form-control"  name = 'street' value ='{{$address->street}}' placeholder="ถนน" pattern="[A-Za-zก-ฮะัาำิีึืุูํเแโใไ็่้๊๋์0-9]{1,}" required>
     <div class="valid-feedback">
       ดีมาก!
     </div>
@@ -173,7 +176,7 @@
 </div>
 <div class="col-md-5 mb-3">
   <label >ตำบล/แขวง</label>
-  <input type="text" class="form-control"  name = 'sub_district' placeholder="ตำบล/แขวง" required>
+<input type="text" class="form-control"  name = 'sub_district' value ='{{$address->sub_district}}' placeholder="ตำบล/แขวง" pattern="[A-Za-zก-ฮะัาำิีึืุูํเแโใไ็่้๊๋์]{1,}"required>
   <div class="valid-feedback">
     ดีมาก!
   </div>
@@ -186,7 +189,7 @@
 
 <div class="col-md-4 mb-3">
   <label>อำเภอ/เขต</label>
-  <input type="text" class="form-control" name = 'district'  placeholder="อำเภอ/เขต" required>
+<input type="text" class="form-control" name = 'district'value ='{{$address->district}}'  placeholder="อำเภอ/เขต" pattern="[A-Za-zก-ฮะัาำิีึืุูํเแโใไ็่้๊๋์]{1,}"required>
   <div class="valid-feedback">
     ดีมาก!
   </div>
@@ -196,7 +199,7 @@
 </div>
 <div class="col-md-2 mb-3">
   <label >รหัสไปรษณีย์</label>
-  <input type="number" class="form-control"  name = 'zip_code' placeholder="รหัสไปรษณีย์"  required>
+  <input type="number" class="form-control"  name = 'zip_code' placeholder="รหัสไปรษณีย์"    min="10000" max="99999"required>
   <div class="valid-feedback">
     ดีมาก!
   </div>
