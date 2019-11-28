@@ -46,7 +46,7 @@
                                             @csrf
                                             @method('PUT')
                                             <td>
-                                                <input type="number" value="{{$product->count}}" name="count" style="width: 30%">
+                                                <input type="number" value="{{$product->count}}" name="count" style="width: 30%"  min="0" max="9999">
                                             </td>
                                         <td>
 
