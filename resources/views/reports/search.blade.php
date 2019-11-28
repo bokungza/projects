@@ -11,7 +11,7 @@
     </nav>
     <form action="{{url('/report/search')}}" method="POST">
           @csrf
-่<p class = "text-left"> ค้นหาตั้งแต่วันที่<input type="date" name="from" min="2019-01-01" max="2019-11-28">ถึงวันที่<input min="2019-01-01" max="2019-11-28"type="date" name="to"><button  type="submit" class="btn btn-primary">ค้นหา</button></p>
+่<p class = "text-left"> ค้นหารายงานยอดขายสินค้าตั้งแต่วันที่<input type="date" name="from" min="2019-01-01" max="2019-11-29">ถึงวันที่<input min="2019-01-01" max="2019-11-29"type="date" name="to"><button  type="submit" class="btn btn-primary">ค้นหา</button></p>
 </form>
     <div class="card-body "id="printableArea">
 
@@ -40,7 +40,7 @@
 
     <td>250บาท</td>
         <td>{{$weight1}}</td>
-        <td>{{$weight1*230}}</td>
+        <td>{{number_format($weight1*230, 0, ',', ',')}}</td>
 
   </tr>
   <tr>
@@ -48,7 +48,7 @@
 
 <td>230บาท</td>
 <td>{{$weight2}}</td>
-<td>{{$weight2*230}}</td>
+<td>{{number_format($weight2*230, 0, ',', ',')}}</td>
 
 </tr>
 <tr>
@@ -56,7 +56,7 @@
 
 <td>250บาท</td>
 <td>{{$weight3}}</td>
-<td>{{$weight3*250}}</td>
+<td>{{number_format($weight3*250, 0, ',', ',')}}</td>
 
 </tr>
 <tr>
@@ -64,7 +64,7 @@
 
 <td>240บาท</td>
 <td>{{$weight4}}</td>
-<td>{{$weight4*240}}</td>
+<td>{{number_format($weight4*240, 0, ',', ',')}}</td>
 
 </tr>
 <tr>
@@ -72,7 +72,7 @@
 
 <td>380บาท</td>
 <td>{{$weight5}}</td>
-<td>{{$weight5*380}}</td>
+<td>{{number_format($weight5*380, 0, ',', ',')}}</td>
 
 </tr>
 <tr>
@@ -80,7 +80,7 @@
 
 <td>230บาท</td>
 <td>{{$weight6}}</td>
-<td>{{$weight6*230}}</td>
+<td>{{number_format($weight6*230, 0, ',', ',')}}</td>
 
 </tr>
 
@@ -90,7 +90,7 @@
         </tbody>
 
       </table>
-      <p class = "text-right">รวมยอดขายทั้งหมด {{$total}} บาท</p>
+      <p class = "text-right">รวมยอดขายทั้งหมด {{number_format($total*230, 0, ',', ',')}} บาท</p>
 
 
 
