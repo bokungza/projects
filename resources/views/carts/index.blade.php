@@ -49,9 +49,9 @@
                                                 </div>
                                             </div>
                                         </th>
-                                        <td class="border-0 align-middle text-center"><strong>฿{{$product->unit_price}}</strong></td>
+                                        <td class="border-0 align-middle text-center"><strong>฿{{number_format($product->unit_price, 0, ',', ',')}}</strong></td>
                                         <td class="border-0 align-middle text-center"><strong>{{$cart->count}}</strong></td>
-                                        <td class="border-0 align-middle text-center"><strong>฿{{$cart->total_price}}</strong></td>
+                                        <td class="border-0 align-middle text-center"><strong>฿{{number_format($cart->total_price, 0, ',', ',')}}</strong></td>
                                         <td class="border-0 align-middle text-center"><strong>{{$product->count}}</strong></td>
 
 
@@ -238,13 +238,13 @@
                             <ul class="list-unstyled mb-4">
                                 <li class="d-flex justify-content-between py-3 border-bottom">
                                     <strong class="text-muted">ยอดรวมสินค้า ({{ $count }} รายการ)</strong>
-                                    <strong>  ฿{{$total_price}}</strong></li>
+                                    <strong>  ฿{{number_format($total_price, 0, ',', ',')}}</strong></li>
                                 <li class="d-flex justify-content-between py-3 border-bottom">
                                     <strong class="text-muted">ค่าจัดส่ง</strong>
                                     <strong>฿50</strong></li>
                                 <li class="d-flex justify-content-between py-3 border-bottom">
                                     <strong class="text-muted">ยอดรวม</strong>
-                                    <strong>฿{{$total_price+50}}</strong>
+                                    <strong>฿{{number_format($total_price+50, 0, ',', ',')}}</strong>
                                 </li>
                             </ul>
 
