@@ -24,6 +24,9 @@ Route::POST('/orders/search/{page}', 'OrdersController@search')->middleware('aut
 Route::resource('/orders', 'OrdersController');
 Route::resource('/reports', 'ReportsController');
 Auth::routes();
+Route::POST('/report/search', 'ReportsController@search')->name('search')->middleware('auth');
+Route::get('/report/search', 'ReportsController@search')->name('search')->middleware('auth');
+
 
 Route::get('/home', 'HomeController@index')->name('home');
 
